@@ -130,6 +130,8 @@ h4{font-size:16px;margin:14px 0 4px}
 .fig svg{display:block;width:100%;min-width:560px;height:auto}
 .fig-cap{font-size:13px;color:var(--ink2);margin-top:4px}
 .swipe{display:none;font-size:12px;color:var(--ink3)}
+.shot svg{display:block;width:100%;height:auto;border-radius:2px;margin-bottom:10px}
+.shots .card h4{color:var(--ink)}
 .legend{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:4px 16px;font-size:15px}
 .legend li{display:flex;gap:8px;align-items:flex-start}
 .num{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ex);color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
@@ -220,7 +222,7 @@ footer{max-width:1160px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:v
 
 <header class="hero">
   <div class="hero-in">
-    <div class="kicker"><b>체육 · 커뮤니티 매핑 프로젝트</b><span>중학교 3학년 · 3차시</span><span>신체활동 × 스포츠 환경 안전</span><span class="draft">안내 자료 초안 v0.2</span></div>
+    <div class="kicker"><b>체육 · 커뮤니티 매핑 프로젝트</b><span>중학교 3학년 · 3차시</span><span>신체활동 × 스포츠 환경 안전</span><span class="draft">안내 자료 초안 v0.3</span></div>
     <h1>우리 동네 스포츠 배움터 찾기 <span>(가제)</span></h1>
     <p class="lead">내가 사는 동네를 직접 걸으며 운동하기 좋은 곳, 위험한 곳, 심장충격기가 있는 곳을 찾아 구글 지도에 표시하고 짧은 설명을 붙입니다. 모두의 지도를 겹쳐 보며 우수사례와 개선점을 찾아 발표합니다.</p>
     <div class="chips">
@@ -286,6 +288,7 @@ footer{max-width:1160px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:v
   <ul>
     <li>학급 공동 커뮤니티 지도 1개 (레이어 3개: 운동하기 좋은 곳 · 위험한 곳 · 심장충격기)</li>
     <li>모둠별 장소 기록 <b>주제마다 2곳 이상, 모두 6곳 이상</b> <span class="chk">수량은 교사 조정</span></li>
+    <li>장소마다 직접 찍은 <b>사진 1~3장</b> (전체 모습 · 가까이 · 크기 비교)</li>
     <li>모둠 발표 (3분 + 질문 1분): 우수사례 1가지 + 개선점 1가지 + 제안</li>
   </ul>
 </section>
@@ -556,7 +559,7 @@ footer{max-width:1160px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:v
       </ul>
     </li>
     <li><b>이름과 설명 쓰기</b>장소 이름은 <b>[모둠 번호] 장소 이름</b>으로 쓰고, 설명 칸에는 아래 ‘설명 틀’을 복사해 채웁니다.</li>
-    <li><b>사진 넣기</b>장소 창의 카메라 아이콘을 눌러 사진을 올립니다. 얼굴·번호판이 나온 사진은 올리지 않습니다.</li>
+    <li><b>사진 넣기</b>장소 창의 카메라 아이콘으로 사진을 붙입니다. 찍는 요령과 붙이는 순서는 아래 <a href="#photo">사진 찍고 지도에 붙이기</a>를 봅니다.</li>
     <li><b>색과 아이콘 맞추기</b>레이어 이름 아래 스타일(페인트통) 메뉴에서 레이어 전체 색을 정합니다. 보통 선생님이 미리 맞춰 둡니다.</li>
     <li><b>거리 재기</b><span class="key">거리 측정</span>으로 운동 장소 → 가장 가까운 심장충격기까지 거리를 잽니다. 분석 단계에서 씁니다.</li>
     <li><b>확인하기</b>레이어 체크를 하나씩 끄고 켜며 내 모둠 장소가 맞는 레이어·맞는 자리에 있는지 확인합니다. 실수하면 <span class="key">되돌리기</span>나 <span class="key">Ctrl</span>+<span class="key">Z</span>.</li>
@@ -566,9 +569,103 @@ footer{max-width:1160px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:v
   <ol>
     <li>Google 지도 앱을 열고 내가 서 있는 자리(또는 위험 요소가 있는 자리)를 <b>길게 누릅니다</b>.</li>
     <li>떨어진 핀과 함께 <b>위도, 경도</b> 숫자가 나옵니다. 기록 카드에 적거나 화면을 캡처해 둡니다.</li>
-    <li>사진은 같은 자리에서 <b>전체 모습 1장, 가까이 1장</b> 찍습니다.</li>
+    <li>사진은 같은 자리에서 <b>전체 모습 1장, 가까이 1장</b>(필요하면 크기 비교 1장) 찍고, 파일 이름을 기록 카드에 적습니다.</li>
     <li>교실에 돌아와 PC에서 좌표를 검색창에 붙여 넣어 장소를 추가합니다.</li>
   </ol>
+
+  <h3 id="photo">사진 찍고 지도에 붙이기</h3>
+  <p>사진은 설명보다 힘이 센 <b>근거</b>입니다. 장소마다 직접 찍은 사진 1~3장을 지도에 붙이면, 가 보지 않은 친구도 그곳이 어떤지 바로 알 수 있습니다.</p>
+
+  <h4>사진 세 장 요령</h4>
+  <div class="grid3 shots">
+    <div class="card shot">
+      <svg viewBox="0 0 160 100" role="img" aria-label="주변과 함께 찍은 전체 모습 예시 그림">
+        <rect width="160" height="100" fill="#e8eef3"/><rect y="70" width="160" height="30" fill="#d9d2c3"/>
+        <rect x="104" y="28" width="44" height="42" fill="#c9c1b0"/><g fill="#f4f0e6"><rect x="110" y="34" width="8" height="8"/><rect x="124" y="34" width="8" height="8"/><rect x="110" y="50" width="8" height="8"/><rect x="124" y="50" width="8" height="8"/></g>
+        <rect x="27" y="50" width="4" height="22" fill="#8a6d4b"/><circle cx="29" cy="44" r="13" fill="#9cc48f"/>
+        <g stroke="#55524b" stroke-width="3"><line x1="58" y1="44" x2="58" y2="72"/><line x1="86" y1="44" x2="86" y2="72"/><line x1="55" y1="46" x2="89" y2="46"/></g>
+        <circle cx="72" cy="58" r="22" fill="none" stroke="#d4541c" stroke-width="2" stroke-dasharray="4 3"/>
+      </svg>
+      <h4>① 전체 모습</h4>
+      <p class="small">어디인지 알 수 있게 주변 건물·나무·표지판이 함께 나오도록 멀리서 찍습니다.</p>
+    </div>
+    <div class="card shot">
+      <svg viewBox="0 0 160 100" role="img" aria-label="문제가 되는 부분을 가까이 찍은 예시 그림">
+        <rect width="160" height="100" fill="#d9d4ca"/><rect x="22" y="14" width="116" height="72" rx="4" fill="#aaa497"/>
+        <g fill="#6d685e"><circle cx="40" cy="30" r="6"/><circle cx="120" cy="30" r="6"/><circle cx="40" cy="70" r="6"/></g>
+        <circle cx="120" cy="70" r="6" fill="#3a3732"/><circle cx="120" cy="70" r="13" fill="none" stroke="#d4541c" stroke-width="3"/>
+      </svg>
+      <h4>② 가까이</h4>
+      <p class="small">좋은 점이나 위험 요소가 화면을 가득 채우도록 다가가서 찍습니다. (예: 빠진 볼트)</p>
+    </div>
+    <div class="card shot">
+      <svg viewBox="0 0 160 100" role="img" aria-label="신발을 옆에 두고 크기를 비교한 예시 그림">
+        <rect width="160" height="100" fill="#cfc8ba"/><ellipse cx="62" cy="58" rx="40" ry="20" fill="#7c7466"/><ellipse cx="62" cy="54" rx="34" ry="14" fill="#696255"/>
+        <path d="M110 66 q0 -14 14 -16 h8 q10 0 16 10 l4 6 z" fill="#1f5fbf"/><rect x="110" y="66" width="42" height="5" rx="2" fill="#f4f0e6"/>
+      </svg>
+      <h4>③ 크기 비교</h4>
+      <p class="small">파인 바닥·벌어진 틈처럼 크기가 중요할 때 신발·공을 옆에 두고 찍습니다. (위험한 곳)</p>
+    </div>
+  </div>
+
+  <h4>주제별로 꼭 찍을 것</h4>
+  <table class="tbl stack">
+    <thead><tr><th>주제</th><th>찍을 것</th></tr></thead>
+    <tbody>
+      <tr><th style="color:var(--ex)">운동하기 좋은 곳</th><td data-h="찍을 것">장소 전체, 대표 시설·기구, 이용 안내판(이용 시간·요금)</td></tr>
+      <tr><th style="color:var(--risk)">위험한 곳</th><td data-h="찍을 것">위치를 알 수 있는 전체 모습, 위험 요소 가까이, 필요하면 크기 비교</td></tr>
+      <tr><th style="color:var(--aed)">심장충격기</th><td data-h="찍을 것">보관함 겉모습(점검표가 보이게), 위치를 알 수 있는 주변(입구·층 안내), 멀리서 본 안내 표지 — <b>보관함은 열지 않고</b> 겉에서만</td></tr>
+    </tbody>
+  </table>
+  <p class="small">파일 이름은 <code>모둠_주제_번호</code>로 바꿔 둡니다. 예: <code>3모둠_위험_01</code>, <code>3모둠_AED_02</code>. 같은 이름을 기록 카드에도 적으면 나중에 헷갈리지 않습니다.</p>
+
+  <h4>지도에 사진 붙이는 순서</h4>
+  <ol class="steps">
+    <li><b>휴대전화 → 학급 사진 폴더</b>휴대전화로는 내 지도를 고치기 어렵습니다. 그래서 사진을 먼저 <b>Google 드라이브</b> 앱으로 선생님이 공유한 「학급 사진」 폴더의 우리 모둠 폴더에 올립니다. (드라이브 앱의 <span class="key">+</span> → <span class="key">업로드</span>)</li>
+    <li><b>PC·크롬북에서 장소 열기</b>학급 지도를 열고 사진을 붙일 장소(마커)를 클릭합니다.</li>
+    <li><b>카메라 아이콘 누르기</b>장소 창 아래쪽의 카메라 모양(이미지 또는 동영상 추가)을 누릅니다.</li>
+    <li><b>사진 고르기</b>열린 창에서 <span class="key">업로드</span>를 골라 파일을 선택합니다. 크롬북은 파일 선택 창에 Google 드라이브가 바로 보입니다. 드라이브에서 바로 고르는 탭이 있으면 그것을 써도 됩니다.</li>
+    <li><b>한 장씩 더하기</b>사진은 한 번에 한 장씩 붙습니다. 전체 모습 → 가까이 순서로 올리면 보기 좋습니다.</li>
+    <li><b>확인하기</b>왼쪽 패널의 <span class="key">미리보기</span>로 사진이 보이는지 확인하고, 옆 친구 화면에서도 보이는지 물어봅니다.</li>
+  </ol>
+  <div class="fig">
+    <svg viewBox="0 0 560 210" style="max-width:640px" role="img" aria-label="내 지도 장소 창에서 카메라 아이콘 위치를 보여 주는 단순화한 그림">
+      <rect width="560" height="210" rx="6" fill="#e7ede3"/>
+      <rect x="20" y="14" width="400" height="182" rx="6" fill="#fff" stroke="#9aa3ad"/>
+      <rect x="36" y="30" width="120" height="84" rx="3" fill="#d9d4ca"/>
+      <path d="M46 104 l26 -30 l18 20 l12 -12 l22 22 z" fill="#aaa497"/><circle cx="130" cy="48" r="8" fill="#f4f0e6"/>
+      <text x="172" y="48" font-size="15" font-weight="700" fill="#1d1d1b">[3모둠] 흔들리는 운동기구</text>
+      <text x="172" y="68" font-size="12" fill="#55524b">갈래: 장비 · 위험도: 중</text>
+      <rect x="172" y="80" width="220" height="8" rx="4" fill="#e6e1d6"/><rect x="172" y="96" width="180" height="8" rx="4" fill="#e6e1d6"/>
+      <line x1="20" y1="140" x2="420" y2="140" stroke="#e2e2e2"/>
+      <g font-size="11" text-anchor="middle" fill="#444">
+        <rect x="200" y="150" width="38" height="34" rx="4" fill="#f2f2f2"/><text x="219" y="171">스타일</text>
+        <rect x="244" y="150" width="38" height="34" rx="4" fill="#f2f2f2"/><text x="263" y="171">수정</text>
+        <rect x="288" y="150" width="38" height="34" rx="4" fill="#fdeee5" stroke="#d4541c" stroke-width="2"/>
+        <rect x="297" y="161" width="20" height="14" rx="2" fill="none" stroke="#d4541c" stroke-width="2"/><circle cx="307" cy="168" r="4" fill="none" stroke="#d4541c" stroke-width="2"/>
+        <rect x="332" y="150" width="38" height="34" rx="4" fill="#f2f2f2"/><text x="351" y="171">길찾기</text>
+        <rect x="376" y="150" width="38" height="34" rx="4" fill="#f2f2f2"/><text x="395" y="171">삭제</text>
+      </g>
+      <path d="M326 170 C380 200 440 190 452 150" fill="none" stroke="#d4541c" stroke-width="2"/>
+      <rect x="434" y="96" width="112" height="54" rx="4" fill="#fff" stroke="#d4541c"/>
+      <text x="446" y="118" font-size="13" font-weight="700" fill="#d4541c">사진 추가</text>
+      <text x="446" y="138" font-size="12" fill="#333">카메라 모양</text>
+    </svg>
+  </div>
+  <p class="swipe">← 그림을 옆으로 밀어 보세요</p>
+  <p class="fig-cap">장소 창을 단순화한 그림입니다. 아이콘 모양과 위치는 실제와 조금 다를 수 있습니다.</p>
+
+  <h4>잘 안 될 때</h4>
+  <table class="tbl stack">
+    <thead><tr><th>이럴 때</th><th>이렇게 해요</th></tr></thead>
+    <tbody>
+      <tr><th>휴대전화에서 편집 메뉴가 안 보여요</th><td data-h="해결">내 지도 편집은 PC·크롬북 웹 브라우저에서 합니다. 휴대전화로는 사진을 드라이브에 올리는 데까지만 합니다.</td></tr>
+      <tr><th>친구 화면에서 내 사진이 안 보여요</th><td data-h="해결">사진을 지우고 <span class="key">업로드</span>로 다시 올립니다. 그래도 안 되면 선생님께 드라이브 공유 설정을 확인해 달라고 합니다.</td></tr>
+      <tr><th>사진이 옆으로 누워 있어요</th><td data-h="해결">휴대전화 사진 앱에서 회전해 저장한 뒤 다시 올립니다.</td></tr>
+      <tr><th>사람 얼굴이 찍혔어요</th><td data-h="해결">사진 앱의 자르기로 잘라 낸 뒤 올립니다. 잘라 낼 수 없으면 올리지 않고 다시 찍습니다.</td></tr>
+    </tbody>
+  </table>
+  <div class="warn"><span class="lb">사진 수칙</span><b>직접 찍은 사진만</b> 올립니다. 인터넷에서 가져온 사진은 쓰지 않습니다(저작권). 사람 얼굴·차량 번호판·집 호수가 나오지 않게 하고, 집이나 친구 집에서 찍은 사진은 올리지 않습니다.</div>
 
   <h3>설명 틀 — 복사해서 쓰세요</h3>
   <div class="tpl t-ex">
@@ -578,6 +675,7 @@ footer{max-width:1160px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:v
 좋은 점(기준 2가지 이상 + 별점):
 아쉬운 점:
 이런 사람에게 추천:
+사진(무엇을 찍었나):
 방문한 날·기록한 사람:</pre>
   </div>
   <div class="tpl t-risk">
@@ -588,6 +686,7 @@ footer{max-width:1160px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:v
 위험도(상·중·하):
 개선 제안(누가, 무엇을):
 신고 여부(안전신문고 신고함 / 안 함 / 선생님과 상의):
+사진(무엇을 찍었나):
 촬영한 날·기록한 사람:</pre>
   </div>
   <div class="tpl t-aed">
@@ -598,10 +697,11 @@ footer{max-width:1160px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:v
 관리 표시(점검표 보임 / 안 보임):
 가까운 운동 장소까지(걸어서 약 __분):
 E-Gen 지도에 있나(있음 / 없음):
+사진(무엇을 찍었나):
 확인한 날·기록한 사람:</pre>
   </div>
 
-  <div class="note"><span class="lb">교사용 · 방법 B</span>학생에게 편집 권한을 주기 어렵다면 <b>구글 설문지</b>로 모읍니다. 문항: 모둠, 주제(3개 중 선택), 장소 이름, 주소 또는 위도·경도, 설명(틀), 사진 링크. 응답 시트를 내려받아 내 지도의 레이어에서 <span class="key">가져오기</span>로 넣고 위치 열(주소 또는 좌표)과 제목 열을 고르면 한 번에 표시됩니다. 주제별로 시트를 나눠 레이어 3개에 각각 가져오면 됩니다. 다른 모둠 마커를 실수로 지우는 일도 막을 수 있습니다.</div>
+  <div class="note"><span class="lb">교사용 · 방법 B</span>학생에게 편집 권한을 주기 어렵다면 <b>구글 설문지</b>로 모읍니다. 문항: 모둠, 주제(3개 중 선택), 장소 이름, 주소 또는 위도·경도, 설명(틀), 사진(<b>파일 업로드</b> 문항 — 학생 구글 로그인이 필요하고 사진은 교사 드라이브에 모입니다). 응답 시트를 내려받아 내 지도의 레이어에서 <span class="key">가져오기</span>로 넣고 위치 열(주소 또는 좌표)과 제목 열을 고르면 한 번에 표시됩니다. 주제별로 시트를 나눠 레이어 3개에 각각 가져오면 됩니다. 다른 모둠 마커를 실수로 지우는 일도 막을 수 있습니다. 단, 가져오기로는 사진이 장소 창에 그림으로 붙지 않고 링크 글자로만 남으므로, 사진은 장소 창에서 따로 붙입니다(교사가 하거나 2차시에 모둠별로).</div>
 </section>
 
 <!-- 6 -->
@@ -624,6 +724,7 @@ E-Gen 지도에 있나(있음 / 없음):
       <ul class="checks">
         <li><b>우리 집 위치나 친구 집</b>을 지도에 표시하지 않습니다.</li>
         <li>사람 얼굴, 차량 번호판, 집 호수가 나온 사진은 올리지 않습니다.</li>
+        <li><b>직접 찍은 사진만</b> 올립니다. 인터넷 사진은 쓰지 않습니다.</li>
         <li>특정 사람이나 가게를 탓하는 글을 쓰지 않습니다. 환경과 시설에 대해서만 씁니다.</li>
         <li>다른 모둠이 올린 장소는 고치거나 지우지 않습니다.</li>
         <li>지도는 <b>학교 계정 안에서만</b> 공유합니다.</li>
@@ -741,7 +842,7 @@ E-Gen 지도에 있나(있음 / 없음):
       <tr><th>1</th><td data-h="장소">컴퓨터실</td><td data-h="활동">
         <b>도입</b> 우리 동네에서 운동해 본 곳·위험했던 곳 떠올리기 (5분)<br>
         <b>세 주제 학습</b> 좋은 곳 여섯 기준, 위험 요소 세 갈래·위험도, 심장충격기 위치의 의미와 사용 순서 — 자료 02~04 (15분)<br>
-        <b>내 지도 연습</b> 학급 지도 열기, 학교 주변 1곳 표시·설명 틀 붙이기, 좌표 찾기 (15분)<br>
+        <b>내 지도 연습</b> 학급 지도 열기, 학교 주변 1곳 표시·설명 틀 붙이기·사진 1장 붙이기, 좌표 찾기 (15분)<br>
         <b>탐사 계획</b> 모둠 구역·역할(기록·사진·길잡이·시간 지킴이), 안전 수칙 확인, 기록 카드 배부 (10분)</td><td data-h="결과물">연습 마커, 탐사 계획, 기록 카드</td></tr>
       <tr><th>과제</th><td data-h="장소">동네(1~2주)</td><td data-h="활동">모둠 구역 탐사, 주제별 2곳 이상 사진·기록 카드 작성. 할 수 있으면 지도 입력까지 미리 해 둡니다.</td><td data-h="결과물">기록 카드 6장 이상</td></tr>
       <tr><th>2</th><td data-h="장소">컴퓨터실</td><td data-h="활동">
@@ -773,6 +874,7 @@ E-Gen 지도에 있나(있음 / 없음):
     <li>교내 망·크롬북에서 mymaps.google.com, E-Gen, 안전신문고 <b>접속 테스트</b></li>
     <li>반별 지도 미리 만들기: 레이어 3개, 레이어별 색(파랑·주황·초록), 지도 설명에 수칙 요약</li>
     <li>공유 방식 결정: 학생 편집자 초대(방법 A) 또는 설문지 수합 후 가져오기(방법 B)</li>
+    <li>학급 사진 폴더 만들기: Google 드라이브에 「3-○ 커뮤니티 매핑 사진」 폴더와 모둠별 하위 폴더를 만들고 학생을 편집자로 공유</li>
     <li>학구 지도를 모둠 수만큼 구역으로 나눠 배정 (학생 거주지와 가까운 구역)</li>
     <li>가정 안내: 탐사 기간, 2인 이상·밝은 시간 원칙, 보호자 동행 권장</li>
     <li>실제 안전신문고 신고 방식 결정: 학생 선택 / 교사가 모아서 / 하지 않음</li>
@@ -798,7 +900,7 @@ E-Gen 지도에 있나(있음 / 없음):
         <tr><th>날짜·시간</th><td>&nbsp;&nbsp;&nbsp;월 &nbsp;&nbsp;&nbsp;일 ( &nbsp;&nbsp; ) &nbsp;&nbsp;&nbsp;&nbsp;시 &nbsp;&nbsp;&nbsp;&nbsp;분 &nbsp;&nbsp;&nbsp; 날씨:</td></tr>
         <tr><th>장소 이름</th><td>&nbsp;</td></tr>
         <tr><th>위치</th><td>주소 또는 위도·경도:</td></tr>
-        <tr><th>사진</th><td>전체 모습 1장 <span class="box"></span> &nbsp; 가까이 1장 <span class="box"></span> &nbsp; (얼굴·번호판 없음 <span class="box"></span>)</td></tr>
+        <tr><th>사진</th><td>파일 이름: ______________ &nbsp;<span class="box"></span>전체 <span class="box"></span>가까이 <span class="box"></span>크기 비교 &nbsp;(얼굴·번호판 없음 <span class="box"></span>)</td></tr>
         <tr><th>관찰한 것</th><td class="blank">&nbsp;</td></tr>
         <tr><th>판단</th><td>
           <b style="color:var(--ex)">운동</b> 가까움 ☆☆☆ &nbsp;안전 ☆☆☆ &nbsp;비용 ☆☆☆<br><span style="padding-left:2.6em">시간 ☆☆☆ &nbsp;시설 ☆☆☆ &nbsp;함께함 ☆☆☆</span><br>
@@ -829,7 +931,7 @@ E-Gen 지도에 있나(있음 / 없음):
 </main>
 </div>
 
-<footer>우리 동네 스포츠 배움터 찾기(가제) · 중학교 3학년 커뮤니티 매핑 안내 자료 · v0.2.0 초안</footer>
+<footer>우리 동네 스포츠 배움터 찾기(가제) · 중학교 3학년 커뮤니티 매핑 안내 자료 · v0.3.0 초안</footer>
 
 <script>
 (function(){
