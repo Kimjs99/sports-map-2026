@@ -121,7 +121,21 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 }
 
 /* 표지 */
-.cover{display:grid;gap:var(--space-4)}
+.cover{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-6)}
+.cover-main{display:grid;gap:var(--space-4);min-width:0}
+@media (min-width:900px){.cover{grid-template-columns:minmax(0,1fr) auto;align-items:start;column-gap:var(--space-8)}}
+.access{display:grid;justify-items:center;gap:6px;padding:var(--space-4);border:1px solid var(--rule);border-radius:var(--radius-md);background:var(--sheet);width:fit-content}
+.access-qr{background:var(--screen);border-radius:var(--radius-sm);overflow:hidden;line-height:0}
+.access-qr svg{display:block;width:205px;height:205px;shape-rendering:crispEdges}
+.access-label{margin:4px 0 0;font:700 14.8px/1.5 var(--font-body);letter-spacing:.06em;color:var(--blue)}
+.access-url{margin:0;font-size:13px;line-height:1.4;color:var(--sub);text-align:center}
+@media (max-width:600px){
+  .access{width:100%;grid-template-columns:auto minmax(0,1fr);justify-items:start;align-items:center;column-gap:var(--space-4)}
+  .access-qr{grid-row:span 2}
+  .access-qr svg{width:123px;height:123px}
+  .access-label{align-self:end;margin:0}
+  .access-url{align-self:start;text-align:left;overflow-wrap:anywhere}
+}
 .eyebrow{font:700 14.8px/1.5 var(--font-body);letter-spacing:.06em;color:var(--blue)}
 .cover h1{font:700 clamp(32px,4.4vw,46.8px)/1.28 var(--font-display);letter-spacing:-.01em}
 .lede{font-size:18.7px;line-height:1.8;color:var(--sub);max-width:var(--measure);margin:0}
@@ -317,7 +331,7 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
 <a class="skip" href="#main">본문 바로가기</a>
 <div class="bar"><div class="bar-in">
   <button class="menu-btn" type="button" aria-controls="toc" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>목차</button>
-  <a class="bar-title" href="#top"><span>우리 동네 스포츠 배움터</span><span class="ver">v1.0</span></a>
+  <a class="bar-title" href="#top"><span>우리 동네 스포츠 배움터</span><span class="ver">v1.1</span></a>
   <div class="theme" role="group" aria-label="화면 테마">
     <button type="button" data-t="light" aria-pressed="false">밝게</button><button type="button" data-t="dark" aria-pressed="false">어둡게</button><button type="button" data-t="auto" aria-pressed="true">자동</button>
   </div>
@@ -344,6 +358,7 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
 
 <main class="sheet" id="main">
   <header class="cover" id="top">
+   <div class="cover-main">
     <div class="eyebrow">체육 · 커뮤니티 매핑 프로젝트 · 중학교 3학년 3차시</div>
     <h1>우리 동네 스포츠 배움터 찾기</h1>
     <p class="lede">내가 사는 동네를 직접 걸으며 운동하기 좋은 곳, 위험한 곳, 심장충격기가 있는 곳을 찾아 구글 지도에 표시하고 짧은 설명과 사진을 붙입니다. 모두의 지도를 겹쳐 보며 우수사례와 개선점을 찾아 발표합니다.</p>
@@ -352,7 +367,13 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <span class="chip t-risk"><i class="dot"></i>주제 2 · 위험한 곳 (안전 공익신고)</span>
       <span class="chip t-aed"><i class="dot"></i>주제 3 · 심장충격기 위치</span>
     </div>
-    <div class="meta"><span>안내 자료 v1.0.0</span><span>2026-11-20</span><span>신체활동 × 스포츠 환경 안전</span></div>
+    <div class="meta"><span>안내 자료 v1.1.0</span><span>2026-11-20</span><span>신체활동 × 스포츠 환경 안전</span></div>
+   </div>
+   <aside class="access" aria-label="휴대전화로 접속">
+    <div class="access-qr"><svg role="img" aria-label="접속 QR 코드: kimjs99.github.io/sports-map-2026" viewBox="0 0 41 41" class="segno"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#1d1f23" d="M4 4.5h7m1 0h5m1 0h1m2 0h2m5 0h1m1 0h7m-33 1h1m5 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h2m4 0h5m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m1 0h1m3 0h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m4 0h1m1 0h1m1 0h1m4 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m2 0h1m2 0h1m1 0h3m4 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m2 0h2m4 0h3m1 0h1m1 0h1m-24 1h1m4 0h4m5 0h1m1 0h4m4 0h1m5 0h2m-31 1h1m1 0h2m4 0h3m1 0h1m2 0h3m3 0h1m4 0h3m-31 1h1m1 0h1m2 0h2m3 0h8m6 0h2m2 0h1m1 0h1m-31 1h2m1 0h2m3 0h2m4 0h1m2 0h2m4 0h2m2 0h6m-31 1h2m2 0h1m1 0h3m4 0h1m1 0h1m2 0h1m1 0h1m3 0h1m-27 1h3m2 0h1m2 0h4m2 0h1m2 0h2m2 0h3m1 0h3m1 0h1m1 0h2m-33 1h1m1 0h2m2 0h1m3 0h1m2 0h3m5 0h1m3 0h5m1 0h1m-32 1h2m1 0h3m3 0h2m2 0h1m6 0h1m3 0h2m2 0h3m1 0h1m-30 1h6m1 0h2m1 0h2m1 0h1m1 0h1m5 0h2m1 0h3m2 0h1m-29 1h2m2 0h3m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m2 0h1m2 0h2m1 0h1m-33 1h1m1 0h1m3 0h1m1 0h2m2 0h2m2 0h2m1 0h5m1 0h3m1 0h2m1 0h1m-33 1h2m1 0h2m2 0h2m1 0h1m2 0h1m2 0h3m1 0h1m4 0h2m1 0h4m-31 1h1m1 0h1m2 0h4m4 0h1m1 0h3m4 0h2m3 0h2m2 0h1m-33 1h1m1 0h4m1 0h1m6 0h1m5 0h2m1 0h1m3 0h2m1 0h1m-31 1h1m3 0h1m1 0h2m3 0h1m1 0h1m2 0h2m2 0h1m1 0h1m3 0h1m1 0h2m1 0h1m-32 1h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h3m2 0h3m4 0h6m1 0h1m-33 1h2m1 0h1m2 0h1m1 0h2m1 0h1m2 0h3m7 0h5m2 0h1m-24 1h1m1 0h1m5 0h1m1 0h3m3 0h1m3 0h1m1 0h1m1 0h1m-33 1h7m1 0h2m1 0h2m2 0h2m3 0h1m2 0h2m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m3 0h1m2 0h1m1 0h1m4 0h1m1 0h3m3 0h3m-31 1h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h2m1 0h1m1 0h1m4 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m3 0h2m1 0h4m1 0h2m2 0h4m1 0h2m1 0h1m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m1 0h4m1 0h4m2 0h1m1 0h1m1 0h6m-33 1h1m5 0h1m1 0h3m2 0h1m4 0h3m1 0h1m2 0h6m-31 1h7m2 0h3m2 0h1m2 0h1m4 0h4m1 0h1m3 0h1"/></svg></div>
+    <p class="access-label">휴대전화로 접속</p>
+    <p class="access-url">kimjs99.github.io/sports-map-2026</p>
+   </aside>
   </header>
 
 
@@ -1034,7 +1055,7 @@ E-Gen 지도에 있나(있음 / 없음):
   <p class="foot-name"><b>우리 동네 스포츠 배움터 찾기</b> · 2026 화접중학교 3학년 체육 커뮤니티 매핑 학습자료</p>
   <dl class="foot-meta">
     <div><dt>제작</dt><dd>kimjs99</dd></div>
-    <div><dt>버전</dt><dd class="mono">v1.0.0</dd></div>
+    <div><dt>버전</dt><dd class="mono">v1.1.0</dd></div>
     <div><dt>제작연도</dt><dd class="mono">2026</dd></div>
     <div><dt>최종 수정</dt><dd class="mono">2026-11-20</dd></div>
   </dl>
