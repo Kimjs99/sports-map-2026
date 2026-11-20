@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>우리 동네 스포츠 배움터 찾기(가제) · 3학년 커뮤니티 매핑 안내 자료 초안</title>
+<title>우리 동네 스포츠 배움터 찾기 · 3학년 커뮤니티 매핑 안내 자료</title>
 <script>try{var t=localStorage.getItem('sm-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,7 +124,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cover{display:grid;gap:var(--space-4)}
 .eyebrow{font:700 14.8px/1.5 var(--font-body);letter-spacing:.06em;color:var(--blue)}
 .cover h1{font:700 clamp(32px,4.4vw,46.8px)/1.28 var(--font-display);letter-spacing:-.01em}
-.cover h1 .tentative{font:400 .42em/1 var(--font-body);color:var(--faint);letter-spacing:0;margin-left:.35em;white-space:nowrap}
 .lede{font-size:18.7px;line-height:1.8;color:var(--sub);max-width:var(--measure);margin:0}
 .topics{display:flex;flex-wrap:wrap;gap:var(--space-2)}
 .meta{display:flex;flex-wrap:wrap;gap:var(--space-1) var(--space-4);font-size:14px;line-height:1.6;color:var(--faint);font-variant-numeric:tabular-nums}
@@ -272,7 +271,14 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
 .top{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--rule);background:var(--raised);color:var(--ink);box-shadow:var(--shadow);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
 .top.show{opacity:1;pointer-events:auto}
 .top svg{width:18px;height:18px}
-.foot{margin-top:52px;padding-top:var(--space-6);border-top:1px solid var(--rule);font-size:14px;line-height:1.6;color:var(--faint)}
+.foot{margin-top:52px;padding-top:var(--space-6);border-top:1px solid var(--rule);display:grid;gap:var(--space-3);font-size:14px;line-height:1.7;color:var(--faint)}
+.foot p{margin:0;max-width:48em}
+.foot-name{font-size:15px;color:var(--sub)} .foot-name b{color:var(--ink)}
+.foot-meta{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-6);margin:0}
+.foot-meta div{display:flex;align-items:baseline;gap:8px}
+.foot-meta dt{font:700 13px/1.5 var(--font-body);letter-spacing:.06em;color:var(--faint)}
+.foot-meta dd{margin:0;color:var(--ink);font-size:14px;font-variant-numeric:tabular-nums}
+.foot-meta dd.mono{font-family:var(--font-mono);font-weight:500}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toc,.toc.open,.scrim,.top,.btn{transition:none}}
 
 /* 인쇄 */
@@ -311,7 +317,7 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
 <a class="skip" href="#main">본문 바로가기</a>
 <div class="bar"><div class="bar-in">
   <button class="menu-btn" type="button" aria-controls="toc" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>목차</button>
-  <a class="bar-title" href="#top"><span>우리 동네 스포츠 배움터</span><span class="ver">v0.4</span></a>
+  <a class="bar-title" href="#top"><span>우리 동네 스포츠 배움터</span><span class="ver">v1.0</span></a>
   <div class="theme" role="group" aria-label="화면 테마">
     <button type="button" data-t="light" aria-pressed="false">밝게</button><button type="button" data-t="dark" aria-pressed="false">어둡게</button><button type="button" data-t="auto" aria-pressed="true">자동</button>
   </div>
@@ -339,14 +345,14 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
 <main class="sheet" id="main">
   <header class="cover" id="top">
     <div class="eyebrow">체육 · 커뮤니티 매핑 프로젝트 · 중학교 3학년 3차시</div>
-    <h1>우리 동네 스포츠 배움터 찾기<span class="tentative">(가제)</span></h1>
+    <h1>우리 동네 스포츠 배움터 찾기</h1>
     <p class="lede">내가 사는 동네를 직접 걸으며 운동하기 좋은 곳, 위험한 곳, 심장충격기가 있는 곳을 찾아 구글 지도에 표시하고 짧은 설명과 사진을 붙입니다. 모두의 지도를 겹쳐 보며 우수사례와 개선점을 찾아 발표합니다.</p>
     <div class="topics">
       <span class="chip t-ex"><i class="dot"></i>주제 1 · 운동하기 좋은 곳</span>
       <span class="chip t-risk"><i class="dot"></i>주제 2 · 위험한 곳 (안전 공익신고)</span>
       <span class="chip t-aed"><i class="dot"></i>주제 3 · 심장충격기 위치</span>
     </div>
-    <div class="meta"><span>안내 자료 초안 v0.4.0</span><span>2026-11-20</span><span>신체활동 × 스포츠 환경 안전</span></div>
+    <div class="meta"><span>안내 자료 v1.0.0</span><span>2026-11-20</span><span>신체활동 × 스포츠 환경 안전</span></div>
   </header>
 
 
@@ -929,7 +935,7 @@ E-Gen 지도에 있나(있음 / 없음):
 
 <!-- 9 -->
 <section class="sec" id="teacher">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅹ</span><h2>교사용 운영 안내 (초안)</h2><span class="who">교사용</span></div>
+  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅹ</span><h2>교사용 운영 안내</h2><span class="who">교사용</span></div>
 
   <h3>차시 운영안 — 3학년 · 3차시(45분) + 수업 밖 탐사</h3>
   <table class="tbl stack">
@@ -952,7 +958,7 @@ E-Gen 지도에 있나(있음 / 없음):
   </table>
   <div class="note"><span class="lb">3차시로 운영할 때</span>1차시가 가장 빠듯합니다. 자료 02~04를 1차시 전에 읽어 오게 하면 내 지도 연습 시간을 넉넉히 쓸 수 있습니다. 가슴압박·심장충격기 <b>실습</b>은 이 3차시에 넣지 않고 보건 수업이나 학교 안전교육과 연계하며, 1차시에는 사용 순서만 짚습니다. 2차시를 분석에 쓰려면 탐사 기간에 지도 입력을 미리 해 오게 하는 것이 좋습니다(방법 B 설문지 수합도 시간을 줄여 줍니다).</div>
 
-  <h3>평가 기준 (초안) <span class="chk">배점·반영 여부 교사 결정</span></h3>
+  <h3>평가 기준 (예시) <span class="chk">배점·반영 여부 교사 결정</span></h3>
   <table class="tbl stack">
     <thead><tr><th>평가 요소</th><th>상</th><th>중</th><th>하</th></tr></thead>
     <tbody>
@@ -1021,10 +1027,19 @@ E-Gen 지도에 있나(있음 / 없음):
     <li>Google 지도에서 내 지도 보기 — <a href="https://support.google.com/maps/answer/3045850?hl=ko" target="_blank" rel="noopener">support.google.com/maps</a></li>
     <li>WHO guidelines on physical activity and sedentary behaviour(2020) — <a href="https://www.who.int/publications/i/item/9789240015128" target="_blank" rel="noopener">who.int</a></li>
   </ul>
-  <p class="small muted">초안 작성일 2026-11-20. 서비스 화면과 메뉴 이름은 바뀔 수 있으니 수업 전 한 번 직접 따라 해 보세요.</p>
+  <p class="small muted">최종 수정 2026-11-20. 서비스 화면과 메뉴 이름은 바뀔 수 있으니 수업 전 한 번 직접 따라 해 보세요.</p>
 </section>
 
-<footer class="foot">우리 동네 스포츠 배움터 찾기(가제) · 중학교 3학년 커뮤니티 매핑 안내 자료 · v0.4.0 초안</footer>
+<footer class="foot">
+  <p class="foot-name"><b>우리 동네 스포츠 배움터 찾기</b> · 2026 화접중학교 3학년 체육 커뮤니티 매핑 학습자료</p>
+  <dl class="foot-meta">
+    <div><dt>제작</dt><dd>kimjs99</dd></div>
+    <div><dt>버전</dt><dd class="mono">v1.0.0</dd></div>
+    <div><dt>제작연도</dt><dd class="mono">2026</dd></div>
+    <div><dt>최종 수정</dt><dd class="mono">2026-11-20</dd></div>
+  </dl>
+  <p class="foot-legal">© 2026 kimjs99. All rights reserved. 이 자료와 화면·그림·코드는 화접중학교 체육 수업을 위해 제작되었습니다. 제작자의 허락 없이 복제·수정·배포하거나 다른 목적으로 사용하는 것을 금합니다.</p>
+</footer>
 </main>
 </div>
 <div class="scrim" id="scrim"></div>
