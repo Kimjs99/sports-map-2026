@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>우리 동네 스포츠 배움터 찾기(가제) · 3학년 커뮤니티 매핑 안내 자료 초안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3efe6; --sheet:#fffdf8; --ink:#1d1d1b; --ink2:#575349; --ink3:#8a857a;
+  --line:#ddd6c8; --line2:#1d1d1b;
+  --ex:#1f5fbf; --ex-bg:#e9f0fb;      /* 운동하기 좋은 곳 */
+  --risk:#d4541c; --risk-bg:#fcede4;  /* 위험한 곳 */
+  --aed:#12804a; --aed-bg:#e4f3ea;    /* 심장충격기 (AED 표지 색) */
+  --note:#8a6d1f; --note-bg:#fbf5e2;
+  --font:"돋움",Dotum,"굴림",Gulim,"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --sh:0 1px 2px rgba(60,50,30,.08),0 6px 18px rgba(60,50,30,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--ex)}
+h1,h2,h3,h4{line-height:1.35;margin:0}
+p{margin:.5em 0}
+ul,ol{padding-left:1.3em;margin:.4em 0}
+li{margin:.15em 0}
+small{color:var(--ink2)}
+
+/* 머리글 */
+.hero{background:var(--ink);color:#f6f2e8;padding:40px 16px 34px}
+.hero-in{max-width:1160px;margin:0 auto}
+.kicker{font-size:14px;letter-spacing:.04em;color:#d8cfbd;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.kicker b{color:#fff}
+.draft{display:inline-block;border:1px solid #f0a37a;color:#f6b892;font-size:12px;padding:1px 8px;border-radius:2px}
+.hero h1{font-size:32px;margin:12px 0 8px;font-weight:800;letter-spacing:-.01em}
+.hero h1 span{font-size:18px;font-weight:400;color:#cfc6b3}
+.hero .lead{max-width:760px;color:#e8e1d2;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:14px;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.d-ex{background:var(--ex)} .d-risk{background:var(--risk)} .d-aed{background:var(--aed)}
+
+/* 틀 */
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+.layout{display:block}
+.toc{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 -16px;padding:0 16px}
+.toc ol{list-style:none;margin:0;padding:8px 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.toc ol::-webkit-scrollbar{display:none}
+.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink2);font-size:14px;padding:6px 10px;border-radius:4px}
+.toc a.on{background:var(--ink);color:#fff}
+.toc .tt{display:none}
+main{padding:20px 0 40px}
+.sheet{background:var(--sheet);box-shadow:var(--sh);border-radius:4px;padding:26px 20px;margin:0 0 22px}
+.sec-head{display:flex;gap:12px;align-items:baseline;border-bottom:2px solid var(--line2);padding-bottom:10px;margin-bottom:16px}
+.sec-no{font-size:14px;font-weight:700;color:var(--ink3);flex:none}
+.sec-head h2{font-size:23px;font-weight:800}
+.sec-head .who{margin-left:auto;font-size:12px;border:1px solid var(--line);color:var(--ink2);padding:1px 8px;border-radius:2px;flex:none}
+h3{font-size:18px;margin:22px 0 8px;font-weight:800}
+h3:first-of-type{margin-top:6px}
+h4{font-size:16px;margin:14px 0 4px}
+.muted{color:var(--ink2)}
+.small{font-size:14px}
+
+/* 주제 색 */
+.t-ex{--c:var(--ex);--cb:var(--ex-bg)}
+.t-risk{--c:var(--risk);--cb:var(--risk-bg)}
+.t-aed{--c:var(--aed);--cb:var(--aed-bg)}
+.sheet.t-ex .sec-head,.sheet.t-risk .sec-head,.sheet.t-aed .sec-head{border-color:var(--c)}
+.sheet.t-ex .sec-no,.sheet.t-risk .sec-no,.sheet.t-aed .sec-no{color:var(--c)}
+
+.grid3{display:grid;grid-template-columns:1fr;gap:12px}
+.grid2{display:grid;grid-template-columns:1fr;gap:12px}
+.card{border:1px solid var(--line);border-top:4px solid var(--c,var(--ink));background:#fff;padding:14px 16px;border-radius:3px}
+.card h4{margin:0 0 6px;color:var(--c,var(--ink))}
+.card p{margin:.3em 0}
+.tbadge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--c);background:var(--cb);padding:2px 10px;border-radius:999px}
+
+/* 흐름 */
+.flow{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:1fr;gap:8px;counter-reset:f}
+.flow li{counter-increment:f;border:1px solid var(--line);background:#fff;padding:10px 12px 10px 48px;position:relative;border-radius:3px;margin:0}
+.flow li::before{content:counter(f);position:absolute;left:12px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.flow b{display:block}
+.flow .when{display:block;margin-top:4px;font-style:normal;font-size:12px;font-weight:700;color:var(--ex)}
+
+/* 표 */
+.tbl{width:100%;border-collapse:collapse;font-size:15px;margin:8px 0}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl thead th{border-bottom:2px solid var(--line2);font-size:14px;color:var(--ink2);white-space:nowrap}
+.tbl tbody th{white-space:nowrap}
+.tbl .c{text-align:center}
+
+/* 상자 */
+.note,.warn,.fact{border-radius:3px;padding:12px 14px;margin:12px 0;font-size:15px}
+.note{background:var(--note-bg);border-left:4px solid var(--note)}
+.note .lb{font-weight:700;color:var(--note)}
+.warn{background:var(--risk-bg);border-left:4px solid var(--risk)}
+.warn .lb{font-weight:700;color:var(--risk)}
+.fact{background:#f4f2ec;border-left:4px solid var(--ink)}
+.lb{margin-right:4px}
+.chk{font-size:12px;border:1px dashed var(--note);color:var(--note);padding:0 6px;border-radius:2px;white-space:nowrap}
+.ex-tag{font-size:12px;background:#eee8da;color:var(--ink2);padding:1px 7px;border-radius:2px;white-space:nowrap}
+
+/* 단계 */
+.steps{list-style:none;padding:0;margin:8px 0;counter-reset:s}
+.steps>li{counter-increment:s;position:relative;padding:12px 0 12px 62px;border-bottom:1px solid var(--line);margin:0}
+.steps>li:last-child{border-bottom:0}
+.steps>li::before{content:"STEP " counter(s);position:absolute;left:0;top:15px;font-size:11px;font-weight:800;color:var(--ex);letter-spacing:.03em;white-space:nowrap}
+.steps>li>b:first-child{display:block;font-size:16px}
+.key{display:inline-block;border:1px solid var(--ink3);border-bottom-width:2px;border-radius:3px;padding:0 6px;font-size:13px;background:#fff;white-space:nowrap}
+
+/* 틀 복사 */
+.tpl{border:1px solid var(--line);border-left:4px solid var(--c);background:#fff;border-radius:3px;margin:10px 0}
+.tpl-head{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line)}
+.tpl-head b{color:var(--c)}
+.tpl pre{margin:0;padding:12px;font-family:var(--font);font-size:15px;line-height:1.75;white-space:pre-wrap}
+.btn{font-family:var(--font);font-size:14px;cursor:pointer;border:1px solid var(--ink);background:#fff;color:var(--ink);padding:5px 12px;border-radius:3px;box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.btn:active{transform:translateY(1px);box-shadow:none}
+.btn.dark{background:var(--ink);color:#fff}
+.tpl-head .btn{margin-left:auto}
+.btn.done{background:var(--aed);border-color:var(--aed);color:#fff}
+
+/* 예시 */
+.sample{background:#fbfaf6;border:1px dashed var(--line);border-radius:3px;padding:10px 14px;margin:8px 0;font-size:15px}
+.sample .who2{font-size:12px;color:var(--ink3)}
+
+/* 그림 */
+.fig{margin:12px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.fig svg{display:block;width:100%;min-width:560px;height:auto}
+.fig-cap{font-size:13px;color:var(--ink2);margin-top:4px}
+.swipe{display:none;font-size:12px;color:var(--ink3)}
+.legend{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:4px 16px;font-size:15px}
+.legend li{display:flex;gap:8px;align-items:flex-start}
+.num{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ex);color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+
+/* 체크리스트 */
+.checks{list-style:none;padding:0}
+.checks li{padding-left:28px;position:relative;margin:6px 0}
+.checks li::before{content:"";position:absolute;left:2px;top:5px;width:15px;height:15px;border:1.5px solid var(--ink2);border-radius:2px;background:#fff}
+
+/* AED 순서 */
+.aedsteps{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:8px;counter-reset:a}
+.aedsteps li{counter-increment:a;background:var(--aed-bg);border-radius:3px;padding:10px 12px 10px 46px;position:relative;margin:0}
+.aedsteps li::before{content:counter(a);position:absolute;left:12px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--aed);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+
+/* 기록 카드 */
+.fcard{border:1.5px solid var(--ink);padding:12px 14px;background:#fff;margin:10px 0}
+.fcard h4{margin:0 0 8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.fcard table{width:100%;border-collapse:collapse;font-size:14px}
+.fcard th,.fcard td{border:1px solid #9c968a;padding:6px 8px;vertical-align:top;text-align:left}
+.fcard th{width:96px;background:#f4f2ec;white-space:nowrap}
+.fcard .blank{height:46px}
+.fcard .box{display:inline-block;width:12px;height:12px;border:1.3px solid var(--ink);margin:0 3px 0 8px;vertical-align:-1px}
+.fcard .box:first-child{margin-left:0}
+.print-bar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+
+footer{max-width:1160px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:var(--ink3)}
+
+/* 반응형 */
+@media (max-width:599px){
+  .hero{padding:28px 16px 24px}
+  .hero h1{font-size:25px}
+  .hero h1 span{display:block;font-size:15px;margin-top:2px}
+  .sheet{padding:20px 16px;margin:0 -4px 16px}
+  .sec-head{flex-wrap:wrap}
+  .sec-head h2{font-size:20px}
+  .swipe{display:block}
+  .tbl.stack thead{display:none}
+  .tbl.stack tr{display:block;border-bottom:1px solid var(--line2);padding:6px 0}
+  .tbl.stack th,.tbl.stack td{display:block;border:0;padding:3px 2px}
+  .tbl.stack td.c{text-align:left}
+  .tbl.stack td[data-h]::before{content:attr(data-h) " · ";font-weight:700;color:var(--ink2)}
+  .steps>li{padding-left:0;padding-top:28px}
+  .steps>li::before{top:10px}
+  .fcard th{width:76px}
+}
+@media (min-width:600px){
+  .grid3{grid-template-columns:repeat(3,1fr)}
+  .grid2{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:repeat(5,1fr)}
+  .flow li{padding:40px 10px 10px;font-size:14px;display:flex;flex-direction:column}
+  .flow .when{margin-top:auto;padding-top:6px}
+  .flow li::before{top:10px;left:10px}
+  .legend{grid-template-columns:1fr 1fr}
+  .aedsteps{grid-template-columns:repeat(5,1fr)}
+  .aedsteps li{padding:40px 10px 10px;font-size:14px}
+  .sheet{padding:30px 30px}
+}
+@media (min-width:1120px){
+  .layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px;align-items:start}
+  .toc{position:sticky;top:20px;margin:20px 0 0;padding:16px 0;border:0;background:var(--sheet);box-shadow:var(--sh);border-radius:4px}
+  .toc .tt{display:block;font-size:12px;font-weight:700;color:var(--ink3);padding:0 16px 6px;letter-spacing:.05em}
+  .toc ol{display:block;padding:0 8px;overflow:visible}
+  .toc a{white-space:normal;padding:6px 10px;font-size:14px}
+  .sheet{padding:34px 40px}
+}
+
+/* 인쇄 */
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff;font-size:11pt}
+  .hero{background:#fff;color:#000;padding:0 0 8px;border-bottom:2px solid #000}
+  .hero .kicker,.hero .lead,.hero h1 span{color:#333}
+  .chip{border-color:#999}
+  .toc,.btn,.print-bar,.swipe{display:none!important}
+  .layout{display:block}
+  .sheet{box-shadow:none;padding:0;margin:0 0 14px;break-inside:auto}
+  .card,.tpl,.fcard,.sample,.note,.warn,.fact,.steps>li,.tbl tr{break-inside:avoid}
+  .fig svg{min-width:0}
+  a{color:#000;text-decoration:none}
+  body.print-card .hero, body.print-card main>section:not(#card), body.print-card footer{display:none!important}
+  body.print-card #card .sec-head, body.print-card #card .intro{display:none}
+  body.print-card .fcard{margin:0 0 6mm}
+  body.print-card .fcard .blank{height:12mm}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="kicker"><b>체육 · 커뮤니티 매핑 프로젝트</b><span>중학교 3학년 · 3차시</span><span>신체활동 × 스포츠 환경 안전</span><span class="draft">안내 자료 초안 v0.2</span></div>
+    <h1>우리 동네 스포츠 배움터 찾기 <span>(가제)</span></h1>
+    <p class="lead">내가 사는 동네를 직접 걸으며 운동하기 좋은 곳, 위험한 곳, 심장충격기가 있는 곳을 찾아 구글 지도에 표시하고 짧은 설명을 붙입니다. 모두의 지도를 겹쳐 보며 우수사례와 개선점을 찾아 발표합니다.</p>
+    <div class="chips">
+      <span class="chip"><i class="dot d-ex"></i>주제 1 · 운동하기 좋은 곳</span>
+      <span class="chip"><i class="dot d-risk"></i>주제 2 · 위험한 곳 (안전 공익신고)</span>
+      <span class="chip"><i class="dot d-aed"></i>주제 3 · 심장충격기 위치</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <nav class="toc" aria-label="목차">
+    <div class="tt">목차</div>
+    <ol>
+      <li><a href="#overview">0. 한눈에 보기</a></li>
+      <li><a href="#purpose">1. 왜 우리 동네인가</a></li>
+      <li><a href="#topic1">2. 운동하기 좋은 곳</a></li>
+      <li><a href="#topic2">3. 위험한 곳</a></li>
+      <li><a href="#topic3">4. 심장충격기 지도</a></li>
+      <li><a href="#howto">5. 구글 지도로 매핑하기</a></li>
+      <li><a href="#safety">6. 탐사 안전 수칙</a></li>
+      <li><a href="#analyze">7. 우수사례·개선점</a></li>
+      <li><a href="#present">8. 발표하기</a></li>
+      <li><a href="#teacher">9. 교사용 운영 안내</a></li>
+      <li><a href="#card">10. 현장 기록 카드</a></li>
+      <li><a href="#refs">11. 참고 자료</a></li>
+    </ol>
+  </nav>
+
+<main>
+
+<!-- 0 -->
+<section class="sheet" id="overview">
+  <div class="sec-head"><span class="sec-no">00</span><h2>한눈에 보기</h2></div>
+  <div class="grid3">
+    <div class="card t-ex">
+      <h4>운동하기 좋은 곳</h4>
+      <p>가깝고, 안전하고, 누구나 쓸 수 있는 동네 운동 장소를 찾습니다.</p>
+      <p class="small muted">공원 운동기구, 산책로, 공공 체육관, 개방 운동장 등</p>
+    </div>
+    <div class="card t-risk">
+      <h4>위험한 곳</h4>
+      <p>운동하다 다칠 수 있는 시설·장비·자연 환경의 위험 요소를 찾아 기록하고 신고·개선을 제안합니다.</p>
+      <p class="small muted">부서진 기구, 파인 바닥, 어두운 산책로 등</p>
+    </div>
+    <div class="card t-aed">
+      <h4>심장충격기 위치</h4>
+      <p>운동하는 곳 가까이에 자동심장충격기(AED)가 있는지, 바로 꺼내 쓸 수 있는지 확인합니다.</p>
+      <p class="small muted">아파트 관리동, 주민센터, 체육관, 역 등</p>
+    </div>
+  </div>
+
+  <h3>활동 흐름</h3>
+  <ol class="flow">
+    <li><b>배우기</b>세 주제의 기준과 구글 지도 사용법<em class="when">1차시</em></li>
+    <li><b>탐사하기</b>모둠 구역을 걸으며 사진·기록 카드 작성<em class="when">과제 · 1~2주</em></li>
+    <li><b>지도에 담기</b>레이어별로 장소 표시, 설명 쓰기<em class="when">과제 기간 ~ 2차시</em></li>
+    <li><b>분석하기</b>세 레이어를 겹쳐 우수사례·개선점 찾기<em class="when">2차시</em></li>
+    <li><b>발표·제안</b>모둠 발표, 신고·개선 제안<em class="when">3차시</em></li>
+  </ol>
+
+  <h3>최종 결과물</h3>
+  <ul>
+    <li>학급 공동 커뮤니티 지도 1개 (레이어 3개: 운동하기 좋은 곳 · 위험한 곳 · 심장충격기)</li>
+    <li>모둠별 장소 기록 <b>주제마다 2곳 이상, 모두 6곳 이상</b> <span class="chk">수량은 교사 조정</span></li>
+    <li>모둠 발표 (3분 + 질문 1분): 우수사례 1가지 + 개선점 1가지 + 제안</li>
+  </ul>
+</section>
+
+<!-- 1 -->
+<section class="sheet" id="purpose">
+  <div class="sec-head"><span class="sec-no">01</span><h2>왜 우리 동네인가 — 학습 목적</h2></div>
+
+  <p>체육 시간에 배운 운동과 안전은 <b>학교 밖, 내가 사는 동네</b>에서 이어질 때 비로소 내 생활이 됩니다. 이 프로젝트는 우리 삶의 맥락에 직접 연결된 신체활동 공간과 안전 환경을 스스로 조사해, 잘된 점(우수사례)과 고쳐야 할 점(개선점)을 찾아내는 것을 목표로 합니다.</p>
+
+  <div class="fact"><span class="lb">알아 두기</span>세계보건기구(WHO, 2020)는 5~17세 청소년에게 <b>하루 평균 60분 이상</b> 중강도 이상의 신체활동을 권합니다. 체육 시간만으로는 채우기 어렵습니다. 집 가까이에 안전하게 운동할 곳이 있는지가 중요한 까닭입니다.</div>
+
+  <h3>커뮤니티 매핑이란?</h3>
+  <p>지역의 정보나 문제를 <b>그곳에 사는 사람들이 직접 조사</b>해 온라인 지도에 함께 표시하고 나누는 참여형 활동입니다. 한 사람이 보면 점 하나지만, 학급 전체가 모으면 동네의 모습이 보입니다. 지도는 문제를 알리고 개선을 요구하는 근거가 됩니다.</p>
+
+  <h3>학습 목표</h3>
+  <table class="tbl stack">
+    <thead><tr><th>영역</th><th>목표</th></tr></thead>
+    <tbody>
+      <tr><th>알기</th><td data-h="목표">운동하기 좋은 장소의 조건, 스포츠 환경(자연·시설·장비)의 위험 요소, 자동심장충격기의 역할과 사용 순서를 설명할 수 있다.</td></tr>
+      <tr><th>하기</th><td data-h="목표">동네의 신체활동 공간과 위험 요소, 심장충격기 위치를 조사해 지도에 정확히 기록하고, 근거를 들어 우수사례와 개선점을 도출할 수 있다.</td></tr>
+      <tr><th>실천하기</th><td data-h="목표">동네에서 꾸준히 신체활동을 하고, 위험을 발견하면 알리고 개선을 제안하는 안전 시민의 태도를 지닌다.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>연계 성취기준</h3>
+  <ul class="small">
+    <li><b>[9체05-04]</b> 스포츠 환경과 안전의 관계를 이해하고 안전한 스포츠 활동에 필요한 여러 가지 활동 규칙과 방식을 설명한다.</li>
+    <li><b>[9체05-05]</b> 안전한 스포츠 활동에 필요한 시설 및 장비들의 사용법을 이해하고 스포츠 활동에 적용한다.</li>
+  </ul>
+  <p class="small muted">2026학년도 3학년에 적용되는 2015 개정 체육과 안전 영역(스포츠 환경 안전 논술 학습자료와 같은 성취기준)입니다. 2027학년도부터는 3학년도 2022 개정 교육과정을 적용하므로, 그때 다시 운영하면 성취기준을 바꿔 넣어야 합니다.</p>
+</section>
+
+<!-- 2 -->
+<section class="sheet t-ex" id="topic1">
+  <div class="sec-head"><span class="sec-no">02</span><h2>주제 1 · 운동하기 좋은 곳</h2><span class="tbadge">파란 마커</span></div>
+
+  <h3>무엇을 찾을까?</h3>
+  <div class="grid2">
+    <ul>
+      <li>공원 야외 운동기구, 체력단련장</li>
+      <li>산책로·둘레길·하천변 산책로와 자전거길</li>
+      <li>농구장·배드민턴장·풋살장 같은 생활체육 시설</li>
+    </ul>
+    <ul>
+      <li>공공 체육관·수영장·국민체육센터</li>
+      <li>주말·방과후 개방하는 학교 운동장</li>
+      <li>청소년수련관·주민센터의 생활체육 프로그램</li>
+    </ul>
+  </div>
+
+  <h3>‘좋은 곳’을 가르는 여섯 가지 기준</h3>
+  <p>그냥 “좋다”가 아니라 <b>기준을 들어</b> 말해야 우수사례가 됩니다. 기준마다 ★ 1~3개로 매겨 보세요.</p>
+  <table class="tbl stack">
+    <thead><tr><th>기준</th><th>살펴볼 점</th><th>물어볼 질문</th></tr></thead>
+    <tbody>
+      <tr><th>가까움</th><td data-h="살펴볼 점">집·학교에서 걸어서 걸리는 시간, 가는 길의 안전</td><td data-h="질문">걸어서 15분 안에 갈 수 있나?</td></tr>
+      <tr><th>안전</th><td data-h="살펴볼 점">바닥 상태, 조명, CCTV, 차도와 떨어짐, 가까운 심장충격기</td><td data-h="질문">저녁에 가도 안심되나?</td></tr>
+      <tr><th>비용</th><td data-h="살펴볼 점">무료/유료, 청소년 할인</td><td data-h="질문">용돈으로 꾸준히 이용할 수 있나?</td></tr>
+      <tr><th>시간</th><td data-h="살펴볼 점">이용 가능 시간, 쉬는 날, 예약 필요 여부</td><td data-h="질문">방과후·주말에 쓸 수 있나?</td></tr>
+      <tr><th>시설 상태</th><td data-h="살펴볼 점">기구·바닥·그늘·화장실·물, 관리 상태</td><td data-h="질문">잘 관리되고 있나?</td></tr>
+      <tr><th>함께함</th><td data-h="살펴볼 점">운동하는 사람, 프로그램·동호회, 안내판</td><td data-h="질문">누구와, 무엇을 배울 수 있나?</td></tr>
+    </tbody>
+  </table>
+
+  <h3>기록 예시 <span class="ex-tag">예시 · 가상</span></h3>
+  <div class="sample">
+    <b>○○근린공원 배드민턴장</b> — 할 수 있는 활동: 배드민턴, 줄넘기<br>
+    좋은 점: 학교에서 걸어서 8분(가까움 ★★★), 야간 조명이 밝고 무료(안전·비용 ★★★)<br>
+    아쉬운 점: 그늘이 없어 여름 낮에는 쓰기 어렵고, 네트 한 곳이 처져 있음 → <span style="color:var(--risk)">위험한 곳 레이어에도 기록</span><br>
+    <span class="who2">방문: 11월 ○일 오후 4시 · 3모둠 ○○○</span>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="sheet t-risk" id="topic2">
+  <div class="sec-head"><span class="sec-no">03</span><h2>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</h2><span class="tbadge">주황 마커</span></div>
+
+  <p>운동하다 다치는 원인은 사람에게만 있지 않습니다. 운동하는 곳을 둘러싼 <b>스포츠 환경</b>이 사고를 부르기도 합니다. 논술 학습에서 배운 세 갈래로 나누어 찾아봅니다.</p>
+
+  <h3>세 갈래로 찾는 위험 요소</h3>
+  <table class="tbl stack">
+    <thead><tr><th>갈래</th><th>동네에서 볼 수 있는 위험 요소 예</th><th>일어날 수 있는 사고</th></tr></thead>
+    <tbody>
+      <tr><th>시설 환경</th><td data-h="위험 요소">파인 바닥·들뜬 우레탄, 깨진 보도블록, 끊어진 안전망·펜스, 어두운 산책로, 고정되지 않은 골대, 자전거길과 섞인 보행로</td><td data-h="사고">넘어짐, 발목 염좌, 충돌, 골대 넘어짐</td></tr>
+      <tr><th>장비 환경</th><td data-h="위험 요소">부서지거나 흔들리는 운동기구, 튀어나온 볼트·날카로운 모서리, 녹슨 손잡이, 처진 네트, 사용법 안내판 없음</td><td data-h="사고">베임, 끼임, 떨어짐, 잘못된 사용으로 인한 부상</td></tr>
+      <tr><th>자연 환경</th><td data-h="위험 요소">그늘 없는 운동장, 비 오면 잠기는 하천 산책로, 결빙되는 비탈길, 낙엽·이끼로 미끄러운 계단</td><td data-h="사고">열 관련 질환, 미끄러짐, 고립</td></tr>
+    </tbody>
+  </table>
+
+  <h3>위험도 판단</h3>
+  <table class="tbl stack">
+    <thead><tr><th>위험도</th><th>판단 기준</th><th>할 일</th></tr></thead>
+    <tbody>
+      <tr><th style="color:var(--risk)">상</th><td data-h="기준">지금 당장 누군가 크게 다칠 수 있다 (예: 쓰러질 듯한 골대, 끊어진 전선)</td><td data-h="할 일">가까이 가지 말고 어른에게 알림. 생명이 위급하면 119, 범죄 위험은 112</td></tr>
+      <tr><th>중</th><td data-h="기준">사용하면 다칠 가능성이 높다 (예: 흔들리는 운동기구)</td><td data-h="할 일">기록 후 안전신문고 신고 또는 관리 기관에 알림</td></tr>
+      <tr><th>하</th><td data-h="기준">불편하거나 조심하면 피할 수 있다 (예: 안내판 훼손)</td><td data-h="할 일">기록하고 개선 제안에 담기</td></tr>
+    </tbody>
+  </table>
+
+  <h3>공익신고 통로: 안전신문고</h3>
+  <p><b>안전신문고</b>는 생활 속 안전 위험 요소를 국민이 직접 신고하는 행정안전부 서비스입니다. 앱(‘안전신문고’ 검색) 또는 누리집(<a href="https://www.safetyreport.go.kr" target="_blank" rel="noopener">safetyreport.go.kr</a>)에서 <b>사진·동영상 + 신고 내용 + 위치</b>를 넣어 제출하면, 담당 기관이 처리하고 결과를 알려 줍니다.</p>
+  <ul>
+    <li><b>학교 안</b>의 위험은 담임·체육 선생님이나 행정실에 먼저 알립니다.</li>
+    <li><b>아파트 안</b>의 운동시설은 관리사무소, <b>공원·하천·공공 체육시설</b>은 구청·시청이나 시설관리공단이 관리하는 경우가 많습니다.</li>
+  </ul>
+
+  <h4>신고 글은 이렇게 <span class="ex-tag">예시 · 가상</span></h4>
+  <div class="sample">
+    <b>무엇이</b> ○○공원 체력단련장의 허리 돌리기 기구 받침 볼트 2개가 빠져 있어 <b>어디서</b> (지도 위치 지정) <b>어떤 위험</b> 기구가 좌우로 흔들려 이용하다 넘어질 위험이 있습니다. <b>바라는 조치</b> 수리 전까지 사용 금지 표시를 하고 볼트를 교체해 주세요. (11월 ○일 오후 4시 촬영)
+  </div>
+
+  <div class="warn"><span class="lb">꼭 지켜요</span>실제 신고는 <b>선택 활동</b>이며 보호자나 선생님과 함께 합니다(앱 가입·본인 확인 절차가 있습니다). 본 그대로의 사실만 쓰고, 사람 얼굴·차량 번호판이 나오지 않게 찍습니다. 장난 신고나 같은 내용의 반복 신고는 하지 않습니다.</div>
+</section>
+
+<!-- 4 -->
+<section class="sheet t-aed" id="topic3">
+  <div class="sec-head"><span class="sec-no">04</span><h2>주제 3 · 심장충격기 위치 지도</h2><span class="tbadge">초록 마커</span></div>
+
+  <h3>왜 지도로 만들까?</h3>
+  <p>심장이 갑자기 멈추는 급성심장정지는 운동 중에도, 누구에게나 일어날 수 있습니다. 심장이 멈춘 뒤 1분 1초가 지날수록 살아날 가능성이 줄어들기 때문에 흔히 <b>‘4분’</b>을 골든타임이라고 부릅니다. 구급차가 오기 전, 곁에 있던 사람이 심폐소생술을 하고 <b>자동심장충격기(AED)</b>를 빨리 가져와 쓰는 것이 생명을 살립니다.</p>
+  <div class="fact"><span class="lb">숫자로 보기</span>목격자가 바로 심폐소생술을 했을 때 환자의 생존율은 약 <b>2.4배</b>, 뇌 기능 회복률은 약 <b>3.3배</b> 높았습니다. <small>(질병관리청, 2024년 급성심장정지 통계 · 2026.1.29 발표)</small></div>
+  <p>그런데 심장충격기가 <b>어디 있는지 모르면</b> 쓸 수 없습니다. 우리 동네 운동 장소 가까이에 심장충격기가 있는지, 언제든 꺼낼 수 있는지 지도로 확인하는 것이 이 주제의 핵심입니다.</p>
+
+  <h3>자동심장충격기, 이렇게 씁니다</h3>
+  <p class="small muted">2025 한국 심폐소생술 가이드라인(질병관리청·대한심폐소생협회, 2026.1 발표) 기준. 나이·성별 구분 없이 같은 순서이며, 1세 이상 어린이에게도 씁니다.</p>
+  <ol class="aedsteps">
+    <li><b>전원 켜기</b><br>뚜껑을 열거나 버튼을 누르면 음성 안내가 나옵니다.</li>
+    <li><b>패드 2개 붙이기</b><br>오른쪽 빗장뼈 아래, 왼쪽 젖꼭지 옆 옆구리에 한 장씩.</li>
+    <li><b>심장 리듬 분석</b><br>“물러나세요” — 아무도 환자에게 닿지 않게 합니다.</li>
+    <li><b>제세동 버튼</b><br>필요하다고 하면 모두 떨어진 것을 확인하고 누릅니다.</li>
+    <li><b>바로 가슴압박</b><br>즉시 심폐소생술을 다시 하고 기계 안내를 따릅니다.</li>
+  </ol>
+  <p class="small">기본소생술 흐름: 현장 안전 확인 → 반응 확인 → 구조 요청(“119에 신고해 주세요”, “심장충격기 가져다주세요”처럼 <b>한 사람씩 정해서</b>) → 호흡 확인 → 가슴압박(가슴 정중앙, 깊이 약 5cm, 분당 100~120회) → 심장충격기 사용. 인공호흡을 배우지 않았다면 가슴압박만이라도 계속합니다.</p>
+
+  <h3>어디에 있을까?</h3>
+  <p>법(「응급의료에 관한 법률」 제47조의2)은 공공보건의료기관, 구급차, 공항·여객 항공기, 철도 객차, 일정 규모 이상의 선박, <b>500세대 이상 공동주택</b>, 일정 규모 이상의 다중이용시설 등에 심장충격기를 갖추도록 정하고 있습니다. 그 밖에 주민센터·체육관·학교·역 등에도 설치된 경우가 많습니다.</p>
+
+  <h4>찾는 방법</h4>
+  <div class="grid2">
+    <div class="card t-aed">
+      <h4>① 미리 찾아보기</h4>
+      <p>응급의료포털 E-Gen의 <a href="https://www.e-gen.or.kr/egen/search_aed.do?searchType=map" target="_blank" rel="noopener">자동심장충격기 찾기</a>, 또는 앱 ‘응급의료정보제공(E-GEN)’에서 지도로 확인합니다.</p>
+    </div>
+    <div class="card t-aed">
+      <h4>② 현장에서 확인하기</h4>
+      <p>공식 지도에 나오지 않는 장비도 있습니다(이동형, 위치 미등록 등). 그래서 <b>직접 가서 확인한 정보</b>가 이 지도의 가치입니다.</p>
+    </div>
+  </div>
+
+  <h4>현장에서 확인할 다섯 가지</h4>
+  <ul class="checks">
+    <li><b>정확한 위치</b> — 건물 이름, 층, 입구 기준 방향 (예: 관리동 1층 정문 들어가 왼쪽)</li>
+    <li><b>꺼낼 수 있는 시간</b> — 24시간인가, 건물이 문 닫으면 못 쓰는가?</li>
+    <li><b>안내 표지</b> — 멀리서도 보이는 표지판이 있는가?</li>
+    <li><b>관리 표시</b> — 보관함 겉에 점검표나 관리 책임자 표시가 보이는가?</li>
+    <li><b>운동 장소까지 거리</b> — 가장 가까운 ‘운동하기 좋은 곳’에서 걸어서 몇 분인가? (직접 시간을 재 보세요)</li>
+  </ul>
+  <div class="warn"><span class="lb">주의</span>조사할 때는 <b>보관함 문을 열지 않습니다.</b> 문을 열면 경보음이 울리는 보관함이 많고, 장비는 응급 상황에만 씁니다. 겉에서 보고 사진만 찍습니다.</div>
+</section>
+
+<!-- 5 -->
+<section class="sheet" id="howto">
+  <div class="sec-head"><span class="sec-no">05</span><h2>구글 지도로 커뮤니티 매핑하기</h2></div>
+
+  <h3>준비물과 도구</h3>
+  <table class="tbl stack">
+    <thead><tr><th>도구</th><th>쓰임</th></tr></thead>
+    <tbody>
+      <tr><th>Google 내 지도<br><small>(My Maps)</small></th><td data-h="쓰임">학급 공동 지도를 만들고 장소·설명·사진을 넣습니다. <b>편집은 PC·크롬북 웹 브라우저</b>에서 합니다. 주소: <a href="https://mymaps.google.com" target="_blank" rel="noopener">mymaps.google.com</a></td></tr>
+      <tr><th>Google 지도 앱</th><td data-h="쓰임">현장에서 위치(위도·경도) 확인, 완성된 지도 보기(‘저장됨 → 지도’)</td></tr>
+      <tr><th>휴대전화 카메라</th><td data-h="쓰임">현장 사진 (전체 모습 1장 + 가까이 1장)</td></tr>
+      <tr><th>학교 구글 계정</th><td data-h="쓰임">선생님이 공유한 학급 지도에 들어갈 때 사용</td></tr>
+      <tr><th>현장 기록 카드</th><td data-h="쓰임">10번의 카드를 인쇄해 들고 다니며 기록</td></tr>
+    </tbody>
+  </table>
+
+  <h3>지도 구조: 지도 1개 = 레이어 3개</h3>
+  <p>레이어는 투명한 종이를 겹쳐 놓은 것과 같습니다. 주제마다 레이어를 따로 두면 하나씩 켜고 끄며 비교할 수 있습니다.</p>
+  <table class="tbl stack">
+    <thead><tr><th>레이어 이름</th><th class="c">마커 색</th><th>장소 이름 쓰는 법</th></tr></thead>
+    <tbody>
+      <tr><th>① 운동하기 좋은 곳</th><td class="c" data-h="마커 색"><i class="dot d-ex"></i> 파랑</td><td data-h="이름 예">[3모둠] ○○공원 배드민턴장</td></tr>
+      <tr><th>② 위험한 곳</th><td class="c" data-h="마커 색"><i class="dot d-risk"></i> 주황</td><td data-h="이름 예">[3모둠] 흔들리는 운동기구 (○○공원)</td></tr>
+      <tr><th>③ 심장충격기</th><td class="c" data-h="마커 색"><i class="dot d-aed"></i> 초록</td><td data-h="이름 예">[3모둠] ○○아파트 관리동 AED</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">장소 이름 앞에 [모둠 번호]를 붙이면 누가 기록했는지 바로 알 수 있습니다.</p>
+
+  <h3>내 지도 화면 익히기</h3>
+  <div class="fig">
+    <svg viewBox="0 0 720 390" role="img" aria-label="구글 내 지도 편집 화면을 단순화한 그림">
+      <rect x="0" y="0" width="720" height="390" rx="6" fill="#e7ede3" stroke="#bbb4a5"/>
+      <!-- 지도 바탕 -->
+      <path d="M260 390 C320 300 420 280 520 300 S700 250 720 230" stroke="#c9dcef" stroke-width="22" fill="none"/>
+      <path d="M250 150 L720 120 M380 0 L420 390 M560 0 L600 390" stroke="#fff" stroke-width="9" fill="none"/>
+      <rect x="455" y="160" width="80" height="60" rx="6" fill="#cfe3c6"/>
+      <!-- 마커 -->
+      <g transform="translate(495 185)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z" fill="#1f5fbf"/><circle cy="-11" r="5" fill="#fff"/></g>
+      <g transform="translate(640 200)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z" fill="#d4541c"/><text y="-6" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">!</text></g>
+      <g transform="translate(470 330)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z" fill="#12804a"/><text y="-6" text-anchor="middle" font-size="12" fill="#fff">♥</text></g>
+      <!-- 검색창 -->
+      <rect x="262" y="16" width="290" height="34" rx="4" fill="#fff" stroke="#9aa3ad"/>
+      <text x="276" y="38" font-size="14" fill="#7a828b">장소·주소·좌표 검색</text>
+      <!-- 도구 막대 -->
+      <rect x="262" y="58" width="290" height="40" rx="4" fill="#fff" stroke="#9aa3ad"/>
+      <g font-size="11" fill="#444" text-anchor="middle">
+        <rect x="268" y="64" width="52" height="28" rx="3" fill="#f2f2f2"/><text x="294" y="82">되돌리기</text>
+        <rect x="326" y="64" width="40" height="28" rx="3" fill="#f2f2f2"/><text x="346" y="82">선택</text>
+        <rect x="372" y="64" width="44" height="28" rx="3" fill="#dfe9fa" stroke="#1f5fbf"/><text x="394" y="82" fill="#1f5fbf" font-weight="700">마커</text>
+        <rect x="422" y="64" width="56" height="28" rx="3" fill="#f2f2f2"/><text x="450" y="82">선 그리기</text>
+        <rect x="484" y="64" width="62" height="28" rx="3" fill="#f2f2f2"/><text x="515" y="82">거리 측정</text>
+      </g>
+      <!-- 왼쪽 패널 -->
+      <rect x="16" y="16" width="230" height="358" rx="4" fill="#fff" stroke="#9aa3ad"/>
+      <text x="30" y="44" font-size="16" font-weight="700" fill="#1d1d1b">3-2 우리 동네 지도</text>
+      <text x="30" y="64" font-size="12" fill="#7a828b">지도 설명 쓰기</text>
+      <g font-size="12" fill="#1f5fbf">
+        <text x="30" y="92">레이어 추가</text><text x="128" y="92">공유</text><text x="180" y="92">미리보기</text>
+      </g>
+      <line x1="16" y1="104" x2="246" y2="104" stroke="#e2e2e2"/>
+      <rect x="18" y="108" width="226" height="84" fill="#f1f6fd"/>
+      <rect x="18" y="108" width="4" height="84" fill="#1f5fbf"/>
+      <rect x="30" y="120" width="13" height="13" rx="2" fill="#1f5fbf"/>
+      <text x="52" y="132" font-size="14" font-weight="700" fill="#1d1d1b">① 운동하기 좋은 곳</text>
+      <text x="52" y="154" font-size="12" fill="#1f5fbf">가져오기</text>
+      <text x="52" y="176" font-size="12" fill="#555">● 균일한 스타일 · 장소 12개</text>
+      <rect x="30" y="210" width="13" height="13" rx="2" fill="#d4541c"/>
+      <text x="52" y="222" font-size="14" font-weight="700" fill="#1d1d1b">② 위험한 곳</text>
+      <text x="52" y="242" font-size="12" fill="#555">장소 7개</text>
+      <rect x="30" y="266" width="13" height="13" rx="2" fill="#12804a"/>
+      <text x="52" y="278" font-size="14" font-weight="700" fill="#1d1d1b">③ 심장충격기</text>
+      <text x="52" y="298" font-size="12" fill="#555">장소 9개</text>
+      <text x="30" y="356" font-size="12" fill="#7a828b">기본 지도 (지도 · 위성 등)</text>
+      <!-- 번호 표시 -->
+      <g font-size="13" font-weight="700" fill="#fff" text-anchor="middle">
+        <circle cx="566" cy="33" r="11" fill="#d4541c"/><text x="566" y="38">1</text>
+        <circle cx="394" cy="112" r="11" fill="#d4541c"/><text x="394" y="117">2</text>
+        <circle cx="236" cy="150" r="11" fill="#d4541c"/><text x="236" y="155">3</text>
+        <circle cx="114" cy="87" r="9" fill="#d4541c"/><text x="114" y="92" font-size="12">4</text>
+        <circle cx="164" cy="87" r="9" fill="#d4541c"/><text x="164" y="92" font-size="12">5</text>
+        <circle cx="515" cy="112" r="11" fill="#d4541c"/><text x="515" y="117">6</text>
+        <circle cx="118" cy="150" r="10" fill="#d4541c"/><text x="118" y="155">7</text>
+      </g>
+    </svg>
+  </div>
+  <p class="swipe">← 그림을 옆으로 밀어 보세요</p>
+  <ul class="legend">
+    <li><span class="num">1</span><span><b>검색창</b> — 장소 이름, 주소, 위도·경도를 넣어 찾습니다.</span></li>
+    <li><span class="num">2</span><span><b>마커 추가</b> — 누른 뒤 지도 위를 클릭하면 그 자리에 장소가 생깁니다.</span></li>
+    <li><span class="num">3</span><span><b>선택된 레이어</b> — 왼쪽 띠가 표시된 레이어에 새 장소가 들어갑니다.</span></li>
+    <li><span class="num">4</span><span><b>레이어 추가</b> — 주제별 레이어를 만듭니다.</span></li>
+    <li><span class="num">5</span><span><b>공유</b> — 함께 편집할 사람과 보기 범위를 정합니다.</span></li>
+    <li><span class="num">6</span><span><b>거리 측정</b> — 운동 장소에서 심장충격기까지 거리를 잽니다.</span></li>
+    <li><span class="num">7</span><span><b>가져오기</b> — 스프레드시트의 장소 목록을 한 번에 넣습니다.</span></li>
+  </ul>
+  <p class="fig-cap">단순화한 그림입니다. 실제 버튼 이름과 위치는 바뀔 수 있습니다.</p>
+
+  <h3>따라 하기</h3>
+  <ol class="steps">
+    <li><b>학급 지도 열기</b>PC·크롬북에서 학교 구글 계정으로 로그인하고, 선생님이 공유한 학급 지도 링크를 엽니다. (선생님은 <a href="https://mymaps.google.com" target="_blank" rel="noopener">mymaps.google.com</a> → <span class="key">+ 새 지도 만들기</span>로 지도를 만듭니다.)</li>
+    <li><b>레이어 고르기</b>왼쪽 패널에서 기록할 주제의 레이어 이름을 <b>먼저 클릭</b>합니다. 선택된 레이어에만 장소가 들어갑니다.</li>
+    <li><b>장소 추가하기</b>
+      <ul>
+        <li>이름이 있는 곳(공원, 체육관): 검색창에 이름이나 주소 입력 → 결과 클릭 → <span class="key">지도에 추가</span></li>
+        <li>이름이 없는 곳(파인 바닥, 흔들리는 기구): <span class="key">마커 추가</span> → 지도에서 그 자리 클릭</li>
+        <li>현장에서 적어 온 좌표가 있으면 검색창에 <code>37.5xxx, 127.0xxx</code>처럼 붙여 넣어 찾습니다.</li>
+      </ul>
+    </li>
+    <li><b>이름과 설명 쓰기</b>장소 이름은 <b>[모둠 번호] 장소 이름</b>으로 쓰고, 설명 칸에는 아래 ‘설명 틀’을 복사해 채웁니다.</li>
+    <li><b>사진 넣기</b>장소 창의 카메라 아이콘을 눌러 사진을 올립니다. 얼굴·번호판이 나온 사진은 올리지 않습니다.</li>
+    <li><b>색과 아이콘 맞추기</b>레이어 이름 아래 스타일(페인트통) 메뉴에서 레이어 전체 색을 정합니다. 보통 선생님이 미리 맞춰 둡니다.</li>
+    <li><b>거리 재기</b><span class="key">거리 측정</span>으로 운동 장소 → 가장 가까운 심장충격기까지 거리를 잽니다. 분석 단계에서 씁니다.</li>
+    <li><b>확인하기</b>레이어 체크를 하나씩 끄고 켜며 내 모둠 장소가 맞는 레이어·맞는 자리에 있는지 확인합니다. 실수하면 <span class="key">되돌리기</span>나 <span class="key">Ctrl</span>+<span class="key">Z</span>.</li>
+  </ol>
+
+  <h3>현장에서 휴대전화로 위치 기록하기</h3>
+  <ol>
+    <li>Google 지도 앱을 열고 내가 서 있는 자리(또는 위험 요소가 있는 자리)를 <b>길게 누릅니다</b>.</li>
+    <li>떨어진 핀과 함께 <b>위도, 경도</b> 숫자가 나옵니다. 기록 카드에 적거나 화면을 캡처해 둡니다.</li>
+    <li>사진은 같은 자리에서 <b>전체 모습 1장, 가까이 1장</b> 찍습니다.</li>
+    <li>교실에 돌아와 PC에서 좌표를 검색창에 붙여 넣어 장소를 추가합니다.</li>
+  </ol>
+
+  <h3>설명 틀 — 복사해서 쓰세요</h3>
+  <div class="tpl t-ex">
+    <div class="tpl-head"><i class="dot d-ex"></i><b>운동하기 좋은 곳</b><button class="btn" data-copy="tplEx">복사</button></div>
+<pre id="tplEx">할 수 있는 활동:
+이용 시간·비용:
+좋은 점(기준 2가지 이상 + 별점):
+아쉬운 점:
+이런 사람에게 추천:
+방문한 날·기록한 사람:</pre>
+  </div>
+  <div class="tpl t-risk">
+    <div class="tpl-head"><i class="dot d-risk"></i><b>위험한 곳</b><button class="btn" data-copy="tplRisk">복사</button></div>
+<pre id="tplRisk">갈래(시설·장비·자연):
+위험 요소(무엇이 어떤 상태인가):
+일어날 수 있는 사고:
+위험도(상·중·하):
+개선 제안(누가, 무엇을):
+신고 여부(안전신문고 신고함 / 안 함 / 선생님과 상의):
+촬영한 날·기록한 사람:</pre>
+  </div>
+  <div class="tpl t-aed">
+    <div class="tpl-head"><i class="dot d-aed"></i><b>심장충격기</b><button class="btn" data-copy="tplAed">복사</button></div>
+<pre id="tplAed">설치 위치(건물·층·입구 기준):
+꺼낼 수 있는 시간(24시간 / 운영 시간만 __시~__시):
+안내 표지(있음·없음, 멀리서 보이는가):
+관리 표시(점검표 보임 / 안 보임):
+가까운 운동 장소까지(걸어서 약 __분):
+E-Gen 지도에 있나(있음 / 없음):
+확인한 날·기록한 사람:</pre>
+  </div>
+
+  <div class="note"><span class="lb">교사용 · 방법 B</span>학생에게 편집 권한을 주기 어렵다면 <b>구글 설문지</b>로 모읍니다. 문항: 모둠, 주제(3개 중 선택), 장소 이름, 주소 또는 위도·경도, 설명(틀), 사진 링크. 응답 시트를 내려받아 내 지도의 레이어에서 <span class="key">가져오기</span>로 넣고 위치 열(주소 또는 좌표)과 제목 열을 고르면 한 번에 표시됩니다. 주제별로 시트를 나눠 레이어 3개에 각각 가져오면 됩니다. 다른 모둠 마커를 실수로 지우는 일도 막을 수 있습니다.</div>
+</section>
+
+<!-- 6 -->
+<section class="sheet" id="safety">
+  <div class="sec-head"><span class="sec-no">06</span><h2>현장 탐사 안전·개인정보 수칙</h2></div>
+  <div class="grid2">
+    <div>
+      <h4 style="margin-top:0">탐사할 때</h4>
+      <ul class="checks">
+        <li><b>2명 이상</b> 함께, <b>밝은 시간</b>에 다닙니다.</li>
+        <li>나가기 전 보호자에게 <b>어디로, 언제까지</b> 가는지 알립니다.</li>
+        <li>위험한 곳은 <b>멀리서 찍고</b>, 안으로 들어가거나 만져 보지 않습니다.</li>
+        <li>공사장, 출입 금지 구역, 남의 집·사유지에 들어가지 않습니다.</li>
+        <li>걸으면서 휴대전화를 보지 않습니다. 멈춰 서서 기록합니다.</li>
+        <li>심장충격기 보관함은 열지 않습니다.</li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="margin-top:0">지도에 올릴 때</h4>
+      <ul class="checks">
+        <li><b>우리 집 위치나 친구 집</b>을 지도에 표시하지 않습니다.</li>
+        <li>사람 얼굴, 차량 번호판, 집 호수가 나온 사진은 올리지 않습니다.</li>
+        <li>특정 사람이나 가게를 탓하는 글을 쓰지 않습니다. 환경과 시설에 대해서만 씁니다.</li>
+        <li>다른 모둠이 올린 장소는 고치거나 지우지 않습니다.</li>
+        <li>지도는 <b>학교 계정 안에서만</b> 공유합니다.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="warn"><span class="lb">위급할 때</span>다친 사람이 있거나 생명이 위험하면 <b>119</b>, 범죄나 위협을 느끼면 <b>112</b>. 기록보다 내 안전이 먼저입니다.</div>
+</section>
+
+<!-- 7 -->
+<section class="sheet" id="analyze">
+  <div class="sec-head"><span class="sec-no">07</span><h2>지도를 겹쳐 우수사례·개선점 찾기</h2></div>
+  <p>점 하나하나보다 <b>점과 점 사이의 관계</b>에서 의미가 보입니다. 세 레이어를 모두 켜고 아래 질문으로 지도를 읽어 봅니다.</p>
+
+  <div class="fig">
+    <svg viewBox="0 0 720 380" role="img" aria-label="세 레이어를 겹친 동네 지도 예시">
+      <rect width="720" height="380" rx="6" fill="#efeae0"/>
+      <path d="M0 300 C120 280 200 340 330 330 S560 270 720 300" stroke="#bfd6ec" stroke-width="30" fill="none"/>
+      <text x="40" y="335" font-size="13" fill="#5a7fa6">○○천 산책로</text>
+      <path d="M0 200 L720 180 M300 0 L330 380 M560 0 L590 380" stroke="#fff" stroke-width="12" fill="none"/>
+      <rect x="120" y="60" width="150" height="110" rx="10" fill="#d3e6c9"/>
+      <text x="135" y="82" font-size="13" fill="#4d6b42">○○근린공원</text>
+      <rect x="370" y="40" width="150" height="100" rx="4" fill="#e3ddd0" stroke="#c9c1b0"/>
+      <text x="385" y="62" font-size="13" fill="#6b6455">학교</text>
+      <rect x="610" y="210" width="90" height="70" rx="4" fill="#e3ddd0" stroke="#c9c1b0"/>
+      <text x="618" y="230" font-size="12" fill="#6b6455">○○아파트</text>
+      <rect x="350" y="215" width="100" height="45" rx="4" fill="#e3ddd0" stroke="#c9c1b0"/>
+      <text x="358" y="235" font-size="12" fill="#6b6455">주민센터</text>
+      <!-- 반경 -->
+      <circle cx="150" cy="300" r="78" fill="rgba(212,84,28,.06)" stroke="#d4541c" stroke-width="2" stroke-dasharray="6 5"/>
+      <!-- 운동 -->
+      <g fill="#1f5fbf">
+        <g transform="translate(190 120)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z"/><circle cy="-11" r="5" fill="#fff"/></g>
+        <g transform="translate(150 300)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z"/><circle cy="-11" r="5" fill="#fff"/></g>
+        <g transform="translate(470 110)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z"/><circle cy="-11" r="5" fill="#fff"/></g>
+      </g>
+      <!-- 위험 -->
+      <g fill="#d4541c">
+        <g transform="translate(230 140)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z"/><text y="-6" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">!</text></g>
+        <g transform="translate(320 200)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z"/><text y="-6" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">!</text></g>
+      </g>
+      <!-- AED -->
+      <g fill="#12804a">
+        <g transform="translate(500 75)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z"/><text y="-6" text-anchor="middle" font-size="12" fill="#fff">♥</text></g>
+        <g transform="translate(438 245)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z"/><text y="-6" text-anchor="middle" font-size="12" fill="#fff">♥</text></g>
+        <g transform="translate(660 258)"><path d="M0 12 C-4 6 -13 -2 -13 -11 A13 13 0 0 1 13 -11 C13 -2 4 6 0 12Z"/><text y="-6" text-anchor="middle" font-size="12" fill="#fff">♥</text></g>
+      </g>
+      <!-- 해설 -->
+      <g font-size="13">
+        <rect x="536" y="96" width="176" height="46" rx="4" fill="#fff" stroke="#12804a"/>
+        <text x="546" y="115" fill="#12804a" font-weight="700">우수사례 후보</text>
+        <text x="546" y="133" fill="#333">운동장 바로 옆에 AED</text>
+        <rect x="14" y="14" width="200" height="40" rx="4" fill="#fff" stroke="#1d1d1b"/>
+        <text x="24" y="39" fill="#333">좋은 곳 + 위험 요소가 함께</text>
+        <line x1="214" y1="40" x2="226" y2="122" stroke="#1d1d1b"/>
+        <rect x="232" y="318" width="220" height="46" rx="4" fill="#fff" stroke="#d4541c"/>
+        <text x="242" y="337" fill="#d4541c" font-weight="700">개선점 후보</text>
+        <text x="242" y="355" fill="#333">걸어서 3분 안에 AED 없음</text>
+      </g>
+    </svg>
+  </div>
+  <p class="swipe">← 그림을 옆으로 밀어 보세요</p>
+  <p class="fig-cap">예시로 그린 가상 동네입니다. 점선 원은 산책로에서 걸어서 약 3분 거리를 나타냅니다.</p>
+
+  <h3>지도를 읽는 질문</h3>
+  <ol>
+    <li><b>운동 + 심장충격기</b> — 운동하기 좋은 곳에서 걸어서 몇 분 안에 심장충격기가 있나? 가지러 갔다 오는 시간까지 생각하면 충분히 가까운가?</li>
+    <li><b>운동 + 위험</b> — 좋은 곳으로 뽑힌 장소에 위험 요소가 함께 있지는 않나? 고치면 더 좋은 곳이 될까?</li>
+    <li><b>빈 곳 찾기</b> — 지도에서 운동할 곳이 없는 동네, 심장충격기가 없는 동네는 어디인가?</li>
+    <li><b>반복되는 문제</b> — 같은 종류의 위험(예: 조명 부족)이 여러 곳에서 되풀이되나?</li>
+    <li><b>시간의 차이</b> — 낮에는 좋은데 밤에는 위험한 곳, 건물이 닫으면 못 쓰는 심장충격기는 없나?</li>
+  </ol>
+
+  <h3>우수사례와 개선점 정리표</h3>
+  <table class="tbl stack">
+    <thead><tr><th>구분</th><th>장소·내용</th><th>근거(지도·사진·기준)</th><th>제안 — 누가, 무엇을</th></tr></thead>
+    <tbody>
+      <tr><th style="color:var(--aed)">우수사례</th><td data-h="장소·내용">&nbsp;</td><td data-h="근거">&nbsp;</td><td data-h="제안">다른 곳에도 퍼뜨릴 점은?</td></tr>
+      <tr><th style="color:var(--risk)">개선점</th><td data-h="장소·내용">&nbsp;</td><td data-h="근거">&nbsp;</td><td data-h="제안">구청·관리사무소·학교·주민·우리</td></tr>
+      <tr><th>우리가 할 일</th><td data-h="장소·내용" colspan="3">신고하기, 학교·구청에 제안하기, 안내 포스터 만들기, 그 장소에서 운동 실천하기 등</td></tr>
+    </tbody>
+  </table>
+  <div class="sample"><span class="ex-tag">예시 · 가상</span> <b>개선점</b>: ○○천 산책로는 저녁에 운동하는 사람이 많지만(관찰 20분 동안 30명 이상) 가장 가까운 심장충격기가 약 600m 떨어져 있다(지도 거리 측정, 걸어서 약 8분). → <b>제안</b>: 산책로 입구 화장실 옆에 24시간 쓸 수 있는 심장충격기 설치를 구청에 제안한다.</div>
+</section>
+
+<!-- 8 -->
+<section class="sheet" id="present">
+  <div class="sec-head"><span class="sec-no">08</span><h2>발표하기</h2></div>
+  <h3>발표 구성 (모둠당 3분 + 질문 1분)</h3>
+  <table class="tbl stack">
+    <thead><tr><th>순서</th><th>내용</th><th>시간</th></tr></thead>
+    <tbody>
+      <tr><th>① 우리 구역</th><td data-h="내용">조사한 동네와 다닌 길을 지도로 보여 주기</td><td data-h="시간">20초</td></tr>
+      <tr><th>② 지도 한눈에</th><td data-h="내용">세 레이어에 올린 장소 수, 눈에 띄는 점</td><td data-h="시간">20초</td></tr>
+      <tr><th>③ 우수사례</th><td data-h="내용">가장 좋은 곳 1곳 — 기준과 사진으로 근거 대기</td><td data-h="시간">50초</td></tr>
+      <tr><th>④ 개선점</th><td data-h="내용">가장 시급한 곳 1곳 — 위험도·예상 사고·거리 근거</td><td data-h="시간">50초</td></tr>
+      <tr><th>⑤ 제안과 다짐</th><td data-h="내용">누구에게 무엇을 제안할지, 내가 동네에서 실천할 신체활동</td><td data-h="시간">40초</td></tr>
+    </tbody>
+  </table>
+  <h3>듣는 사람이 할 일</h3>
+  <ul>
+    <li>다른 모둠의 우수사례 중 <b>우리 동네에도 있었으면 하는 것</b> 1가지 적기</li>
+    <li>개선점 제안이 근거와 맞는지 질문 1개 하기</li>
+  </ul>
+</section>
+
+<!-- 9 -->
+<section class="sheet" id="teacher">
+  <div class="sec-head"><span class="sec-no">09</span><h2>교사용 운영 안내 (초안)</h2><span class="who">교사용</span></div>
+
+  <h3>차시 운영안 — 3학년 · 3차시(45분) + 수업 밖 탐사</h3>
+  <table class="tbl stack">
+    <thead><tr><th>차시</th><th>장소</th><th>주요 활동 (시간)</th><th>결과물</th></tr></thead>
+    <tbody>
+      <tr><th>1</th><td data-h="장소">컴퓨터실</td><td data-h="활동">
+        <b>도입</b> 우리 동네에서 운동해 본 곳·위험했던 곳 떠올리기 (5분)<br>
+        <b>세 주제 학습</b> 좋은 곳 여섯 기준, 위험 요소 세 갈래·위험도, 심장충격기 위치의 의미와 사용 순서 — 자료 02~04 (15분)<br>
+        <b>내 지도 연습</b> 학급 지도 열기, 학교 주변 1곳 표시·설명 틀 붙이기, 좌표 찾기 (15분)<br>
+        <b>탐사 계획</b> 모둠 구역·역할(기록·사진·길잡이·시간 지킴이), 안전 수칙 확인, 기록 카드 배부 (10분)</td><td data-h="결과물">연습 마커, 탐사 계획, 기록 카드</td></tr>
+      <tr><th>과제</th><td data-h="장소">동네(1~2주)</td><td data-h="활동">모둠 구역 탐사, 주제별 2곳 이상 사진·기록 카드 작성. 할 수 있으면 지도 입력까지 미리 해 둡니다.</td><td data-h="결과물">기록 카드 6장 이상</td></tr>
+      <tr><th>2</th><td data-h="장소">컴퓨터실</td><td data-h="활동">
+        <b>지도 마무리</b> 남은 장소 입력·설명 틀 채우기, 옆 모둠과 교차 점검(레이어·위치·설명) (15분)<br>
+        <b>지도 읽기</b> 세 레이어 겹쳐 보기, 운동 장소 → 심장충격기 거리 재기 (15분)<br>
+        <b>발표 준비</b> 우수사례·개선점 정리표 작성, 발표에 쓸 지도 화면·사진 2~3장 고르기 (15분)</td><td data-h="결과물">학급 지도 완성, 정리표</td></tr>
+      <tr><th>3</th><td data-h="장소">교실</td><td data-h="활동">
+        <b>모둠 발표</b> 모둠당 3분 + 질문 1분, 듣는 사람은 상호 평가 (약 30분)<br>
+        <b>정리</b> 우리 반 지도의 우수사례·개선점 3가지씩 함께 고르기, 제안할 곳 정하기(선택: 선생님과 함께 안전신문고 신고), 실천 다짐 쓰기 (15분)</td><td data-h="결과물">발표, 반 전체 제안, 성찰</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><span class="lb">3차시로 운영할 때</span>1차시가 가장 빠듯합니다. 자료 02~04를 1차시 전에 읽어 오게 하면 내 지도 연습 시간을 넉넉히 쓸 수 있습니다. 가슴압박·심장충격기 <b>실습</b>은 이 3차시에 넣지 않고 보건 수업이나 학교 안전교육과 연계하며, 1차시에는 사용 순서만 짚습니다. 2차시를 분석에 쓰려면 탐사 기간에 지도 입력을 미리 해 오게 하는 것이 좋습니다(방법 B 설문지 수합도 시간을 줄여 줍니다).</div>
+
+  <h3>평가 기준 (초안) <span class="chk">배점·반영 여부 교사 결정</span></h3>
+  <table class="tbl stack">
+    <thead><tr><th>평가 요소</th><th>상</th><th>중</th><th>하</th></tr></thead>
+    <tbody>
+      <tr><th>지도 기록</th><td data-h="상">세 주제 모두 정해진 수 이상, 레이어·위치·사진이 정확함</td><td data-h="중">대부분 정확하나 일부 누락·오류</td><td data-h="하">기록 수가 부족하거나 오류가 많음</td></tr>
+      <tr><th>설명</th><td data-h="상">설명 틀의 항목을 기준과 근거를 들어 구체적으로 씀</td><td data-h="중">항목은 채웠으나 근거가 부족함</td><td data-h="하">일부 항목만 씀</td></tr>
+      <tr><th>분석</th><td data-h="상">레이어를 연결해 우수사례·개선점을 근거와 함께 도출하고 실현 가능한 제안을 함</td><td data-h="중">우수사례·개선점을 제시했으나 근거나 제안이 약함</td><td data-h="하">장소를 나열하는 데 그침</td></tr>
+      <tr><th>발표·협력</th><td data-h="상">구성에 맞춰 분명하게 발표하고 모둠원이 고르게 참여함</td><td data-h="중">발표는 했으나 구성이나 참여가 고르지 않음</td><td data-h="하">발표 내용이 불분명함</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">안전·개인정보 수칙은 점수가 아니라 참여 조건으로 둡니다. 어기면 탐사 계획을 다시 세웁니다.</p>
+
+  <h3>준비 체크리스트</h3>
+  <ul class="checks">
+    <li>학교 Google Workspace에서 <b>내 지도(My Maps)</b>가 학생 계정에 허용되어 있는지 정보 담당에게 확인 (관리자 설정에서 꺼져 있을 수 있음)</li>
+    <li>교내 망·크롬북에서 mymaps.google.com, E-Gen, 안전신문고 <b>접속 테스트</b></li>
+    <li>반별 지도 미리 만들기: 레이어 3개, 레이어별 색(파랑·주황·초록), 지도 설명에 수칙 요약</li>
+    <li>공유 방식 결정: 학생 편집자 초대(방법 A) 또는 설문지 수합 후 가져오기(방법 B)</li>
+    <li>학구 지도를 모둠 수만큼 구역으로 나눠 배정 (학생 거주지와 가까운 구역)</li>
+    <li>가정 안내: 탐사 기간, 2인 이상·밝은 시간 원칙, 보호자 동행 권장</li>
+    <li>실제 안전신문고 신고 방식 결정: 학생 선택 / 교사가 모아서 / 하지 않음</li>
+    <li>가슴압박·심장충격기 실습을 보건 수업·학교 안전교육과 연계할지 보건교사와 협의 (3차시 안에는 실습 없음)</li>
+    <li>기록 카드 인쇄 (모둠당 8장 정도), 발표 평가표 준비</li>
+  </ul>
+</section>
+
+<!-- 10 -->
+<section class="sheet" id="card">
+  <div class="sec-head"><span class="sec-no">10</span><h2>현장 기록 카드</h2></div>
+  <p class="intro">한 장소에 카드 한 장. 아래 단추로 <b>이 카드만 A4에 두 장씩</b> 인쇄할 수 있습니다.</p>
+  <div class="print-bar">
+    <button class="btn dark" id="printCard">기록 카드만 인쇄</button>
+    <button class="btn" id="printAll">자료 전체 인쇄</button>
+  </div>
+  <div id="cards"></div>
+  <template id="cardTpl">
+    <div class="fcard">
+      <h4><span>현장 기록 카드 · 우리 동네 스포츠 배움터</span><span class="small" style="font-weight:400">( &nbsp;&nbsp; )모둠 이름: ____________</span></h4>
+      <table>
+        <tr><th>주제</th><td><span class="box"></span>운동하기 좋은 곳 <span class="box"></span>위험한 곳 <span class="box"></span>심장충격기</td></tr>
+        <tr><th>날짜·시간</th><td>&nbsp;&nbsp;&nbsp;월 &nbsp;&nbsp;&nbsp;일 ( &nbsp;&nbsp; ) &nbsp;&nbsp;&nbsp;&nbsp;시 &nbsp;&nbsp;&nbsp;&nbsp;분 &nbsp;&nbsp;&nbsp; 날씨:</td></tr>
+        <tr><th>장소 이름</th><td>&nbsp;</td></tr>
+        <tr><th>위치</th><td>주소 또는 위도·경도:</td></tr>
+        <tr><th>사진</th><td>전체 모습 1장 <span class="box"></span> &nbsp; 가까이 1장 <span class="box"></span> &nbsp; (얼굴·번호판 없음 <span class="box"></span>)</td></tr>
+        <tr><th>관찰한 것</th><td class="blank">&nbsp;</td></tr>
+        <tr><th>판단</th><td>
+          <b style="color:var(--ex)">운동</b> 가까움 ☆☆☆ &nbsp;안전 ☆☆☆ &nbsp;비용 ☆☆☆<br><span style="padding-left:2.6em">시간 ☆☆☆ &nbsp;시설 ☆☆☆ &nbsp;함께함 ☆☆☆</span><br>
+          <b style="color:var(--risk)">위험</b> <span class="box"></span>시설 <span class="box"></span>장비 <span class="box"></span>자연 &nbsp; 위험도: 상 · 중 · 하 &nbsp; 예상 사고:<br>
+          <b style="color:var(--aed)">AED</b> 층·위치: ________ &nbsp;<span class="box"></span>24시간 <span class="box"></span>표지 <span class="box"></span>관리 표시 &nbsp; 운동 장소까지 __분
+        </td></tr>
+        <tr><th>개선 제안</th><td class="blank">&nbsp;</td></tr>
+      </table>
+    </div>
+  </template>
+</section>
+
+<!-- 11 -->
+<section class="sheet" id="refs">
+  <div class="sec-head"><span class="sec-no">11</span><h2>참고 자료</h2></div>
+  <ul class="small">
+    <li>안전신문고(행정안전부) — <a href="https://www.safetyreport.go.kr" target="_blank" rel="noopener">safetyreport.go.kr</a></li>
+    <li>응급의료포털 E-Gen 자동심장충격기 찾기 — <a href="https://www.e-gen.or.kr/egen/search_aed.do?searchType=map" target="_blank" rel="noopener">e-gen.or.kr</a></li>
+    <li>질병관리청 보도자료(2026.1.29), 2025 한국 심폐소생술 가이드라인 — <a href="https://www.kdca.go.kr/bbs/kdca/42/309906/artclView.do" target="_blank" rel="noopener">kdca.go.kr</a></li>
+    <li>「응급의료에 관한 법률」 제47조의2(심폐소생을 위한 응급장비의 구비 등의 의무) — <a href="https://www.law.go.kr/법령/응급의료에관한법률" target="_blank" rel="noopener">국가법령정보센터</a></li>
+    <li>Google 내 지도 도움말: 장소 추가 — <a href="https://support.google.com/mymaps/answer/3024925?hl=ko" target="_blank" rel="noopener">support.google.com/mymaps</a></li>
+    <li>Google 지도에서 내 지도 보기 — <a href="https://support.google.com/maps/answer/3045850?hl=ko" target="_blank" rel="noopener">support.google.com/maps</a></li>
+    <li>WHO guidelines on physical activity and sedentary behaviour(2020) — <a href="https://www.who.int/publications/i/item/9789240015128" target="_blank" rel="noopener">who.int</a></li>
+  </ul>
+  <p class="small muted">초안 작성일 2026-11-20. 서비스 화면과 메뉴 이름은 바뀔 수 있으니 수업 전 한 번 직접 따라 해 보세요.</p>
+</section>
+
+</main>
+</div>
+
+<footer>우리 동네 스포츠 배움터 찾기(가제) · 중학교 3학년 커뮤니티 매핑 안내 자료 · v0.2.0 초안</footer>
+
+<script>
+(function(){
+  // 기록 카드 2장(인쇄 시 A4 한 장)
+  var tpl=document.getElementById('cardTpl'), box=document.getElementById('cards');
+  for(var i=0;i<2;i++){ box.appendChild(tpl.content.cloneNode(true)); }
+
+  // 설명 틀 복사
+  function fallbackCopy(text){
+    var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    var ok=false; try{ ok=document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta); return ok;
+  }
+  function done(btn,ok){
+    btn.textContent=ok?'복사됨':'직접 선택해 복사하세요';
+    if(ok) btn.classList.add('done');
+    setTimeout(function(){ btn.textContent='복사'; btn.classList.remove('done'); },1800);
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var text=document.getElementById(btn.getAttribute('data-copy')).textContent;
+      if(navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(text).then(function(){done(btn,true);},function(){done(btn,fallbackCopy(text));});
+      } else { done(btn,fallbackCopy(text)); }
+    });
+  });
+
+  // 인쇄
+  document.getElementById('printCard').addEventListener('click',function(){
+    document.body.classList.add('print-card'); window.print();
+  });
+  document.getElementById('printAll').addEventListener('click',function(){
+    document.body.classList.remove('print-card'); window.print();
+  });
+  window.addEventListener('afterprint',function(){ document.body.classList.remove('print-card'); });
+
+  // 목차 현재 위치
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  if('IntersectionObserver' in window){
+    var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          links.forEach(function(a){a.classList.remove('on');});
+          var a=map[en.target.id]; if(a){ a.classList.add('on');
+            if(window.innerWidth<1120){ // 가로 목차만 옆으로 밀기(페이지는 움직이지 않음)
+              var ol=a.closest('ol'), ar=a.getBoundingClientRect(), orc=ol.getBoundingClientRect();
+              ol.scrollLeft+=(ar.left+ar.width/2)-(orc.left+orc.width/2); } }
+        }
+      });
+    },{rootMargin:'-30% 0px -60% 0px'});
+    document.querySelectorAll('main>section').forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
