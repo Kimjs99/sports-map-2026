@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>우리 동네 스포츠 배움터 찾기 · 3학년 커뮤니티 매핑 안내 자료</title>
+<title>우리 동네 스포츠 배움터 찾기 · 3학년 커뮤니티 매핑 학생 안내 자료</title>
 <script>try{var t=localStorage.getItem('sm-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,11 +92,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .theme button:hover{color:var(--ink)}
 .theme button[aria-pressed="true"]{background:var(--ink);color:var(--sheet)}
 
-/* 판 */
+/* 판 — 스크롤 보기: 슬라이드 카드를 위아래로 / 발표 보기(body.deck): 한 장씩 화면 가득 */
 .shell{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-6);padding-block:var(--space-6) var(--space-12);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.sheet{min-width:0;background:var(--sheet);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding-block:var(--space-12);padding-inline:clamp(20px,5vw,var(--space-16))}
+.sheet{min-width:0}
+.sheet:focus{outline:none}
 
-/* 목차 */
+/* 목차 — 기본은 서랍, 스크롤 보기의 넓은 화면에서만 왼쪽 고정 */
 .toc .tt{font:700 14.8px/1.5 var(--font-body);letter-spacing:.06em;color:var(--faint);padding:0 12px var(--space-2)}
 .toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
 .toc li{margin:0}
@@ -104,20 +105,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .toc a .n{font:700 14px/1 var(--font-display);color:var(--blue);min-width:1.4em}
 .toc a:hover{background:var(--hover);color:var(--ink)}
 .toc a.on{background:var(--blue-soft);color:var(--ink);font-weight:700}
+.toc{position:fixed;inset:0 auto 0 0;z-index:40;width:min(19rem,86vw);overflow:auto;background:var(--sheet);box-shadow:var(--shadow);padding:calc(var(--space-6) + env(safe-area-inset-top,0px)) var(--space-3) var(--space-6) calc(var(--space-3) + env(safe-area-inset-left,0px));transform:translateX(-105%);visibility:hidden;transition:transform .22s ease,visibility 0s linear .22s}
+.toc.open{transform:none;visibility:visible;transition:transform .22s ease,visibility 0s}
 .scrim{position:fixed;inset:0;z-index:35;background:var(--scrim);opacity:0;pointer-events:none;transition:opacity .22s}
 .scrim.show{opacity:1;pointer-events:auto}
 @media (min-width:1100px){
-  .shell{grid-template-columns:var(--toc-w) minmax(0,1fr);gap:var(--space-8)}
-  .menu-btn,.scrim{display:none}
-  .toc{position:sticky;top:calc(var(--bar-h) + var(--space-6));align-self:start;max-height:calc(100vh - var(--bar-h) - var(--space-12));overflow:auto;padding:var(--space-4) var(--space-2)}
-}
-@media (max-width:1099px){
-  .toc{position:fixed;inset:0 auto 0 0;z-index:40;width:min(18rem,86vw);overflow:auto;background:var(--sheet);box-shadow:var(--shadow);padding:calc(var(--space-6) + env(safe-area-inset-top,0px)) var(--space-3) var(--space-6) calc(var(--space-3) + env(safe-area-inset-left,0px));transform:translateX(-105%);visibility:hidden;transition:transform .22s ease,visibility 0s linear .22s}
-  .toc.open{transform:none;visibility:visible;transition:transform .22s ease,visibility 0s}
+  body:not(.deck) .shell{grid-template-columns:var(--toc-w) minmax(0,1fr);gap:var(--space-8)}
+  body:not(.deck) .menu-btn,body:not(.deck) .scrim{display:none}
+  body:not(.deck) .toc{position:sticky;inset:auto;z-index:auto;width:auto;background:transparent;box-shadow:none;transform:none;visibility:visible;transition:none;top:calc(var(--bar-h) + var(--space-6));align-self:start;max-height:calc(100vh - var(--bar-h) - var(--space-12));padding:var(--space-4) var(--space-2)}
 }
 @media (max-width:600px){
-  .shell{padding:0}
-  .sheet{border-radius:0;box-shadow:none;padding-block:var(--space-8) var(--space-12);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .shell{padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));padding-top:var(--space-3)}
 }
 
 /* 표지 */
@@ -172,17 +170,35 @@ a.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 .dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
 .d-ex{background:var(--ex)} .d-risk{background:var(--risk)} .d-aed{background:var(--aed)}
 
-/* 장 */
-.sec{margin-top:52px;padding-top:52px;border-top:1px solid var(--rule)}
-.sec:focus{outline:none}
-.sec-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--space-2) var(--space-3);margin-bottom:var(--space-6)}
-.sec-no{font:700 clamp(25px,3vw,34.2px)/1.35 var(--font-display);color:var(--blue);min-width:1.1em}
-.sec-head h2{font:700 clamp(25px,3vw,34.2px)/1.35 var(--font-display);min-width:0}
-.sec-head .tbadge,.sec-head .who{align-self:center}
-.sec>p,.sec>ul,.sec>ol:not(.flow):not(.aedsteps),.sec .grid2>div>ul{max-width:var(--measure)}
-h3{font:700 22px/1.45 var(--font-body);margin:40px 0 var(--space-3)}
-.sec-head+h3{margin-top:0}
+/* 슬라이드 */
+.slide{position:relative;min-width:0;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius-lg);box-shadow:var(--shadow);margin:0 0 var(--space-6);padding:clamp(40px,5vw,64px) clamp(20px,5vw,64px) clamp(28px,4vw,52px)}
+.slide:focus{outline:none}
+.slide::after{content:attr(data-num) " / " attr(data-total);position:absolute;top:16px;right:20px;font:500 12px/1 var(--font-mono);color:var(--faint)}
+.slide-in{min-width:0}
+.slide-head{margin-bottom:var(--space-6)}
+.slide-eyebrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:0 0 8px;font:700 14.8px/1.5 var(--font-body);letter-spacing:.04em;color:var(--blue)}
+.slide-eyebrow .eb-no{font:700 17px/1 var(--font-display)}
+.slide-title{font:700 clamp(26px,2.8vw,38px)/1.3 var(--font-display);letter-spacing:-.005em}
+.slide-in>p,.slide-in>ul,.slide-in>ol:not(.flow):not(.aedsteps),.slide-in .grid2>div>ul{max-width:var(--measure)}
+h3{font:700 22px/1.45 var(--font-body);margin:var(--space-8) 0 var(--space-3)}
 h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
+/* 장 구분 슬라이드 */
+.slide.divider{background:var(--blue-soft);border-color:transparent}
+.divider .slide-in{display:grid;gap:var(--space-3);align-content:center}
+.divider-no{font:700 clamp(72px,10vw,132px)/1 var(--font-display);color:var(--blue)}
+.divider-title{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font:700 clamp(30px,4vw,52px)/1.25 var(--font-display)}
+.divider-title .tbadge{font-size:15px}
+.divider-count{margin:0;font-size:15px;color:var(--sub)}
+.divider-list{list-style:none;padding:0;margin:var(--space-2) 0 0;display:grid;gap:0;counter-reset:d;max-width:46em}
+.divider-list li{counter-increment:d;margin:0}
+.divider-list a{display:flex;gap:14px;align-items:baseline;padding:8px 0;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);font-size:18px;line-height:1.5}
+.divider-list a::before{content:counter(d,decimal-leading-zero);font:500 13px/1 var(--font-mono);color:var(--blue);min-width:1.8em}
+.divider-list a:hover{color:var(--blue)}
+@media (max-width:600px){
+  .slide{border-radius:var(--radius-md);margin-bottom:var(--space-3);padding:40px 16px 28px}
+  .slide::after{top:14px;right:14px}
+  .divider-list a{font-size:16px}
+}
 
 /* 카드·격자 */
 .grid3,.grid2{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-3);margin:var(--space-3) 0}
@@ -308,6 +324,59 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
 .foot-meta dd.mono{font-family:var(--font-mono);font-weight:500}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toc,.toc.open,.scrim,.top,.btn{transition:none}}
 
+/* 설명 틀·그림 묶음 */
+.tpls{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-3)}
+.tpls .tpl{margin:0;max-width:none}
+@media (min-width:1000px){.tpls{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.figrow{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-2) var(--space-6);align-items:start}
+@media (min-width:1000px){.figrow{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}.figrow .legend{grid-template-columns:1fr;margin-top:var(--space-4)}.figrow .swipe{display:none}}
+
+/* 보기 전환 단추·발표 조작 */
+.view-btn{display:inline-flex;align-items:center;flex:none;font:700 13px/1 var(--font-body);color:var(--ink);background:var(--raised);border:1px solid var(--rule);border-radius:var(--radius-md);padding:9px 12px;cursor:pointer}
+.view-btn:hover{border-color:var(--blue);color:var(--blue)}
+@media (max-width:699px){.view-btn{display:none}}
+.progress,.deck-nav{display:none}
+
+/* 발표 보기 */
+body.deck{overflow:hidden}
+body.deck .shell{display:block;max-width:none;padding:0}
+body.deck main.sheet{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + var(--bar-h));bottom:0;background:var(--sheet)}
+body.deck .slide{position:absolute;inset:0;display:none;margin:0;border:0;border-radius:0;box-shadow:none;overflow-y:auto;overscroll-behavior:contain;padding:clamp(20px,4.5vh,64px) max(28px,6vw) 80px}
+body.deck .slide.active{display:flex;flex-direction:column}
+body.deck .slide-in{width:100%;max-width:1200px;margin:auto}
+body.deck .slide::after{display:none}
+body.deck .slide.divider{background:var(--blue-soft)}
+body.deck .slide-title{font-size:clamp(30px,3vw,42px)}
+body.deck .cover h1{font-size:clamp(44px,4.8vw,68px)}
+body.deck .fig{min-width:0}
+body.deck .fig svg{min-width:0;max-height:min(46vh,520px)}
+body.deck .slide-head{margin-bottom:var(--space-4)}
+body.deck .divider-no{font-size:clamp(64px,8vw,112px)}
+body.deck .divider-list{grid-template-columns:repeat(auto-fill,minmax(19em,1fr));column-gap:var(--space-8);max-width:none}
+body.deck .slide-in>ol.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--space-8);max-width:none}
+body.deck .steps>li:nth-child(2){border-top:0}
+body.deck .shot svg{max-height:20vh}
+body.deck #cards .fcard+.fcard,body.deck .slide-card .intro{display:none}
+body.deck .fcard .blank{height:32px}
+body.deck .foot{margin-top:var(--space-6)}
+/* 화면 높이에 맞춰 슬라이드 내용 크기 조절(프로젝터 1280×720 ~ 1920×1080) */
+@media (max-height:740px){body.deck .slide-in{zoom:.88}}
+@media (max-height:640px){body.deck .slide-in{zoom:.78}}
+@media (min-height:1000px) and (min-width:1600px){body.deck .slide-in{zoom:1.15}}
+.more-hint{display:none}
+body.deck .more-hint.show{display:block;position:fixed;z-index:14;left:50%;transform:translateX(-50%);bottom:calc(24px + env(safe-area-inset-bottom,0px));padding:6px 14px;border-radius:var(--radius-pill);background:var(--ink);color:var(--sheet);font-size:13px;font-weight:700;pointer-events:none;box-shadow:var(--shadow)}
+body.deck .swipe,body.deck .top{display:none!important}
+body.deck .progress{display:block;position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + var(--bar-h));height:3px;z-index:19;background:var(--rule-soft)}
+.progress i{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+body.deck .deck-nav{display:flex;align-items:center;gap:4px;position:fixed;z-index:15;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));padding:5px;border:1px solid var(--rule);border-radius:var(--radius-pill);background:var(--bar-bg);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:var(--shadow)}
+.deck-nav button{font:700 14px/1 var(--font-body);color:var(--ink);background:transparent;border:0;border-radius:var(--radius-pill);padding:10px 16px;cursor:pointer}
+.deck-nav button:hover:not(:disabled){background:var(--hover);color:var(--blue)}
+.deck-nav button:disabled{opacity:.35;cursor:default}
+.deck-nav .count{font:500 13px/1 var(--font-mono);color:var(--sub);min-width:5.2em;text-align:center}
+.deck-label{display:none}
+body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + env(safe-area-inset-left,0px));bottom:calc(26px + env(safe-area-inset-bottom,0px));max-width:45vw;font-size:13px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (prefers-reduced-motion:reduce){.progress i{transition:none}}
+
 /* 인쇄 */
 @media print{
   :root:not([data-theme="light"]),:root[data-theme]{
@@ -318,23 +387,29 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
   }
   @page{size:A4;margin:12mm}
   body{background:#fff;font-size:10.5pt;line-height:1.6}
-  .bar,.toc,.scrim,.top,.btn,.print-bar,.swipe,.skip{display:none!important}
-  .shell{display:block;padding:0;max-width:none}
-  .sheet{box-shadow:none;border-radius:0;padding:0}
-  .sec{margin-top:14px;padding-top:14px}
+  .bar,.toc,.scrim,.top,.btn,.print-bar,.swipe,.skip,.progress,.deck-nav,.deck-label,.view-btn{display:none!important}
+  body.deck{overflow:visible}
+  .shell,body.deck .shell{display:block;padding:0;max-width:none}
+  main.sheet,body.deck main.sheet{position:static;background:none}
+  .slide,body.deck .slide{display:block!important;position:static;overflow:visible;border:0;border-bottom:1px solid #bbb;border-radius:0;box-shadow:none;margin:0 0 12px;padding:0 0 12px;background:none}
+  .slide::after{display:none}
+  .slide.divider,body.deck .slide.divider{background:none;padding:6px 0 10px}
+  .divider-no{font-size:26pt} .divider-title{font-size:17pt} .divider-list,.divider-count{display:none}
+  .slide-in,body.deck .slide-in{max-width:none;margin:0}
   .card,.tpl,.fcard,.sample,.note,.warn,.fact,.steps>li,.tbl tr,.fig,.flow li,.aedsteps li{break-inside:avoid}
   .fig svg{min-width:0;max-width:150mm}
   .tbl tbody tr:hover{background:none}
   .grid3{grid-template-columns:repeat(3,minmax(0,1fr))} .grid2{grid-template-columns:repeat(2,minmax(0,1fr))} .legend{grid-template-columns:1fr 1fr}
   .flow,.aedsteps{grid-template-columns:repeat(5,minmax(0,1fr))}
   .flow li,.aedsteps li{padding:34px 8px 8px;font-size:9.5pt} .flow li::before,.aedsteps li::before{left:8px;top:8px}
-  .cover h1{font-size:22pt} .sec-no,.sec-head h2{font-size:16pt} h3{font-size:12.5pt;margin-top:16px} h4{font-size:11pt}
+  .cover h1,body.deck .cover h1{font-size:22pt} .slide-title,body.deck .slide-title{font-size:15pt} h3{font-size:12.5pt;margin-top:14px} h4{font-size:11pt}
+  .tpls{grid-template-columns:repeat(3,minmax(0,1fr))} .figrow{grid-template-columns:minmax(0,3fr) minmax(0,2fr)} .figrow .legend{grid-template-columns:1fr}
   .lede,.card,.tbl,.note,.warn,.fact,.sample,.tpl pre,.legend,.small{font-size:9.5pt}
-  .sec-head{margin-bottom:8px}
+  .slide-head{margin-bottom:8px}
   a{color:inherit;text-decoration:none}
-  body.print-card .cover,body.print-card main>section:not(#card),body.print-card .foot{display:none!important}
-  body.print-card #card{margin:0;padding:0;border:0}
-  body.print-card #card .sec-head,body.print-card #card .intro{display:none}
+  body.print-card .slide:not(.slide-card){display:none!important}
+  body.print-card .slide-card{margin:0;padding:0;border:0}
+  body.print-card .slide-card .slide-head,body.print-card .slide-card .intro{display:none}
   body.print-card .fcard{margin:0 0 6mm}
   body.print-card .fcard .blank{height:12mm}
 }
@@ -344,7 +419,8 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
 <a class="skip" href="#main">본문 바로가기</a>
 <div class="bar"><div class="bar-in">
   <button class="menu-btn" type="button" aria-controls="toc" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>목차</button>
-  <a class="bar-title" href="#top"><span>우리 동네 스포츠 배움터</span><span class="ver">v1.2</span></a>
+  <a class="bar-title" href="#top"><span>우리 동네 스포츠 배움터</span><span class="ver">v2.0</span></a>
+  <button class="view-btn" type="button" id="viewBtn" aria-pressed="false">슬라이드로 보기</button>
   <div class="theme" role="group" aria-label="화면 테마">
     <button type="button" data-t="light" aria-pressed="false">밝게</button><button type="button" data-t="dark" aria-pressed="false">어둡게</button><button type="button" data-t="auto" aria-pressed="true">자동</button>
   </div>
@@ -363,16 +439,17 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <li><a href="#safety"><span class="n">Ⅶ</span>탐사 안전 수칙</a></li>
       <li><a href="#analyze"><span class="n">Ⅷ</span>우수사례·개선점</a></li>
       <li><a href="#present"><span class="n">Ⅸ</span>발표하기</a></li>
-      <li><a href="#teacher"><span class="n">Ⅹ</span>교사용 운영 안내</a></li>
-      <li><a href="#card"><span class="n">Ⅺ</span>현장 기록 카드</a></li>
-      <li><a href="#refs"><span class="n">Ⅻ</span>참고 자료</a></li>
+      <li><a href="#card"><span class="n">Ⅹ</span>현장 기록 카드</a></li>
+      <li><a href="#refs"><span class="n">Ⅺ</span>참고 자료</a></li>
     </ol>
   </nav>
 
-<main class="sheet" id="main">
-  <header class="cover" id="top">
+<main class="sheet" id="main" tabindex="-1">
+
+<section class="slide cover-slide" id="top" data-sec="top" data-num="1" data-total="47" aria-roledescription="슬라이드" aria-label="1번 슬라이드: 표지">
+ <div class="slide-in cover">
    <div class="cover-main">
-    <div class="eyebrow">체육 · 커뮤니티 매핑 프로젝트 · 중학교 3학년 3차시</div>
+    <div class="eyebrow">체육 · 커뮤니티 매핑 프로젝트 · 중학교 3학년 학생용</div>
     <h1>우리 동네 스포츠 배움터 찾기</h1>
     <p class="lede">내가 사는 동네를 직접 걸으며 운동하기 좋은 곳, 위험한 곳, 심장충격기가 있는 곳을 찾아 구글 지도에 표시하고 짧은 설명과 사진을 붙입니다. 모두의 지도를 겹쳐 보며 우수사례와 개선점을 찾아 발표합니다.</p>
     <div class="topics">
@@ -381,19 +458,31 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <span class="chip t-aed"><i class="dot"></i>주제 3 · 심장충격기 위치</span>
     </div>
     <div class="classlinks"><span class="classlinks-label">우리 반 지도</span><a class="btn dark" href="https://www.google.com/maps/d/edit?mid=1oMKs0usl-7Jh9Uw-vyTrDVU4lRBO0dA&amp;usp=sharing" target="_blank" rel="noopener">3학년 1반 지도 열기<span aria-hidden="true">↗</span></a><a class="btn dark" href="https://www.google.com/maps/d/edit?mid=19UBA_0P2PnvIwDGuvHtRgKiKdprl-2E&amp;usp=sharing" target="_blank" rel="noopener">3학년 2반 지도 열기<span aria-hidden="true">↗</span></a><a class="classlinks-qr" href="#classmap">QR 보기</a></div>
-    <div class="meta"><span>안내 자료 v1.2.0</span><span>2026-11-23</span><span>신체활동 × 스포츠 환경 안전</span></div>
+    <div class="meta"><span>학생 안내 자료 v2.0.0</span><span>2026-11-23</span><span>신체활동 × 스포츠 환경 안전</span></div>
    </div>
    <aside class="access" aria-label="휴대전화로 접속">
     <div class="access-qr"><svg role="img" aria-label="접속 QR 코드: kimjs99.github.io/sports-map-2026" viewBox="0 0 41 41" class="segno"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#1d1f23" d="M4 4.5h7m1 0h5m1 0h1m2 0h2m5 0h1m1 0h7m-33 1h1m5 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h2m4 0h5m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m1 0h1m3 0h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m4 0h1m1 0h1m1 0h1m4 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m2 0h1m2 0h1m1 0h3m4 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m2 0h2m4 0h3m1 0h1m1 0h1m-24 1h1m4 0h4m5 0h1m1 0h4m4 0h1m5 0h2m-31 1h1m1 0h2m4 0h3m1 0h1m2 0h3m3 0h1m4 0h3m-31 1h1m1 0h1m2 0h2m3 0h8m6 0h2m2 0h1m1 0h1m-31 1h2m1 0h2m3 0h2m4 0h1m2 0h2m4 0h2m2 0h6m-31 1h2m2 0h1m1 0h3m4 0h1m1 0h1m2 0h1m1 0h1m3 0h1m-27 1h3m2 0h1m2 0h4m2 0h1m2 0h2m2 0h3m1 0h3m1 0h1m1 0h2m-33 1h1m1 0h2m2 0h1m3 0h1m2 0h3m5 0h1m3 0h5m1 0h1m-32 1h2m1 0h3m3 0h2m2 0h1m6 0h1m3 0h2m2 0h3m1 0h1m-30 1h6m1 0h2m1 0h2m1 0h1m1 0h1m5 0h2m1 0h3m2 0h1m-29 1h2m2 0h3m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m2 0h1m2 0h2m1 0h1m-33 1h1m1 0h1m3 0h1m1 0h2m2 0h2m2 0h2m1 0h5m1 0h3m1 0h2m1 0h1m-33 1h2m1 0h2m2 0h2m1 0h1m2 0h1m2 0h3m1 0h1m4 0h2m1 0h4m-31 1h1m1 0h1m2 0h4m4 0h1m1 0h3m4 0h2m3 0h2m2 0h1m-33 1h1m1 0h4m1 0h1m6 0h1m5 0h2m1 0h1m3 0h2m1 0h1m-31 1h1m3 0h1m1 0h2m3 0h1m1 0h1m2 0h2m2 0h1m1 0h1m3 0h1m1 0h2m1 0h1m-32 1h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h3m2 0h3m4 0h6m1 0h1m-33 1h2m1 0h1m2 0h1m1 0h2m1 0h1m2 0h3m7 0h5m2 0h1m-24 1h1m1 0h1m5 0h1m1 0h3m3 0h1m3 0h1m1 0h1m1 0h1m-33 1h7m1 0h2m1 0h2m2 0h2m3 0h1m2 0h2m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m3 0h1m2 0h1m1 0h1m4 0h1m1 0h3m3 0h3m-31 1h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h2m1 0h1m1 0h1m4 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m3 0h2m1 0h4m1 0h2m2 0h4m1 0h2m1 0h1m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m1 0h4m1 0h4m2 0h1m1 0h1m1 0h6m-33 1h1m5 0h1m1 0h3m2 0h1m4 0h3m1 0h1m2 0h6m-31 1h7m2 0h3m2 0h1m2 0h1m4 0h4m1 0h1m3 0h1"/></svg></div>
     <p class="access-label">휴대전화로 접속</p>
     <p class="access-url">kimjs99.github.io/sports-map-2026</p>
    </aside>
-  </header>
+ </div>
+</section>
 
+<section class="slide divider" id="overview" data-sec="overview" data-num="2" data-total="47" aria-roledescription="슬라이드" aria-label="2번 슬라이드: 한눈에 보기">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅰ</div>
+  <h2 class="divider-title"><span>한눈에 보기</span></h2>
+  <p class="divider-count">이 장의 슬라이드 2장</p>
+  <ol class="divider-list">
+    <li><a href="#s03">세 가지 주제</a></li>
+    <li><a href="#s04">활동 흐름과 결과물</a></li>
+  </ol>
+ </div>
+</section>
 
-<!-- 0 -->
-<section class="sec" id="overview">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅰ</span><h2>한눈에 보기</h2></div>
+<section class="slide" id="s03" data-sec="overview" data-num="3" data-total="47" aria-roledescription="슬라이드" aria-label="3번 슬라이드: 세 가지 주제">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅰ</span>한눈에 보기</p><h2 class="slide-title">세 가지 주제</h2></header>
   <div class="grid3">
     <div class="card t-ex">
       <h4>운동하기 좋은 곳</h4>
@@ -411,8 +500,13 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <p class="small muted">아파트 관리동, 주민센터, 체육관, 역 등</p>
     </div>
   </div>
+ </div>
+</section>
 
-  <h3>활동 흐름</h3>
+<section class="slide" id="s04" data-sec="overview" data-num="4" data-total="47" aria-roledescription="슬라이드" aria-label="4번 슬라이드: 활동 흐름과 결과물">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅰ</span>한눈에 보기</p><h2 class="slide-title">활동 흐름과 결과물</h2></header>
+  <h3 class="sub">활동 흐름</h3>
   <ol class="flow">
     <li><b>배우기</b>세 주제의 기준과 구글 지도 사용법<em class="when">1차시</em></li>
     <li><b>탐사하기</b>모둠 구역을 걸으며 사진·기록 카드 작성<em class="when">과제 · 1~2주</em></li>
@@ -420,28 +514,44 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
     <li><b>분석하기</b>세 레이어를 겹쳐 우수사례·개선점 찾기<em class="when">2차시</em></li>
     <li><b>발표·제안</b>모둠 발표, 신고·개선 제안<em class="when">3차시</em></li>
   </ol>
-
-  <h3>최종 결과물</h3>
+  <h3 class="sub">최종 결과물</h3>
   <ul>
     <li>학급 공동 커뮤니티 지도 1개 (레이어 3개: 운동하기 좋은 곳 · 위험한 곳 · 심장충격기)</li>
-    <li>모둠별 장소 기록 <b>주제마다 2곳 이상, 모두 6곳 이상</b> <span class="chk">수량은 교사 조정</span></li>
+    <li>모둠별 장소 기록 <b>주제마다 2곳 이상, 모두 6곳 이상</b></li>
     <li>장소마다 직접 찍은 <b>사진 1~3장</b> (전체 모습 · 가까이 · 크기 비교)</li>
     <li>모둠 발표 (3분 + 질문 1분): 우수사례 1가지 + 개선점 1가지 + 제안</li>
   </ul>
+ </div>
 </section>
 
-<!-- 1 -->
-<section class="sec" id="purpose">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅱ</span><h2>왜 우리 동네인가 — 학습 목적</h2></div>
+<section class="slide divider" id="purpose" data-sec="purpose" data-num="5" data-total="47" aria-roledescription="슬라이드" aria-label="5번 슬라이드: 왜 우리 동네인가 — 학습 목적">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅱ</div>
+  <h2 class="divider-title"><span>왜 우리 동네인가 — 학습 목적</span></h2>
+  <p class="divider-count">이 장의 슬라이드 2장</p>
+  <ol class="divider-list">
+    <li><a href="#s06">왜 우리 동네인가</a></li>
+    <li><a href="#s07">이 활동으로 배우는 것</a></li>
+  </ol>
+ </div>
+</section>
+
+<section class="slide" id="s06" data-sec="purpose" data-num="6" data-total="47" aria-roledescription="슬라이드" aria-label="6번 슬라이드: 왜 우리 동네인가">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅱ</span>왜 우리 동네인가 — 학습 목적</p><h2 class="slide-title">왜 우리 동네인가</h2></header>
 
   <p>체육 시간에 배운 운동과 안전은 <b>학교 밖, 내가 사는 동네</b>에서 이어질 때 비로소 내 생활이 됩니다. 이 프로젝트는 우리 삶의 맥락에 직접 연결된 신체활동 공간과 안전 환경을 스스로 조사해, 잘된 점(우수사례)과 고쳐야 할 점(개선점)을 찾아내는 것을 목표로 합니다.</p>
 
   <div class="fact"><span class="lb">알아 두기</span>세계보건기구(WHO, 2020)는 5~17세 청소년에게 <b>하루 평균 60분 이상</b> 중강도 이상의 신체활동을 권합니다. 체육 시간만으로는 채우기 어렵습니다. 집 가까이에 안전하게 운동할 곳이 있는지가 중요한 까닭입니다.</div>
-
-  <h3>커뮤니티 매핑이란?</h3>
+  <h3 class="sub">커뮤니티 매핑이란?</h3>
   <p>지역의 정보나 문제를 <b>그곳에 사는 사람들이 직접 조사</b>해 온라인 지도에 함께 표시하고 나누는 참여형 활동입니다. 한 사람이 보면 점 하나지만, 학급 전체가 모으면 동네의 모습이 보입니다. 지도는 문제를 알리고 개선을 요구하는 근거가 됩니다.</p>
+ </div>
+</section>
 
-  <h3>학습 목표</h3>
+<section class="slide" id="s07" data-sec="purpose" data-num="7" data-total="47" aria-roledescription="슬라이드" aria-label="7번 슬라이드: 이 활동으로 배우는 것">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅱ</span>왜 우리 동네인가 — 학습 목적</p><h2 class="slide-title">이 활동으로 배우는 것</h2></header>
+  <h3 class="sub">학습 목표</h3>
   <table class="tbl stack">
     <thead><tr><th>영역</th><th>목표</th></tr></thead>
     <tbody>
@@ -450,20 +560,25 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <tr><th>실천하기</th><td data-h="목표">동네에서 꾸준히 신체활동을 하고, 위험을 발견하면 알리고 개선을 제안하는 안전 시민의 태도를 지닌다.</td></tr>
     </tbody>
   </table>
-
-  <h3>연계 성취기준</h3>
-  <ul class="small">
-    <li><b>[9체05-04]</b> 스포츠 환경과 안전의 관계를 이해하고 안전한 스포츠 활동에 필요한 여러 가지 활동 규칙과 방식을 설명한다.</li>
-    <li><b>[9체05-05]</b> 안전한 스포츠 활동에 필요한 시설 및 장비들의 사용법을 이해하고 스포츠 활동에 적용한다.</li>
-  </ul>
-  <p class="small muted">2026학년도 3학년에 적용되는 2015 개정 체육과 안전 영역(스포츠 환경 안전 논술 학습자료와 같은 성취기준)입니다. 2027학년도부터는 3학년도 2022 개정 교육과정을 적용하므로, 그때 다시 운영하면 성취기준을 바꿔 넣어야 합니다.</p>
+ </div>
 </section>
 
-<!-- 2 -->
-<section class="sec t-ex" id="topic1">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅲ</span><h2>주제 1 · 운동하기 좋은 곳</h2><span class="tbadge">파란 마커</span></div>
+<section class="slide divider t-ex" id="topic1" data-sec="topic1" data-num="8" data-total="47" aria-roledescription="슬라이드" aria-label="8번 슬라이드: 주제 1 · 운동하기 좋은 곳">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅲ</div>
+  <h2 class="divider-title"><span>주제 1 · 운동하기 좋은 곳</span> <span class="tbadge">파란 마커</span></h2>
+  <p class="divider-count">이 장의 슬라이드 3장</p>
+  <ol class="divider-list">
+    <li><a href="#s09">무엇을 찾을까?</a></li>
+    <li><a href="#s10">‘좋은 곳’을 가르는 여섯 가지 기준</a></li>
+    <li><a href="#s11">기록 예시</a></li>
+  </ol>
+ </div>
+</section>
 
-  <h3>무엇을 찾을까?</h3>
+<section class="slide t-ex" id="s09" data-sec="topic1" data-num="9" data-total="47" aria-roledescription="슬라이드" aria-label="9번 슬라이드: 무엇을 찾을까?">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅲ</span>주제 1 · 운동하기 좋은 곳</p><h2 class="slide-title">무엇을 찾을까?</h2></header>
   <div class="grid2">
     <ul>
       <li>공원 야외 운동기구, 체력단련장</li>
@@ -476,8 +591,12 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <li>청소년수련관·주민센터의 생활체육 프로그램</li>
     </ul>
   </div>
+ </div>
+</section>
 
-  <h3>‘좋은 곳’을 가르는 여섯 가지 기준</h3>
+<section class="slide t-ex" id="s10" data-sec="topic1" data-num="10" data-total="47" aria-roledescription="슬라이드" aria-label="10번 슬라이드: ‘좋은 곳’을 가르는 여섯 가지 기준">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅲ</span>주제 1 · 운동하기 좋은 곳</p><h2 class="slide-title">‘좋은 곳’을 가르는 여섯 가지 기준</h2></header>
   <p>그냥 “좋다”가 아니라 <b>기준을 들어</b> 말해야 우수사례가 됩니다. 기준마다 ★ 1~3개로 매겨 보세요.</p>
   <table class="tbl stack">
     <thead><tr><th>기준</th><th>살펴볼 점</th><th>물어볼 질문</th></tr></thead>
@@ -490,23 +609,40 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <tr><th>함께함</th><td data-h="살펴볼 점">운동하는 사람, 프로그램·동호회, 안내판</td><td data-h="질문">누구와, 무엇을 배울 수 있나?</td></tr>
     </tbody>
   </table>
+ </div>
+</section>
 
-  <h3>기록 예시 <span class="ex-tag">예시 · 가상</span></h3>
+<section class="slide t-ex" id="s11" data-sec="topic1" data-num="11" data-total="47" aria-roledescription="슬라이드" aria-label="11번 슬라이드: 기록 예시">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅲ</span>주제 1 · 운동하기 좋은 곳</p><h2 class="slide-title">기록 예시 <span class="ex-tag">예시 · 가상</span></h2></header>
   <div class="sample">
     <b>○○근린공원 배드민턴장</b> — 할 수 있는 활동: 배드민턴, 줄넘기<br>
     좋은 점: 학교에서 걸어서 8분(가까움 ★★★), 야간 조명이 밝고 무료(안전·비용 ★★★)<br>
     아쉬운 점: 그늘이 없어 여름 낮에는 쓰기 어렵고, 네트 한 곳이 처져 있음 → <span style="color:var(--risk)">위험한 곳 레이어에도 기록</span><br>
     <span class="who2">방문: 11월 ○일 오후 4시 · 3모둠 ○○○</span>
   </div>
+ </div>
 </section>
 
-<!-- 3 -->
-<section class="sec t-risk" id="topic2">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅳ</span><h2>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</h2><span class="tbadge">주황 마커</span></div>
+<section class="slide divider t-risk" id="topic2" data-sec="topic2" data-num="12" data-total="47" aria-roledescription="슬라이드" aria-label="12번 슬라이드: 주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅳ</div>
+  <h2 class="divider-title"><span>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</span> <span class="tbadge">주황 마커</span></h2>
+  <p class="divider-count">이 장의 슬라이드 4장</p>
+  <ol class="divider-list">
+    <li><a href="#s13">세 갈래로 찾는 위험 요소</a></li>
+    <li><a href="#s14">위험도 판단</a></li>
+    <li><a href="#s15">공익신고 통로: 안전신문고</a></li>
+    <li><a href="#s16">신고 글은 이렇게</a></li>
+  </ol>
+ </div>
+</section>
+
+<section class="slide t-risk" id="s13" data-sec="topic2" data-num="13" data-total="47" aria-roledescription="슬라이드" aria-label="13번 슬라이드: 세 갈래로 찾는 위험 요소">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅳ</span>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</p><h2 class="slide-title">세 갈래로 찾는 위험 요소</h2></header>
 
   <p>운동하다 다치는 원인은 사람에게만 있지 않습니다. 운동하는 곳을 둘러싼 <b>스포츠 환경</b>이 사고를 부르기도 합니다. 논술 학습에서 배운 세 갈래로 나누어 찾아봅니다.</p>
-
-  <h3>세 갈래로 찾는 위험 요소</h3>
   <table class="tbl stack">
     <thead><tr><th>갈래</th><th>동네에서 볼 수 있는 위험 요소 예</th><th>일어날 수 있는 사고</th></tr></thead>
     <tbody>
@@ -515,8 +651,12 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <tr><th>자연 환경</th><td data-h="위험 요소">그늘 없는 운동장, 비 오면 잠기는 하천 산책로, 결빙되는 비탈길, 낙엽·이끼로 미끄러운 계단</td><td data-h="사고">열 관련 질환, 미끄러짐, 고립</td></tr>
     </tbody>
   </table>
+ </div>
+</section>
 
-  <h3>위험도 판단</h3>
+<section class="slide t-risk" id="s14" data-sec="topic2" data-num="14" data-total="47" aria-roledescription="슬라이드" aria-label="14번 슬라이드: 위험도 판단">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅳ</span>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</p><h2 class="slide-title">위험도 판단</h2></header>
   <table class="tbl stack">
     <thead><tr><th>위험도</th><th>판단 기준</th><th>할 일</th></tr></thead>
     <tbody>
@@ -525,32 +665,57 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <tr><th>하</th><td data-h="기준">불편하거나 조심하면 피할 수 있다 (예: 안내판 훼손)</td><td data-h="할 일">기록하고 개선 제안에 담기</td></tr>
     </tbody>
   </table>
+ </div>
+</section>
 
-  <h3>공익신고 통로: 안전신문고</h3>
+<section class="slide t-risk" id="s15" data-sec="topic2" data-num="15" data-total="47" aria-roledescription="슬라이드" aria-label="15번 슬라이드: 공익신고 통로: 안전신문고">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅳ</span>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</p><h2 class="slide-title">공익신고 통로: 안전신문고</h2></header>
   <p><b>안전신문고</b>는 생활 속 안전 위험 요소를 국민이 직접 신고하는 행정안전부 서비스입니다. 앱(‘안전신문고’ 검색) 또는 누리집(<a href="https://www.safetyreport.go.kr" target="_blank" rel="noopener">safetyreport.go.kr</a>)에서 <b>사진·동영상 + 신고 내용 + 위치</b>를 넣어 제출하면, 담당 기관이 처리하고 결과를 알려 줍니다.</p>
   <ul>
     <li><b>학교 안</b>의 위험은 담임·체육 선생님이나 행정실에 먼저 알립니다.</li>
     <li><b>아파트 안</b>의 운동시설은 관리사무소, <b>공원·하천·공공 체육시설</b>은 구청·시청이나 시설관리공단이 관리하는 경우가 많습니다.</li>
   </ul>
+ </div>
+</section>
 
-  <h4>신고 글은 이렇게 <span class="ex-tag">예시 · 가상</span></h4>
+<section class="slide t-risk" id="s16" data-sec="topic2" data-num="16" data-total="47" aria-roledescription="슬라이드" aria-label="16번 슬라이드: 신고 글은 이렇게">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅳ</span>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</p><h2 class="slide-title">신고 글은 이렇게 <span class="ex-tag">예시 · 가상</span></h2></header>
   <div class="sample">
     <b>무엇이</b> ○○공원 체력단련장의 허리 돌리기 기구 받침 볼트 2개가 빠져 있어 <b>어디서</b> (지도 위치 지정) <b>어떤 위험</b> 기구가 좌우로 흔들려 이용하다 넘어질 위험이 있습니다. <b>바라는 조치</b> 수리 전까지 사용 금지 표시를 하고 볼트를 교체해 주세요. (11월 ○일 오후 4시 촬영)
   </div>
 
   <div class="warn"><span class="lb">꼭 지켜요</span>실제 신고는 <b>선택 활동</b>이며 보호자나 선생님과 함께 합니다(앱 가입·본인 확인 절차가 있습니다). 본 그대로의 사실만 쓰고, 사람 얼굴·차량 번호판이 나오지 않게 찍습니다. 장난 신고나 같은 내용의 반복 신고는 하지 않습니다.</div>
+ </div>
 </section>
 
-<!-- 4 -->
-<section class="sec t-aed" id="topic3">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅴ</span><h2>주제 3 · 심장충격기 위치 지도</h2><span class="tbadge">초록 마커</span></div>
+<section class="slide divider t-aed" id="topic3" data-sec="topic3" data-num="17" data-total="47" aria-roledescription="슬라이드" aria-label="17번 슬라이드: 주제 3 · 심장충격기 위치 지도">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅴ</div>
+  <h2 class="divider-title"><span>주제 3 · 심장충격기 위치 지도</span> <span class="tbadge">초록 마커</span></h2>
+  <p class="divider-count">이 장의 슬라이드 4장</p>
+  <ol class="divider-list">
+    <li><a href="#s18">왜 지도로 만들까?</a></li>
+    <li><a href="#s19">자동심장충격기, 이렇게 씁니다</a></li>
+    <li><a href="#s20">어디에 있을까?</a></li>
+    <li><a href="#s21">현장에서 확인할 다섯 가지</a></li>
+  </ol>
+ </div>
+</section>
 
-  <h3>왜 지도로 만들까?</h3>
+<section class="slide t-aed" id="s18" data-sec="topic3" data-num="18" data-total="47" aria-roledescription="슬라이드" aria-label="18번 슬라이드: 왜 지도로 만들까?">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅴ</span>주제 3 · 심장충격기 위치 지도</p><h2 class="slide-title">왜 지도로 만들까?</h2></header>
   <p>심장이 갑자기 멈추는 급성심장정지는 운동 중에도, 누구에게나 일어날 수 있습니다. 심장이 멈춘 뒤 1분 1초가 지날수록 살아날 가능성이 줄어들기 때문에 흔히 <b>‘4분’</b>을 골든타임이라고 부릅니다. 구급차가 오기 전, 곁에 있던 사람이 심폐소생술을 하고 <b>자동심장충격기(AED)</b>를 빨리 가져와 쓰는 것이 생명을 살립니다.</p>
   <div class="fact"><span class="lb">숫자로 보기</span>목격자가 바로 심폐소생술을 했을 때 환자의 생존율은 약 <b>2.4배</b>, 뇌 기능 회복률은 약 <b>3.3배</b> 높았습니다. <small>(질병관리청, 2024년 급성심장정지 통계 · 2026.1.29 발표)</small></div>
   <p>그런데 심장충격기가 <b>어디 있는지 모르면</b> 쓸 수 없습니다. 우리 동네 운동 장소 가까이에 심장충격기가 있는지, 언제든 꺼낼 수 있는지 지도로 확인하는 것이 이 주제의 핵심입니다.</p>
+ </div>
+</section>
 
-  <h3>자동심장충격기, 이렇게 씁니다</h3>
+<section class="slide t-aed" id="s19" data-sec="topic3" data-num="19" data-total="47" aria-roledescription="슬라이드" aria-label="19번 슬라이드: 자동심장충격기, 이렇게 씁니다">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅴ</span>주제 3 · 심장충격기 위치 지도</p><h2 class="slide-title">자동심장충격기, 이렇게 씁니다</h2></header>
   <p class="small muted">2025 한국 심폐소생술 가이드라인(질병관리청·대한심폐소생협회, 2026.1 발표) 기준. 나이·성별 구분 없이 같은 순서이며, 1세 이상 어린이에게도 씁니다.</p>
   <ol class="aedsteps">
     <li><b>전원 켜기</b><br>뚜껑을 열거나 버튼을 누르면 음성 안내가 나옵니다.</li>
@@ -560,11 +725,14 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
     <li><b>바로 가슴압박</b><br>즉시 심폐소생술을 다시 하고 기계 안내를 따릅니다.</li>
   </ol>
   <p class="small">기본소생술 흐름: 현장 안전 확인 → 반응 확인 → 구조 요청(“119에 신고해 주세요”, “심장충격기 가져다주세요”처럼 <b>한 사람씩 정해서</b>) → 호흡 확인 → 가슴압박(가슴 정중앙, 깊이 약 5cm, 분당 100~120회) → 심장충격기 사용. 인공호흡을 배우지 않았다면 가슴압박만이라도 계속합니다.</p>
+ </div>
+</section>
 
-  <h3>어디에 있을까?</h3>
+<section class="slide t-aed" id="s20" data-sec="topic3" data-num="20" data-total="47" aria-roledescription="슬라이드" aria-label="20번 슬라이드: 어디에 있을까?">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅴ</span>주제 3 · 심장충격기 위치 지도</p><h2 class="slide-title">어디에 있을까?</h2></header>
   <p>법(「응급의료에 관한 법률」 제47조의2)은 공공보건의료기관, 구급차, 공항·여객 항공기, 철도 객차, 일정 규모 이상의 선박, <b>500세대 이상 공동주택</b>, 일정 규모 이상의 다중이용시설 등에 심장충격기를 갖추도록 정하고 있습니다. 그 밖에 주민센터·체육관·학교·역 등에도 설치된 경우가 많습니다.</p>
-
-  <h4>찾는 방법</h4>
+  <h3 class="sub">찾는 방법</h3>
   <div class="grid2">
     <div class="card t-aed">
       <h4>① 미리 찾아보기</h4>
@@ -575,8 +743,12 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <p>공식 지도에 나오지 않는 장비도 있습니다(이동형, 위치 미등록 등). 그래서 <b>직접 가서 확인한 정보</b>가 이 지도의 가치입니다.</p>
     </div>
   </div>
+ </div>
+</section>
 
-  <h4>현장에서 확인할 다섯 가지</h4>
+<section class="slide t-aed" id="s21" data-sec="topic3" data-num="21" data-total="47" aria-roledescription="슬라이드" aria-label="21번 슬라이드: 현장에서 확인할 다섯 가지">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅴ</span>주제 3 · 심장충격기 위치 지도</p><h2 class="slide-title">현장에서 확인할 다섯 가지</h2></header>
   <ul class="checks">
     <li><b>정확한 위치</b> — 건물 이름, 층, 입구 기준 방향 (예: 관리동 1층 정문 들어가 왼쪽)</li>
     <li><b>꺼낼 수 있는 시간</b> — 24시간인가, 건물이 문 닫으면 못 쓰는가?</li>
@@ -585,13 +757,35 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
     <li><b>운동 장소까지 거리</b> — 가장 가까운 ‘운동하기 좋은 곳’에서 걸어서 몇 분인가? (직접 시간을 재 보세요)</li>
   </ul>
   <div class="warn"><span class="lb">주의</span>조사할 때는 <b>보관함 문을 열지 않습니다.</b> 문을 열면 경보음이 울리는 보관함이 많고, 장비는 응급 상황에만 씁니다. 겉에서 보고 사진만 찍습니다.</div>
+ </div>
 </section>
 
-<!-- 5 -->
-<section class="sec" id="howto">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅵ</span><h2>구글 지도로 커뮤니티 매핑하기</h2></div>
+<section class="slide divider" id="howto" data-sec="howto" data-num="22" data-total="47" aria-roledescription="슬라이드" aria-label="22번 슬라이드: 구글 지도로 커뮤니티 매핑하기">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅵ</div>
+  <h2 class="divider-title"><span>구글 지도로 커뮤니티 매핑하기</span></h2>
+  <p class="divider-count">이 장의 슬라이드 13장</p>
+  <ol class="divider-list">
+    <li><a href="#classmap">우리 반 지도</a></li>
+    <li><a href="#s24">준비물과 도구</a></li>
+    <li><a href="#s25">지도 구조: 지도 1개 = 레이어 3개</a></li>
+    <li><a href="#s26">내 지도 화면 익히기</a></li>
+    <li><a href="#s27">따라 하기 ① 지도 열기부터 설명 쓰기까지</a></li>
+    <li><a href="#s28">따라 하기 ② 사진부터 확인까지</a></li>
+    <li><a href="#s29">현장에서 휴대전화로 위치 기록하기</a></li>
+    <li><a href="#photo">사진 찍고 지도에 붙이기</a></li>
+    <li><a href="#s31">주제별로 꼭 찍을 것</a></li>
+    <li><a href="#s32">지도에 사진 붙이는 순서</a></li>
+    <li><a href="#s33">장소 창의 카메라 아이콘</a></li>
+    <li><a href="#s34">잘 안 될 때</a></li>
+    <li><a href="#s35">설명 틀 — 복사해서 쓰세요</a></li>
+  </ol>
+ </div>
+</section>
 
-  <h3 id="classmap">우리 반 지도</h3>
+<section class="slide" id="classmap" data-sec="howto" data-num="23" data-total="47" aria-roledescription="슬라이드" aria-label="23번 슬라이드: 우리 반 지도">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">우리 반 지도</h2></header>
   <p>우리 반 QR을 비추거나 단추를 눌러 학급 지도를 엽니다. 휴대전화에서는 보기만 되고, 장소를 넣고 고치는 일은 PC·크롬북에서 <b>학교 구글 계정</b>으로 합니다.</p>
   <div class="classmaps">
     <div class="classmap">
@@ -611,8 +805,12 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       </div>
     </div>
   </div>
+ </div>
+</section>
 
-  <h3>준비물과 도구</h3>
+<section class="slide" id="s24" data-sec="howto" data-num="24" data-total="47" aria-roledescription="슬라이드" aria-label="24번 슬라이드: 준비물과 도구">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">준비물과 도구</h2></header>
   <table class="tbl stack">
     <thead><tr><th>도구</th><th>쓰임</th></tr></thead>
     <tbody>
@@ -620,11 +818,15 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <tr><th>Google 지도 앱</th><td data-h="쓰임">현장에서 위치(위도·경도) 확인, 완성된 지도 보기(‘저장됨 → 지도’)</td></tr>
       <tr><th>휴대전화 카메라</th><td data-h="쓰임">현장 사진 (전체 모습 1장 + 가까이 1장)</td></tr>
       <tr><th>학교 구글 계정</th><td data-h="쓰임">선생님이 공유한 학급 지도에 들어갈 때 사용</td></tr>
-      <tr><th>현장 기록 카드</th><td data-h="쓰임">10번의 카드를 인쇄해 들고 다니며 기록</td></tr>
+      <tr><th>현장 기록 카드</th><td data-h="쓰임">Ⅹ 「현장 기록 카드」를 인쇄해 들고 다니며 기록</td></tr>
     </tbody>
   </table>
+ </div>
+</section>
 
-  <h3>지도 구조: 지도 1개 = 레이어 3개</h3>
+<section class="slide" id="s25" data-sec="howto" data-num="25" data-total="47" aria-roledescription="슬라이드" aria-label="25번 슬라이드: 지도 구조: 지도 1개 = 레이어 3개">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">지도 구조: 지도 1개 = 레이어 3개</h2></header>
   <p>레이어는 투명한 종이를 겹쳐 놓은 것과 같습니다. 주제마다 레이어를 따로 두면 하나씩 켜고 끄며 비교할 수 있습니다.</p>
   <table class="tbl stack">
     <thead><tr><th>레이어 이름</th><th class="c">마커 색</th><th>장소 이름 쓰는 법</th></tr></thead>
@@ -635,8 +837,13 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
     </tbody>
   </table>
   <p class="small muted">장소 이름 앞에 [모둠 번호]를 붙이면 누가 기록했는지 바로 알 수 있습니다.</p>
+ </div>
+</section>
 
-  <h3>내 지도 화면 익히기</h3>
+<section class="slide" id="s26" data-sec="howto" data-num="26" data-total="47" aria-roledescription="슬라이드" aria-label="26번 슬라이드: 내 지도 화면 익히기">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">내 지도 화면 익히기</h2></header>
+  <div class="figrow">
   <div class="fig">
     <svg viewBox="0 0 720 390" role="img" aria-label="구글 내 지도 편집 화면을 단순화한 그림">
       <rect x="0" y="0" width="720" height="390" rx="6" fill="#e7ede3" stroke="#bbb4a5"/>
@@ -703,11 +910,16 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
     <li><span class="num">6</span><span><b>거리 측정</b> — 운동 장소에서 심장충격기까지 거리를 잽니다.</span></li>
     <li><span class="num">7</span><span><b>가져오기</b> — 스프레드시트의 장소 목록을 한 번에 넣습니다.</span></li>
   </ul>
+  </div>
   <p class="fig-cap">단순화한 그림입니다. 실제 버튼 이름과 위치는 바뀔 수 있습니다.</p>
+ </div>
+</section>
 
-  <h3>따라 하기</h3>
+<section class="slide" id="s27" data-sec="howto" data-num="27" data-total="47" aria-roledescription="슬라이드" aria-label="27번 슬라이드: 따라 하기 ① 지도 열기부터 설명 쓰기까지">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">따라 하기 ① 지도 열기부터 설명 쓰기까지</h2></header>
   <ol class="steps">
-    <li><b>학급 지도 열기</b>PC·크롬북에서 학교 구글 계정으로 로그인하고, 위 <a href="#classmap">우리 반 지도</a>의 단추로 학급 지도를 엽니다. (선생님은 <a href="https://mymaps.google.com" target="_blank" rel="noopener">mymaps.google.com</a> → <span class="key">+ 새 지도 만들기</span>로 지도를 만듭니다.)</li>
+    <li><b>학급 지도 열기</b>PC·크롬북에서 학교 구글 계정으로 로그인하고, 위 <a href="#classmap">우리 반 지도</a>의 단추로 학급 지도를 엽니다.</li>
     <li><b>레이어 고르기</b>왼쪽 패널에서 기록할 주제의 레이어 이름을 <b>먼저 클릭</b>합니다. 선택된 레이어에만 장소가 들어갑니다.</li>
     <li><b>장소 추가하기</b>
       <ul>
@@ -717,24 +929,39 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       </ul>
     </li>
     <li><b>이름과 설명 쓰기</b>장소 이름은 <b>[모둠 번호] 장소 이름</b>으로 쓰고, 설명 칸에는 아래 ‘설명 틀’을 복사해 채웁니다.</li>
+  </ol>
+ </div>
+</section>
+
+<section class="slide" id="s28" data-sec="howto" data-num="28" data-total="47" aria-roledescription="슬라이드" aria-label="28번 슬라이드: 따라 하기 ② 사진부터 확인까지">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">따라 하기 ② 사진부터 확인까지</h2></header>
+  <ol class="steps" style="counter-reset:s 4">
     <li><b>사진 넣기</b>장소 창의 카메라 아이콘으로 사진을 붙입니다. 찍는 요령과 붙이는 순서는 아래 <a href="#photo">사진 찍고 지도에 붙이기</a>를 봅니다.</li>
     <li><b>색과 아이콘 맞추기</b>레이어 이름 아래 스타일(페인트통) 메뉴에서 레이어 전체 색을 정합니다. 보통 선생님이 미리 맞춰 둡니다.</li>
     <li><b>거리 재기</b><span class="key">거리 측정</span>으로 운동 장소 → 가장 가까운 심장충격기까지 거리를 잽니다. 분석 단계에서 씁니다.</li>
     <li><b>확인하기</b>레이어 체크를 하나씩 끄고 켜며 내 모둠 장소가 맞는 레이어·맞는 자리에 있는지 확인합니다. 실수하면 <span class="key">되돌리기</span>나 <span class="key">Ctrl</span>+<span class="key">Z</span>.</li>
   </ol>
+ </div>
+</section>
 
-  <h3>현장에서 휴대전화로 위치 기록하기</h3>
+<section class="slide" id="s29" data-sec="howto" data-num="29" data-total="47" aria-roledescription="슬라이드" aria-label="29번 슬라이드: 현장에서 휴대전화로 위치 기록하기">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">현장에서 휴대전화로 위치 기록하기</h2></header>
   <ol>
     <li>Google 지도 앱을 열고 내가 서 있는 자리(또는 위험 요소가 있는 자리)를 <b>길게 누릅니다</b>.</li>
     <li>떨어진 핀과 함께 <b>위도, 경도</b> 숫자가 나옵니다. 기록 카드에 적거나 화면을 캡처해 둡니다.</li>
     <li>사진은 같은 자리에서 <b>전체 모습 1장, 가까이 1장</b>(필요하면 크기 비교 1장) 찍고, 파일 이름을 기록 카드에 적습니다.</li>
     <li>교실에 돌아와 PC에서 좌표를 검색창에 붙여 넣어 장소를 추가합니다.</li>
   </ol>
+ </div>
+</section>
 
-  <h3 id="photo">사진 찍고 지도에 붙이기</h3>
+<section class="slide" id="photo" data-sec="howto" data-num="30" data-total="47" aria-roledescription="슬라이드" aria-label="30번 슬라이드: 사진 찍고 지도에 붙이기">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">사진 찍고 지도에 붙이기</h2></header>
   <p>사진은 설명보다 힘이 센 <b>근거</b>입니다. 장소마다 직접 찍은 사진 1~3장을 지도에 붙이면, 가 보지 않은 친구도 그곳이 어떤지 바로 알 수 있습니다.</p>
-
-  <h4>사진 세 장 요령</h4>
+  <h3 class="sub">사진 세 장 요령</h3>
   <div class="grid3 shots">
     <div class="card shot">
       <svg viewBox="0 0 160 100" role="img" aria-label="주변과 함께 찍은 전체 모습 예시 그림">
@@ -765,8 +992,12 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
       <p class="small">파인 바닥·벌어진 틈처럼 크기가 중요할 때 신발·공을 옆에 두고 찍습니다. (위험한 곳)</p>
     </div>
   </div>
+ </div>
+</section>
 
-  <h4>주제별로 꼭 찍을 것</h4>
+<section class="slide" id="s31" data-sec="howto" data-num="31" data-total="47" aria-roledescription="슬라이드" aria-label="31번 슬라이드: 주제별로 꼭 찍을 것">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">주제별로 꼭 찍을 것</h2></header>
   <table class="tbl stack">
     <thead><tr><th>주제</th><th>찍을 것</th></tr></thead>
     <tbody>
@@ -776,8 +1007,12 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
     </tbody>
   </table>
   <p class="small">파일 이름은 <code>모둠_주제_번호</code>로 바꿔 둡니다. 예: <code>3모둠_위험_01</code>, <code>3모둠_AED_02</code>. 같은 이름을 기록 카드에도 적으면 나중에 헷갈리지 않습니다.</p>
+ </div>
+</section>
 
-  <h4>지도에 사진 붙이는 순서</h4>
+<section class="slide" id="s32" data-sec="howto" data-num="32" data-total="47" aria-roledescription="슬라이드" aria-label="32번 슬라이드: 지도에 사진 붙이는 순서">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">지도에 사진 붙이는 순서</h2></header>
   <ol class="steps">
     <li><b>휴대전화 → 학급 사진 폴더</b>휴대전화로는 내 지도를 고치기 어렵습니다. 그래서 사진을 먼저 <b>Google 드라이브</b> 앱으로 선생님이 공유한 「학급 사진」 폴더의 우리 모둠 폴더에 올립니다. (드라이브 앱의 <span class="key">+</span> → <span class="key">업로드</span>)</li>
     <li><b>PC·크롬북에서 장소 열기</b>학급 지도를 열고 사진을 붙일 장소(마커)를 클릭합니다.</li>
@@ -786,6 +1021,12 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
     <li><b>한 장씩 더하기</b>사진은 한 번에 한 장씩 붙습니다. 전체 모습 → 가까이 순서로 올리면 보기 좋습니다.</li>
     <li><b>확인하기</b>왼쪽 패널의 <span class="key">미리보기</span>로 사진이 보이는지 확인하고, 옆 친구 화면에서도 보이는지 물어봅니다.</li>
   </ol>
+ </div>
+</section>
+
+<section class="slide" id="s33" data-sec="howto" data-num="33" data-total="47" aria-roledescription="슬라이드" aria-label="33번 슬라이드: 장소 창의 카메라 아이콘">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">장소 창의 카메라 아이콘</h2></header>
   <div class="fig">
     <svg viewBox="0 0 560 210" style="max-width:640px" role="img" aria-label="내 지도 장소 창에서 카메라 아이콘 위치를 보여 주는 단순화한 그림">
       <rect width="560" height="210" rx="6" fill="#e7ede3"/>
@@ -812,8 +1053,12 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
   </div>
   <p class="swipe">← 그림을 옆으로 밀어 보세요</p>
   <p class="fig-cap">장소 창을 단순화한 그림입니다. 아이콘 모양과 위치는 실제와 조금 다를 수 있습니다.</p>
+ </div>
+</section>
 
-  <h4>잘 안 될 때</h4>
+<section class="slide" id="s34" data-sec="howto" data-num="34" data-total="47" aria-roledescription="슬라이드" aria-label="34번 슬라이드: 잘 안 될 때">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">잘 안 될 때</h2></header>
   <table class="tbl stack">
     <thead><tr><th>이럴 때</th><th>이렇게 해요</th></tr></thead>
     <tbody>
@@ -824,8 +1069,13 @@ h4{font:700 19.1px/1.5 var(--font-body);margin:var(--space-6) 0 var(--space-2)}
     </tbody>
   </table>
   <div class="warn"><span class="lb">사진 수칙</span><b>직접 찍은 사진만</b> 올립니다. 인터넷에서 가져온 사진은 쓰지 않습니다(저작권). 사람 얼굴·차량 번호판·집 호수가 나오지 않게 하고, 집이나 친구 집에서 찍은 사진은 올리지 않습니다.</div>
+ </div>
+</section>
 
-  <h3>설명 틀 — 복사해서 쓰세요</h3>
+<section class="slide" id="s35" data-sec="howto" data-num="35" data-total="47" aria-roledescription="슬라이드" aria-label="35번 슬라이드: 설명 틀 — 복사해서 쓰세요">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">설명 틀 — 복사해서 쓰세요</h2></header>
+  <div class="tpls">
   <div class="tpl t-ex">
     <div class="tpl-head"><i class="dot d-ex"></i><b>운동하기 좋은 곳</b><button class="btn" data-copy="tplEx">복사</button></div>
 <pre id="tplEx">할 수 있는 활동:
@@ -858,13 +1108,24 @@ E-Gen 지도에 있나(있음 / 없음):
 사진(무엇을 찍었나):
 확인한 날·기록한 사람:</pre>
   </div>
-
-  <div class="note"><span class="lb">교사용 · 방법 B</span>학생에게 편집 권한을 주기 어렵다면 <b>구글 설문지</b>로 모읍니다. 문항: 모둠, 주제(3개 중 선택), 장소 이름, 주소 또는 위도·경도, 설명(틀), 사진(<b>파일 업로드</b> 문항 — 학생 구글 로그인이 필요하고 사진은 교사 드라이브에 모입니다). 응답 시트를 내려받아 내 지도의 레이어에서 <span class="key">가져오기</span>로 넣고 위치 열(주소 또는 좌표)과 제목 열을 고르면 한 번에 표시됩니다. 주제별로 시트를 나눠 레이어 3개에 각각 가져오면 됩니다. 다른 모둠 마커를 실수로 지우는 일도 막을 수 있습니다. 단, 가져오기로는 사진이 장소 창에 그림으로 붙지 않고 링크 글자로만 남으므로, 사진은 장소 창에서 따로 붙입니다(교사가 하거나 2차시에 모둠별로).</div>
+  </div>
+ </div>
 </section>
 
-<!-- 6 -->
-<section class="sec" id="safety">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅶ</span><h2>현장 탐사 안전·개인정보 수칙</h2></div>
+<section class="slide divider" id="safety" data-sec="safety" data-num="36" data-total="47" aria-roledescription="슬라이드" aria-label="36번 슬라이드: 현장 탐사 안전·개인정보 수칙">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅶ</div>
+  <h2 class="divider-title"><span>현장 탐사 안전·개인정보 수칙</span></h2>
+  <p class="divider-count">이 장의 슬라이드 1장</p>
+  <ol class="divider-list">
+    <li><a href="#s37">탐사할 때와 지도에 올릴 때</a></li>
+  </ol>
+ </div>
+</section>
+
+<section class="slide" id="s37" data-sec="safety" data-num="37" data-total="47" aria-roledescription="슬라이드" aria-label="37번 슬라이드: 탐사할 때와 지도에 올릴 때">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅶ</span>현장 탐사 안전·개인정보 수칙</p><h2 class="slide-title">탐사할 때와 지도에 올릴 때</h2></header>
   <div class="grid2">
     <div>
       <h4 style="margin-top:0">탐사할 때</h4>
@@ -890,11 +1151,25 @@ E-Gen 지도에 있나(있음 / 없음):
     </div>
   </div>
   <div class="warn"><span class="lb">위급할 때</span>다친 사람이 있거나 생명이 위험하면 <b>119</b>, 범죄나 위협을 느끼면 <b>112</b>. 기록보다 내 안전이 먼저입니다.</div>
+ </div>
 </section>
 
-<!-- 7 -->
-<section class="sec" id="analyze">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅷ</span><h2>지도를 겹쳐 우수사례·개선점 찾기</h2></div>
+<section class="slide divider" id="analyze" data-sec="analyze" data-num="38" data-total="47" aria-roledescription="슬라이드" aria-label="38번 슬라이드: 지도를 겹쳐 우수사례·개선점 찾기">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅷ</div>
+  <h2 class="divider-title"><span>지도를 겹쳐 우수사례·개선점 찾기</span></h2>
+  <p class="divider-count">이 장의 슬라이드 3장</p>
+  <ol class="divider-list">
+    <li><a href="#s39">세 레이어 겹쳐 보기</a></li>
+    <li><a href="#s40">지도를 읽는 질문</a></li>
+    <li><a href="#s41">우수사례와 개선점 정리표</a></li>
+  </ol>
+ </div>
+</section>
+
+<section class="slide" id="s39" data-sec="analyze" data-num="39" data-total="47" aria-roledescription="슬라이드" aria-label="39번 슬라이드: 세 레이어 겹쳐 보기">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅷ</span>지도를 겹쳐 우수사례·개선점 찾기</p><h2 class="slide-title">세 레이어 겹쳐 보기</h2></header>
   <p>점 하나하나보다 <b>점과 점 사이의 관계</b>에서 의미가 보입니다. 세 레이어를 모두 켜고 아래 질문으로 지도를 읽어 봅니다.</p>
 
   <div class="fig">
@@ -946,8 +1221,12 @@ E-Gen 지도에 있나(있음 / 없음):
   </div>
   <p class="swipe">← 그림을 옆으로 밀어 보세요</p>
   <p class="fig-cap">예시로 그린 가상 동네입니다. 점선 원은 산책로에서 걸어서 약 3분 거리를 나타냅니다.</p>
+ </div>
+</section>
 
-  <h3>지도를 읽는 질문</h3>
+<section class="slide" id="s40" data-sec="analyze" data-num="40" data-total="47" aria-roledescription="슬라이드" aria-label="40번 슬라이드: 지도를 읽는 질문">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅷ</span>지도를 겹쳐 우수사례·개선점 찾기</p><h2 class="slide-title">지도를 읽는 질문</h2></header>
   <ol>
     <li><b>운동 + 심장충격기</b> — 운동하기 좋은 곳에서 걸어서 몇 분 안에 심장충격기가 있나? 가지러 갔다 오는 시간까지 생각하면 충분히 가까운가?</li>
     <li><b>운동 + 위험</b> — 좋은 곳으로 뽑힌 장소에 위험 요소가 함께 있지는 않나? 고치면 더 좋은 곳이 될까?</li>
@@ -955,8 +1234,12 @@ E-Gen 지도에 있나(있음 / 없음):
     <li><b>반복되는 문제</b> — 같은 종류의 위험(예: 조명 부족)이 여러 곳에서 되풀이되나?</li>
     <li><b>시간의 차이</b> — 낮에는 좋은데 밤에는 위험한 곳, 건물이 닫으면 못 쓰는 심장충격기는 없나?</li>
   </ol>
+ </div>
+</section>
 
-  <h3>우수사례와 개선점 정리표</h3>
+<section class="slide" id="s41" data-sec="analyze" data-num="41" data-total="47" aria-roledescription="슬라이드" aria-label="41번 슬라이드: 우수사례와 개선점 정리표">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅷ</span>지도를 겹쳐 우수사례·개선점 찾기</p><h2 class="slide-title">우수사례와 개선점 정리표</h2></header>
   <table class="tbl stack">
     <thead><tr><th>구분</th><th>장소·내용</th><th>근거(지도·사진·기준)</th><th>제안 — 누가, 무엇을</th></tr></thead>
     <tbody>
@@ -966,12 +1249,23 @@ E-Gen 지도에 있나(있음 / 없음):
     </tbody>
   </table>
   <div class="sample"><span class="ex-tag">예시 · 가상</span> <b>개선점</b>: ○○천 산책로는 저녁에 운동하는 사람이 많지만(관찰 20분 동안 30명 이상) 가장 가까운 심장충격기가 약 600m 떨어져 있다(지도 거리 측정, 걸어서 약 8분). → <b>제안</b>: 산책로 입구 화장실 옆에 24시간 쓸 수 있는 심장충격기 설치를 구청에 제안한다.</div>
+ </div>
 </section>
 
-<!-- 8 -->
-<section class="sec" id="present">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅸ</span><h2>발표하기</h2></div>
-  <h3>발표 구성 (모둠당 3분 + 질문 1분)</h3>
+<section class="slide divider" id="present" data-sec="present" data-num="42" data-total="47" aria-roledescription="슬라이드" aria-label="42번 슬라이드: 발표하기">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅸ</div>
+  <h2 class="divider-title"><span>발표하기</span></h2>
+  <p class="divider-count">이 장의 슬라이드 1장</p>
+  <ol class="divider-list">
+    <li><a href="#s43">발표 구성 (모둠당 3분 + 질문 1분)</a></li>
+  </ol>
+ </div>
+</section>
+
+<section class="slide" id="s43" data-sec="present" data-num="43" data-total="47" aria-roledescription="슬라이드" aria-label="43번 슬라이드: 발표 구성 (모둠당 3분 + 질문 1분)">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅸ</span>발표하기</p><h2 class="slide-title">발표 구성 (모둠당 3분 + 질문 1분)</h2></header>
   <table class="tbl stack">
     <thead><tr><th>순서</th><th>내용</th><th>시간</th></tr></thead>
     <tbody>
@@ -982,68 +1276,28 @@ E-Gen 지도에 있나(있음 / 없음):
       <tr><th>⑤ 제안과 다짐</th><td data-h="내용">누구에게 무엇을 제안할지, 내가 동네에서 실천할 신체활동</td><td data-h="시간">40초</td></tr>
     </tbody>
   </table>
-  <h3>듣는 사람이 할 일</h3>
+  <h3 class="sub">듣는 사람이 할 일</h3>
   <ul>
     <li>다른 모둠의 우수사례 중 <b>우리 동네에도 있었으면 하는 것</b> 1가지 적기</li>
     <li>개선점 제안이 근거와 맞는지 질문 1개 하기</li>
   </ul>
+ </div>
 </section>
 
-<!-- 9 -->
-<section class="sec" id="teacher">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅹ</span><h2>교사용 운영 안내</h2><span class="who">교사용</span></div>
-
-  <h3>차시 운영안 — 3학년 · 3차시(45분) + 수업 밖 탐사</h3>
-  <table class="tbl stack">
-    <thead><tr><th>차시</th><th>장소</th><th>주요 활동 (시간)</th><th>결과물</th></tr></thead>
-    <tbody>
-      <tr><th>1</th><td data-h="장소">컴퓨터실</td><td data-h="활동">
-        <b>도입</b> 우리 동네에서 운동해 본 곳·위험했던 곳 떠올리기 (5분)<br>
-        <b>세 주제 학습</b> 좋은 곳 여섯 기준, 위험 요소 세 갈래·위험도, 심장충격기 위치의 의미와 사용 순서 — 자료 02~04 (15분)<br>
-        <b>내 지도 연습</b> 학급 지도 열기, 학교 주변 1곳 표시·설명 틀 붙이기·사진 1장 붙이기, 좌표 찾기 (15분)<br>
-        <b>탐사 계획</b> 모둠 구역·역할(기록·사진·길잡이·시간 지킴이), 안전 수칙 확인, 기록 카드 배부 (10분)</td><td data-h="결과물">연습 마커, 탐사 계획, 기록 카드</td></tr>
-      <tr><th>과제</th><td data-h="장소">동네(1~2주)</td><td data-h="활동">모둠 구역 탐사, 주제별 2곳 이상 사진·기록 카드 작성. 할 수 있으면 지도 입력까지 미리 해 둡니다.</td><td data-h="결과물">기록 카드 6장 이상</td></tr>
-      <tr><th>2</th><td data-h="장소">컴퓨터실</td><td data-h="활동">
-        <b>지도 마무리</b> 남은 장소 입력·설명 틀 채우기, 옆 모둠과 교차 점검(레이어·위치·설명) (15분)<br>
-        <b>지도 읽기</b> 세 레이어 겹쳐 보기, 운동 장소 → 심장충격기 거리 재기 (15분)<br>
-        <b>발표 준비</b> 우수사례·개선점 정리표 작성, 발표에 쓸 지도 화면·사진 2~3장 고르기 (15분)</td><td data-h="결과물">학급 지도 완성, 정리표</td></tr>
-      <tr><th>3</th><td data-h="장소">교실</td><td data-h="활동">
-        <b>모둠 발표</b> 모둠당 3분 + 질문 1분, 듣는 사람은 상호 평가 (약 30분)<br>
-        <b>정리</b> 우리 반 지도의 우수사례·개선점 3가지씩 함께 고르기, 제안할 곳 정하기(선택: 선생님과 함께 안전신문고 신고), 실천 다짐 쓰기 (15분)</td><td data-h="결과물">발표, 반 전체 제안, 성찰</td></tr>
-    </tbody>
-  </table>
-  <div class="note"><span class="lb">3차시로 운영할 때</span>1차시가 가장 빠듯합니다. 자료 02~04를 1차시 전에 읽어 오게 하면 내 지도 연습 시간을 넉넉히 쓸 수 있습니다. 가슴압박·심장충격기 <b>실습</b>은 이 3차시에 넣지 않고 보건 수업이나 학교 안전교육과 연계하며, 1차시에는 사용 순서만 짚습니다. 2차시를 분석에 쓰려면 탐사 기간에 지도 입력을 미리 해 오게 하는 것이 좋습니다(방법 B 설문지 수합도 시간을 줄여 줍니다).</div>
-
-  <h3>평가 기준 (예시) <span class="chk">배점·반영 여부 교사 결정</span></h3>
-  <table class="tbl stack">
-    <thead><tr><th>평가 요소</th><th>상</th><th>중</th><th>하</th></tr></thead>
-    <tbody>
-      <tr><th>지도 기록</th><td data-h="상">세 주제 모두 정해진 수 이상, 레이어·위치·사진이 정확함</td><td data-h="중">대부분 정확하나 일부 누락·오류</td><td data-h="하">기록 수가 부족하거나 오류가 많음</td></tr>
-      <tr><th>설명</th><td data-h="상">설명 틀의 항목을 기준과 근거를 들어 구체적으로 씀</td><td data-h="중">항목은 채웠으나 근거가 부족함</td><td data-h="하">일부 항목만 씀</td></tr>
-      <tr><th>분석</th><td data-h="상">레이어를 연결해 우수사례·개선점을 근거와 함께 도출하고 실현 가능한 제안을 함</td><td data-h="중">우수사례·개선점을 제시했으나 근거나 제안이 약함</td><td data-h="하">장소를 나열하는 데 그침</td></tr>
-      <tr><th>발표·협력</th><td data-h="상">구성에 맞춰 분명하게 발표하고 모둠원이 고르게 참여함</td><td data-h="중">발표는 했으나 구성이나 참여가 고르지 않음</td><td data-h="하">발표 내용이 불분명함</td></tr>
-    </tbody>
-  </table>
-  <p class="small muted">안전·개인정보 수칙은 점수가 아니라 참여 조건으로 둡니다. 어기면 탐사 계획을 다시 세웁니다.</p>
-
-  <h3>준비 체크리스트</h3>
-  <ul class="checks">
-    <li>학교 Google Workspace에서 <b>내 지도(My Maps)</b>가 학생 계정에 허용되어 있는지 정보 담당에게 확인 (관리자 설정에서 꺼져 있을 수 있음)</li>
-    <li>교내 망·크롬북에서 mymaps.google.com, E-Gen, 안전신문고 <b>접속 테스트</b></li>
-    <li>반별 지도 미리 만들기: 레이어 3개, 레이어별 색(파랑·주황·초록), 지도 설명에 수칙 요약 — 3학년 1반·2반 지도 링크는 Ⅵ 「우리 반 지도」에 연결됨</li>
-    <li>공유 방식 결정: 학생 편집자 초대(방법 A) 또는 설문지 수합 후 가져오기(방법 B)</li>
-    <li>학급 사진 폴더 만들기: Google 드라이브에 「3-○ 커뮤니티 매핑 사진」 폴더와 모둠별 하위 폴더를 만들고 학생을 편집자로 공유</li>
-    <li>학구 지도를 모둠 수만큼 구역으로 나눠 배정 (학생 거주지와 가까운 구역)</li>
-    <li>가정 안내: 탐사 기간, 2인 이상·밝은 시간 원칙, 보호자 동행 권장</li>
-    <li>실제 안전신문고 신고 방식 결정: 학생 선택 / 교사가 모아서 / 하지 않음</li>
-    <li>가슴압박·심장충격기 실습을 보건 수업·학교 안전교육과 연계할지 보건교사와 협의 (3차시 안에는 실습 없음)</li>
-    <li>기록 카드 인쇄 (모둠당 8장 정도), 발표 평가표 준비</li>
-  </ul>
+<section class="slide divider" id="card" data-sec="card" data-num="44" data-total="47" aria-roledescription="슬라이드" aria-label="44번 슬라이드: 현장 기록 카드">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅹ</div>
+  <h2 class="divider-title"><span>현장 기록 카드</span></h2>
+  <p class="divider-count">이 장의 슬라이드 1장</p>
+  <ol class="divider-list">
+    <li><a href="#s45">한 장소에 카드 한 장</a></li>
+  </ol>
+ </div>
 </section>
 
-<!-- 10 -->
-<section class="sec" id="card">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅺ</span><h2>현장 기록 카드</h2></div>
+<section class="slide slide-card" id="s45" data-sec="card" data-num="45" data-total="47" aria-roledescription="슬라이드" aria-label="45번 슬라이드: 한 장소에 카드 한 장">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅹ</span>현장 기록 카드</p><h2 class="slide-title">한 장소에 카드 한 장</h2></header>
   <p class="intro">한 장소에 카드 한 장. 아래 단추로 <b>이 카드만 A4에 두 장씩</b> 인쇄할 수 있습니다.</p>
   <div class="print-bar">
     <button class="btn dark" id="printCard">기록 카드만 인쇄</button>
@@ -1069,11 +1323,23 @@ E-Gen 지도에 있나(있음 / 없음):
       </table>
     </div>
   </template>
+ </div>
 </section>
 
-<!-- 11 -->
-<section class="sec" id="refs">
-  <div class="sec-head"><span class="sec-no" aria-hidden="true">Ⅻ</span><h2>참고 자료</h2></div>
+<section class="slide divider" id="refs" data-sec="refs" data-num="46" data-total="47" aria-roledescription="슬라이드" aria-label="46번 슬라이드: 참고 자료">
+ <div class="slide-in">
+  <div class="divider-no" aria-hidden="true">Ⅺ</div>
+  <h2 class="divider-title"><span>참고 자료</span></h2>
+  <p class="divider-count">이 장의 슬라이드 1장</p>
+  <ol class="divider-list">
+    <li><a href="#s47">참고 자료와 제작 정보</a></li>
+  </ol>
+ </div>
+</section>
+
+<section class="slide slide-refs" id="s47" data-sec="refs" data-num="47" data-total="47" aria-roledescription="슬라이드" aria-label="47번 슬라이드: 참고 자료와 제작 정보">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅺ</span>참고 자료</p><h2 class="slide-title">참고 자료와 제작 정보</h2></header>
   <ul class="small">
     <li>안전신문고(행정안전부) — <a href="https://www.safetyreport.go.kr" target="_blank" rel="noopener">safetyreport.go.kr</a></li>
     <li>응급의료포털 E-Gen 자동심장충격기 찾기 — <a href="https://www.e-gen.or.kr/egen/search_aed.do?searchType=map" target="_blank" rel="noopener">e-gen.or.kr</a></li>
@@ -1083,61 +1349,49 @@ E-Gen 지도에 있나(있음 / 없음):
     <li>Google 지도에서 내 지도 보기 — <a href="https://support.google.com/maps/answer/3045850?hl=ko" target="_blank" rel="noopener">support.google.com/maps</a></li>
     <li>WHO guidelines on physical activity and sedentary behaviour(2020) — <a href="https://www.who.int/publications/i/item/9789240015128" target="_blank" rel="noopener">who.int</a></li>
   </ul>
-  <p class="small muted">최종 수정 2026-11-23. 서비스 화면과 메뉴 이름은 바뀔 수 있으니 수업 전 한 번 직접 따라 해 보세요.</p>
-</section>
-
+  <p class="small muted">최종 수정 2026-11-23. 구글 지도·안전신문고 같은 서비스의 화면과 메뉴 이름은 바뀔 수 있습니다. 안내와 다르면 선생님께 물어보세요.</p>
 <footer class="foot">
-  <p class="foot-name"><b>우리 동네 스포츠 배움터 찾기</b> · 2026 화접중학교 3학년 체육 커뮤니티 매핑 학습자료</p>
+  <p class="foot-name"><b>우리 동네 스포츠 배움터 찾기</b> · 2026 화접중학교 3학년 체육 커뮤니티 매핑 학생 안내 자료</p>
   <dl class="foot-meta">
     <div><dt>제작</dt><dd>kimjs99</dd></div>
-    <div><dt>버전</dt><dd class="mono">v1.2.0</dd></div>
+    <div><dt>버전</dt><dd class="mono">v2.0.0</dd></div>
     <div><dt>제작연도</dt><dd class="mono">2026</dd></div>
     <div><dt>최종 수정</dt><dd class="mono">2026-11-23</dd></div>
   </dl>
   <p class="foot-legal">© 2026 kimjs99. All rights reserved. 이 자료와 화면·그림·코드는 화접중학교 체육 수업을 위해 제작되었습니다. 제작자의 허락 없이 복제·수정·배포하거나 다른 목적으로 사용하는 것을 금합니다.</p>
 </footer>
+ </div>
+</section>
+
 </main>
 </div>
 <div class="scrim" id="scrim"></div>
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+<p class="deck-label" id="deckLabel" aria-live="polite"></p>
+<div class="more-hint" id="moreHint" aria-hidden="true">↓ 아래에 더 있어요</div>
+<nav class="deck-nav" aria-label="슬라이드 넘기기">
+  <button type="button" id="prevBtn" aria-label="이전 슬라이드">‹ 이전</button>
+  <span class="count" id="slideCount">1 / 1</span>
+  <button type="button" id="nextBtn" aria-label="다음 슬라이드">다음 ›</button>
+</nav>
 <button class="top" id="toTop" type="button" aria-label="맨 위로"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15V3M4 8l5-5 5 5"/></svg></button>
 
 <script>
 (function(){
-  var root=document.documentElement, KEY='sm-theme';
+  var root=document.documentElement, body=document.body, KEY='sm-theme', VKEY='sm-view';
+  function store(k,v){ try{ if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){} }
+  function load(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  var reduce=function(){ return window.matchMedia('(prefers-reduced-motion: reduce)').matches; };
+
   // 테마: 밝게 · 어둡게 · 자동(기기 설정)
   function applyTheme(t){
     if(t==='light'||t==='dark') root.setAttribute('data-theme',t); else root.removeAttribute('data-theme');
     [].forEach.call(document.querySelectorAll('.theme button'),function(b){ b.setAttribute('aria-pressed',String(b.getAttribute('data-t')===(t||'auto'))); });
   }
-  var saved=null; try{ saved=localStorage.getItem(KEY); }catch(e){}
+  var saved=load(KEY);
   applyTheme(saved==='light'||saved==='dark'?saved:null);
   [].forEach.call(document.querySelectorAll('.theme button'),function(b){
-    b.addEventListener('click',function(){
-      var t=b.getAttribute('data-t'); applyTheme(t==='auto'?null:t);
-      try{ if(t==='auto') localStorage.removeItem(KEY); else localStorage.setItem(KEY,t); }catch(e){}
-    });
-  });
-
-  // 목차 서랍(좁은 화면)
-  var toc=document.getElementById('toc'), scrim=document.getElementById('scrim'), mb=document.querySelector('.menu-btn');
-  var narrow=window.matchMedia('(max-width:1099px)');
-  function setDrawer(open){
-    toc.classList.toggle('open',open); scrim.classList.toggle('show',open); mb.setAttribute('aria-expanded',String(open));
-    if(open){ var a=toc.querySelector('a.on')||toc.querySelector('a'); if(a) setTimeout(function(){a.focus();},30); }
-  }
-  mb.addEventListener('click',function(){ setDrawer(!toc.classList.contains('open')); });
-  scrim.addEventListener('click',function(){ setDrawer(false); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&toc.classList.contains('open')){ setDrawer(false); mb.focus(); } });
-  // 목차 이동은 스크립트로(서랍을 닫고 해당 장으로)
-  toc.addEventListener('click',function(e){
-    var a=e.target.closest('a'); if(!a) return;
-    var id=a.getAttribute('href').slice(1), el=document.getElementById(id); if(!el) return;
-    e.preventDefault();
-    if(narrow.matches) setDrawer(false);
-    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
-    try{ history.replaceState(null,'','#'+id); }catch(_){}
-    el.setAttribute('tabindex','-1'); el.focus({preventScroll:true});
+    b.addEventListener('click',function(){ var t=b.getAttribute('data-t'); applyTheme(t==='auto'?null:t); store(KEY,t==='auto'?null:t); });
   });
 
   // 기록 카드 2장(인쇄 시 A4 한 장)
@@ -1166,33 +1420,127 @@ E-Gen 지도에 있나(있음 / 없음):
   });
 
   // 인쇄
-  document.getElementById('printCard').addEventListener('click',function(){ document.body.classList.add('print-card'); window.print(); });
-  document.getElementById('printAll').addEventListener('click',function(){ document.body.classList.remove('print-card'); window.print(); });
-  window.addEventListener('afterprint',function(){ document.body.classList.remove('print-card'); });
+  document.getElementById('printCard').addEventListener('click',function(){ body.classList.add('print-card'); window.print(); });
+  document.getElementById('printAll').addEventListener('click',function(){ body.classList.remove('print-card'); window.print(); });
+  window.addEventListener('afterprint',function(){ body.classList.remove('print-card'); });
 
-  // 맨 위로
-  var topBtn=document.getElementById('toTop');
-  function onScroll(){ topBtn.classList.toggle('show',window.scrollY>700); }
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-  topBtn.addEventListener('click',function(){
-    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
-  });
-
-  // 목차 현재 위치
+  // 슬라이드
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var main=document.getElementById('main');
+  var toc=document.getElementById('toc'), scrim=document.getElementById('scrim'), mb=document.querySelector('.menu-btn');
+  var viewBtn=document.getElementById('viewBtn'), prevBtn=document.getElementById('prevBtn'), nextBtn=document.getElementById('nextBtn');
+  var countEl=document.getElementById('slideCount'), barEl=document.getElementById('progressBar'), labelEl=document.getElementById('deckLabel');
   var links=[].slice.call(toc.querySelectorAll('a'));
-  if('IntersectionObserver' in window){
-    var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){
-          links.forEach(function(a){ a.classList.remove('on'); a.removeAttribute('aria-current'); });
-          var a=map[en.target.id]; if(a){ a.classList.add('on'); a.setAttribute('aria-current','true'); }
-        }
-      });
-    },{rootMargin:'-30% 0px -60% 0px'});
-    [].forEach.call(document.querySelectorAll('main>section'),function(s){ io.observe(s); });
+  var cur=0, lockIO=false;
+  function isDeck(){ return body.classList.contains('deck'); }
+  function slideOf(el){ var s=el&&el.closest?el.closest('.slide'):null; return s?slides.indexOf(s):-1; }
+  function chrome(i){
+    var s=slides[i], sec=s.getAttribute('data-sec');
+    countEl.textContent=(i+1)+' / '+slides.length;
+    prevBtn.disabled=(i===0); nextBtn.disabled=(i===slides.length-1);
+    barEl.style.width=((i+1)/slides.length*100)+'%';
+    var eb=s.querySelector('.slide-eyebrow'), dv=s.querySelector('.divider-title span');
+    var ebNo=eb&&eb.querySelector('.eb-no');
+    labelEl.textContent=eb?(ebNo?ebNo.textContent+'  '+eb.textContent.slice(ebNo.textContent.length):eb.textContent):(dv?dv.textContent:'우리 동네 스포츠 배움터 찾기');
+    links.forEach(function(a){ var on=a.getAttribute('href').slice(1)===sec; a.classList.toggle('on',on); if(on) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); });
   }
+  function setHash(id){ try{ history.replaceState(null,'','#'+id); }catch(e){} }
+  var moreEl=document.getElementById('moreHint');
+  function more(){ var s=slides[cur]; moreEl.classList.toggle('show',isDeck()&&(s.scrollHeight-s.clientHeight-s.scrollTop>8)); }
+  slides.forEach(function(s){ s.addEventListener('scroll',function(){ if(slides[cur]===s) more(); },{passive:true}); });
+  window.addEventListener('resize',function(){ more(); });
+  function show(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    if(isDeck()){ slides[cur].classList.remove('active'); slides[i].classList.add('active'); slides[i].scrollTop=0; }
+    cur=i; chrome(i); setHash(slides[i].id); more();
+  }
+  function go(d){ show(cur+d); }
+  prevBtn.addEventListener('click',function(){ go(-1); });
+  nextBtn.addEventListener('click',function(){ go(1); });
+
+  // 목차 서랍
+  function drawerMode(){ return isDeck()||!window.matchMedia('(min-width:1100px)').matches; }
+  function setDrawer(open){
+    toc.classList.toggle('open',open); scrim.classList.toggle('show',open); mb.setAttribute('aria-expanded',String(open));
+    if(open){ var a=toc.querySelector('a.on')||toc.querySelector('a'); if(a) setTimeout(function(){ a.focus(); },30); }
+  }
+  mb.addEventListener('click',function(){ setDrawer(!toc.classList.contains('open')); });
+  scrim.addEventListener('click',function(){ setDrawer(false); });
+
+  // 쪽 안 링크(목차·장 구분 목록·바로가기)
+  function goTo(el,id){
+    var i=slideOf(el);
+    if(i<0){ if(el.focus) el.focus(); return; }
+    if(isDeck()){ show(i); if(el!==slides[i]) el.scrollIntoView({block:'start',behavior:'instant'}); }
+    else { el.scrollIntoView({behavior:reduce()?'auto':'smooth',block:'start'}); setHash(id); }
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a) return;
+    var id=a.getAttribute('href').slice(1), el=id&&document.getElementById(id); if(!el) return;
+    e.preventDefault();
+    if(toc.contains(a)&&drawerMode()) setDrawer(false);
+    goTo(el,id);
+  });
+  window.addEventListener('hashchange',function(){ var id=location.hash.slice(1), el=id&&document.getElementById(id); if(el&&slideOf(el)!==cur) goTo(el,id); });
+
+  // 키보드·스와이프(발표 보기)
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&toc.classList.contains('open')){ setDrawer(false); mb.focus(); return; }
+    if(!isDeck()||e.altKey||e.ctrlKey||e.metaKey||toc.classList.contains('open')) return;
+    var t=e.target, tag=t&&t.tagName;
+    if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||(t&&t.isContentEditable)) return;
+    var k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||(k===' '&&!e.shiftKey&&tag!=='BUTTON'&&tag!=='A')){ e.preventDefault(); go(1); }
+    else if(k==='ArrowLeft'||k==='PageUp'||(k===' '&&e.shiftKey&&tag!=='BUTTON'&&tag!=='A')){ e.preventDefault(); go(-1); }
+    else if(k==='Home'){ e.preventDefault(); show(0); }
+    else if(k==='End'){ e.preventDefault(); show(slides.length-1); }
+  });
+  var sx=null, sy=null;
+  main.addEventListener('touchstart',function(e){ if(!isDeck()) return; var t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY; },{passive:true});
+  main.addEventListener('touchend',function(e){
+    if(!isDeck()||sx===null) return;
+    var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5) go(dx<0?1:-1);
+  },{passive:true});
+
+  // 보기 전환: 발표(한 장씩) ↔ 스크롤(카드)
+  function canDeck(){ return window.innerWidth>=700; }
+  function autoView(){ return (window.innerWidth>=900&&window.innerHeight>=500)?'deck':'scroll'; }
+  function setView(v){
+    var deck=(v==='deck')&&canDeck();
+    body.classList.toggle('deck',deck);
+    slides.forEach(function(s){ s.classList.remove('active'); });
+    var keep=cur;
+    if(deck){ slides[cur].classList.add('active'); slides[cur].scrollTop=0; window.scrollTo({top:0,behavior:'instant'}); }
+    else if(cur>0){ lockIO=true; slides[cur].scrollIntoView({block:'start',behavior:'instant'}); setTimeout(function(){ lockIO=false; cur=keep; },120); }
+    viewBtn.textContent=deck?'스크롤로 보기':'슬라이드로 보기';
+    viewBtn.setAttribute('aria-pressed',String(deck));
+    chrome(cur); more();
+  }
+  viewBtn.addEventListener('click',function(){ var v=isDeck()?'scroll':'deck'; store(VKEY,v); setView(v); });
+  window.addEventListener('resize',function(){ var v=load(VKEY)||autoView(); if(((v==='deck')&&canDeck())!==isDeck()) setView(v); });
+
+  // 스크롤 보기: 지금 보는 슬라이드
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      if(isDeck()||lockIO) return;
+      entries.forEach(function(en){ if(en.isIntersecting){ cur=slides.indexOf(en.target); chrome(cur); } });
+    },{rootMargin:'-35% 0px -60% 0px'});
+    slides.forEach(function(s){ io.observe(s); });
+  }
+
+  // 맨 위로(스크롤 보기)
+  var topBtn=document.getElementById('toTop');
+  function onScroll(){ topBtn.classList.toggle('show',!isDeck()&&window.scrollY>700); }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  topBtn.addEventListener('click',function(){ window.scrollTo({top:0,behavior:reduce()?'auto':'smooth'}); });
+
+  // 시작: 주소의 #이 가리키는 슬라이드
+  var h=location.hash.slice(1), hel=h&&document.getElementById(h);
+  if(hel){ var hi=slideOf(hel); if(hi>=0) cur=hi; }
+  setView(load(VKEY)||autoView());
+  if(hel&&!isDeck()) hel.scrollIntoView({block:'start',behavior:'instant'});
+  onScroll();
 })();
 </script>
 </body>
