@@ -142,6 +142,16 @@ a.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 .classmap-body{display:grid;gap:var(--space-2);justify-items:center;min-width:0}
 .classmap-body h4{margin:0;font-size:19.1px}
 .classmap-body p{margin:0;font-size:16px;line-height:1.6;color:var(--sub)}
+.golinks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);margin:var(--space-4) 0 var(--space-3)}
+@media (min-width:760px){.golinks{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1000px){.golinks{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.golink{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-2);min-width:0;padding:var(--space-3);border:1px solid var(--rule);border-radius:var(--radius-md);background:var(--sheet)}
+.golink .golink-tag{margin:0;font:700 12.5px/1.4 var(--font-body);letter-spacing:.04em;color:var(--blue)}
+.golink .access-qr{width:100%;max-width:183px;padding:6px}
+.golink .access-qr svg{width:100%;height:auto;shape-rendering:crispEdges}
+.golink h4{margin:0;font-size:17px}
+.golink p{margin:0;font-size:14px;line-height:1.5;color:var(--sub)}
+.golink .btn{margin-top:auto;font-size:13px;padding:7px 10px}
 @media (max-width:600px){
   .access{width:100%;grid-template-columns:auto minmax(0,1fr);justify-items:start;align-items:center;column-gap:var(--space-4)}
   .access-qr{grid-row:span 2}
@@ -430,6 +440,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
   body.print-card .slide-card .slide-head,body.print-card .slide-card .intro{display:none}
   body.print-card .fcard{margin:0 0 6mm}
   body.print-card .fcard .blank{height:12mm}
+  .golinks{grid-template-columns:repeat(5,minmax(0,1fr))} .golink .btn{display:none}
 }
 </style>
 </head>
@@ -437,7 +448,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
 <a class="skip" href="#main">본문 바로가기</a>
 <div class="bar"><div class="bar-in">
   <button class="menu-btn" type="button" aria-controls="toc" aria-expanded="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>목차</button>
-  <a class="bar-title" href="#top"><span>우리 동네 스포츠 배움터</span><span class="ver">v2.2</span></a>
+  <a class="bar-title" href="#top"><span>우리 동네 스포츠 배움터</span><span class="ver">v2.3</span></a>
   <button class="view-btn" type="button" id="viewBtn" aria-pressed="false">슬라이드로 보기</button>
   <div class="theme" role="group" aria-label="화면 테마">
     <button type="button" data-t="light" aria-pressed="false">밝게</button><button type="button" data-t="dark" aria-pressed="false">어둡게</button><button type="button" data-t="auto" aria-pressed="true">자동</button>
@@ -464,7 +475,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
 
 <main class="sheet" id="main" tabindex="-1">
 
-<section class="slide cover-slide" id="top" data-sec="top" data-num="1" data-total="34" aria-roledescription="슬라이드" aria-label="1번 슬라이드: 표지">
+<section class="slide cover-slide" id="top" data-sec="top" data-num="1" data-total="35" aria-roledescription="슬라이드" aria-label="1번 슬라이드: 표지">
  <div class="slide-in cover">
    <div class="cover-main">
     <div class="eyebrow">체육 · 커뮤니티 매핑 프로젝트 · 중학교 3학년 학생용</div>
@@ -476,7 +487,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
       <span class="chip t-aed"><i class="dot"></i>주제 3 · 심장충격기 위치</span>
     </div>
     <div class="classlinks"><span class="classlinks-label">우리 반 지도</span><a class="btn dark" href="https://www.google.com/maps/d/edit?mid=1oMKs0usl-7Jh9Uw-vyTrDVU4lRBO0dA&amp;usp=sharing" target="_blank" rel="noopener">3학년 1반 지도 열기<span aria-hidden="true">↗</span></a><a class="btn dark" href="https://www.google.com/maps/d/edit?mid=19UBA_0P2PnvIwDGuvHtRgKiKdprl-2E&amp;usp=sharing" target="_blank" rel="noopener">3학년 2반 지도 열기<span aria-hidden="true">↗</span></a><a class="classlinks-qr" href="#classmap">QR 보기</a></div>
-    <div class="meta"><span>학생 안내 자료 v2.2.0</span><span>2026-11-26</span><span>신체활동 × 스포츠 환경 안전</span></div>
+    <div class="meta"><span>학생 안내 자료 v2.3.0</span><span>2026-11-26</span><span>신체활동 × 스포츠 환경 안전</span></div>
    </div>
    <aside class="access" aria-label="휴대전화로 접속">
     <div class="access-qr"><svg role="img" aria-label="접속 QR 코드: kimjs99.github.io/sports-map-2026" viewBox="0 0 41 41" class="segno"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#1d1f23" d="M4 4.5h7m1 0h5m1 0h1m2 0h2m5 0h1m1 0h7m-33 1h1m5 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h2m4 0h5m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m1 0h1m3 0h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m4 0h1m1 0h1m1 0h1m4 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m2 0h1m2 0h1m1 0h3m4 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m2 0h2m4 0h3m1 0h1m1 0h1m-24 1h1m4 0h4m5 0h1m1 0h4m4 0h1m5 0h2m-31 1h1m1 0h2m4 0h3m1 0h1m2 0h3m3 0h1m4 0h3m-31 1h1m1 0h1m2 0h2m3 0h8m6 0h2m2 0h1m1 0h1m-31 1h2m1 0h2m3 0h2m4 0h1m2 0h2m4 0h2m2 0h6m-31 1h2m2 0h1m1 0h3m4 0h1m1 0h1m2 0h1m1 0h1m3 0h1m-27 1h3m2 0h1m2 0h4m2 0h1m2 0h2m2 0h3m1 0h3m1 0h1m1 0h2m-33 1h1m1 0h2m2 0h1m3 0h1m2 0h3m5 0h1m3 0h5m1 0h1m-32 1h2m1 0h3m3 0h2m2 0h1m6 0h1m3 0h2m2 0h3m1 0h1m-30 1h6m1 0h2m1 0h2m1 0h1m1 0h1m5 0h2m1 0h3m2 0h1m-29 1h2m2 0h3m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m2 0h1m2 0h2m1 0h1m-33 1h1m1 0h1m3 0h1m1 0h2m2 0h2m2 0h2m1 0h5m1 0h3m1 0h2m1 0h1m-33 1h2m1 0h2m2 0h2m1 0h1m2 0h1m2 0h3m1 0h1m4 0h2m1 0h4m-31 1h1m1 0h1m2 0h4m4 0h1m1 0h3m4 0h2m3 0h2m2 0h1m-33 1h1m1 0h4m1 0h1m6 0h1m5 0h2m1 0h1m3 0h2m1 0h1m-31 1h1m3 0h1m1 0h2m3 0h1m1 0h1m2 0h2m2 0h1m1 0h1m3 0h1m1 0h2m1 0h1m-32 1h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h3m2 0h3m4 0h6m1 0h1m-33 1h2m1 0h1m2 0h1m1 0h2m1 0h1m2 0h3m7 0h5m2 0h1m-24 1h1m1 0h1m5 0h1m1 0h3m3 0h1m3 0h1m1 0h1m1 0h1m-33 1h7m1 0h2m1 0h2m2 0h2m3 0h1m2 0h2m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m3 0h1m2 0h1m1 0h1m4 0h1m1 0h3m3 0h3m-31 1h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h2m1 0h1m1 0h1m4 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m3 0h2m1 0h4m1 0h2m2 0h4m1 0h2m1 0h1m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m1 0h4m1 0h4m2 0h1m1 0h1m1 0h6m-33 1h1m5 0h1m1 0h3m2 0h1m4 0h3m1 0h1m2 0h6m-31 1h7m2 0h3m2 0h1m2 0h1m4 0h4m1 0h1m3 0h1"/></svg></div>
@@ -486,26 +497,71 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide contents-slide" id="contents" data-sec="top" data-num="2" data-total="34" aria-roledescription="슬라이드" aria-label="2번 슬라이드: 차례">
+<section class="slide links-slide" id="links" data-sec="top" data-num="2" data-total="35" aria-roledescription="슬라이드" aria-label="2번 슬라이드: 수업 링크">
+ <div class="slide-in">
+  <header class="slide-head"><p class="slide-eyebrow">우리 동네 스포츠 배움터 찾기</p><h2 class="slide-title">수업 링크</h2></header>
+  <p>휴대전화 카메라로 QR을 비추거나 단추를 눌러 엽니다. 지도에 장소를 넣고 고치는 일은 PC·크롬북에서 <b>학교 구글 계정</b>으로 합니다.</p>
+  <div class="golinks">
+    <div class="golink">
+      <p class="golink-tag">탐사 · 지도 기록</p>
+      <div class="access-qr"><svg role="img" aria-label="3학년 1반 지도 QR 코드" viewBox="0 0 53 53" class="segno"><path fill="#fff" d="M0 0h53v53h-53z"/><path class="qrline" stroke="#1d1f23" d="M4 4.5h7m1 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h2m1 0h4m4 0h1m1 0h7m-45 1h1m5 0h1m3 0h4m1 0h1m4 0h4m4 0h1m1 0h2m1 0h1m1 0h1m2 0h1m5 0h1m-45 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h6m1 0h1m2 0h3m5 0h1m2 0h1m2 0h1m1 0h3m1 0h1m-45 1h1m1 0h3m1 0h1m1 0h5m2 0h2m1 0h6m1 0h3m2 0h1m2 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-45 1h1m1 0h3m1 0h1m4 0h1m1 0h2m1 0h3m1 0h5m2 0h4m1 0h5m1 0h1m1 0h3m1 0h1m-45 1h1m5 0h1m1 0h5m2 0h1m1 0h2m1 0h1m3 0h3m3 0h2m1 0h1m4 0h1m5 0h1m-45 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-37 1h4m2 0h5m1 0h1m3 0h4m1 0h2m3 0h1m1 0h1m-36 1h1m1 0h1m1 0h5m4 0h15m1 0h2m1 0h2m2 0h3m1 0h2m1 0h1m-43 1h4m1 0h1m2 0h1m1 0h3m1 0h4m2 0h1m8 0h3m5 0h1m1 0h4m-45 1h2m2 0h3m2 0h1m2 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m4 0h6m2 0h1m1 0h1m2 0h1m-45 1h1m2 0h2m2 0h3m1 0h1m1 0h1m4 0h3m1 0h1m1 0h1m3 0h1m1 0h2m1 0h2m1 0h1m3 0h2m-42 1h1m1 0h2m1 0h2m1 0h1m1 0h1m3 0h3m4 0h3m1 0h4m1 0h3m1 0h1m3 0h1m1 0h2m1 0h1m-43 1h1m1 0h2m2 0h2m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2m2 0h2m1 0h3m2 0h1m1 0h1m2 0h1m1 0h4m1 0h1m-44 1h1m2 0h1m1 0h1m1 0h5m3 0h2m3 0h2m2 0h2m1 0h1m3 0h1m2 0h1m2 0h1m1 0h1m1 0h2m-44 1h1m1 0h2m1 0h1m1 0h1m4 0h4m1 0h1m1 0h2m1 0h4m1 0h3m1 0h4m1 0h1m2 0h1m4 0h1m-45 1h3m1 0h6m1 0h1m5 0h1m4 0h3m1 0h2m4 0h1m1 0h2m2 0h2m1 0h2m-43 1h1m1 0h2m1 0h1m2 0h1m3 0h1m4 0h5m2 0h6m2 0h2m4 0h4m1 0h1m-44 1h1m3 0h3m2 0h1m1 0h1m3 0h2m1 0h2m3 0h2m2 0h1m2 0h2m3 0h1m4 0h5m-44 1h1m1 0h1m1 0h1m2 0h1m1 0h3m1 0h5m2 0h2m4 0h2m1 0h1m1 0h4m1 0h1m5 0h2m-45 1h1m1 0h10m2 0h1m2 0h1m2 0h6m2 0h2m3 0h1m1 0h6m-40 1h1m1 0h2m3 0h2m1 0h1m1 0h1m2 0h1m3 0h1m3 0h2m1 0h1m8 0h1m3 0h3m1 0h1m-44 1h2m1 0h1m1 0h1m1 0h3m2 0h5m2 0h1m1 0h1m1 0h1m1 0h1m7 0h3m1 0h1m1 0h1m1 0h1m1 0h1m-44 1h1m2 0h1m3 0h1m2 0h1m1 0h1m2 0h1m2 0h2m3 0h2m1 0h3m6 0h1m3 0h2m1 0h1m-43 1h12m1 0h4m1 0h7m1 0h3m1 0h2m1 0h8m1 0h2m-45 1h1m4 0h1m1 0h1m4 0h1m4 0h6m2 0h1m1 0h2m2 0h4m2 0h1m2 0h1m1 0h3m-40 1h2m1 0h1m4 0h1m3 0h3m2 0h4m2 0h1m2 0h3m1 0h1m1 0h1m2 0h1m2 0h1m-44 1h1m1 0h1m5 0h2m1 0h1m4 0h4m1 0h4m1 0h1m1 0h1m1 0h3m1 0h3m1 0h2m3 0h2m-44 1h1m1 0h2m1 0h2m1 0h3m2 0h2m1 0h1m1 0h1m3 0h3m1 0h1m1 0h2m1 0h2m2 0h1m1 0h1m1 0h1m3 0h1m-43 1h1m2 0h1m1 0h1m2 0h1m1 0h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h1m1 0h4m2 0h1m1 0h2m-44 1h2m2 0h2m4 0h1m1 0h1m1 0h2m2 0h3m3 0h1m1 0h2m3 0h2m2 0h4m2 0h3m-45 1h4m4 0h3m3 0h1m1 0h1m1 0h2m3 0h4m4 0h1m2 0h1m1 0h2m3 0h1m1 0h1m-42 1h3m1 0h2m2 0h2m2 0h2m2 0h1m3 0h2m4 0h4m2 0h2m1 0h2m2 0h1m1 0h2m-45 1h2m1 0h1m3 0h2m1 0h2m1 0h1m1 0h1m2 0h2m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m9 0h1m1 0h2m-41 1h1m1 0h1m1 0h2m1 0h7m1 0h1m3 0h2m2 0h3m4 0h1m1 0h1m1 0h4m1 0h2m-44 1h4m3 0h3m5 0h1m1 0h2m1 0h4m3 0h1m1 0h4m1 0h2m-37 1h1m2 0h2m1 0h2m1 0h6m4 0h16m1 0h6m2 0h1m-37 1h3m4 0h1m1 0h2m1 0h1m3 0h1m3 0h1m2 0h2m1 0h3m3 0h1m3 0h1m-45 1h7m1 0h4m2 0h1m1 0h5m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h2m1 0h1m1 0h4m-44 1h1m5 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m3 0h2m1 0h2m1 0h3m1 0h1m1 0h1m3 0h1m3 0h1m-45 1h1m1 0h3m1 0h1m3 0h15m4 0h1m2 0h3m1 0h6m2 0h1m-45 1h1m1 0h3m1 0h1m1 0h4m4 0h1m2 0h1m3 0h2m1 0h1m1 0h1m4 0h1m2 0h3m1 0h1m3 0h1m-45 1h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m2 0h3m1 0h4m1 0h4m1 0h1m4 0h1m1 0h4m1 0h2m-45 1h1m5 0h1m1 0h4m1 0h2m2 0h2m1 0h1m2 0h6m3 0h1m4 0h1m1 0h2m-41 1h7m2 0h1m1 0h2m2 0h1m4 0h3m1 0h2m2 0h1m2 0h1m1 0h1m2 0h5m2 0h1"/></svg></div>
+      <h4>3학년 1반 지도</h4>
+      <p>우리 반 구글 내 지도</p>
+      <a class="btn dark" href="https://www.google.com/maps/d/edit?mid=1oMKs0usl-7Jh9Uw-vyTrDVU4lRBO0dA&amp;usp=sharing" target="_blank" rel="noopener" aria-label="3학년 1반 지도 열기">열기<span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="golink">
+      <p class="golink-tag">탐사 · 지도 기록</p>
+      <div class="access-qr"><svg role="img" aria-label="3학년 2반 지도 QR 코드" viewBox="0 0 53 53" class="segno"><path fill="#fff" d="M0 0h53v53h-53z"/><path class="qrline" stroke="#1d1f23" d="M4 4.5h7m1 0h2m1 0h1m1 0h1m2 0h1m1 0h2m6 0h2m2 0h1m5 0h1m1 0h7m-45 1h1m5 0h1m1 0h1m5 0h2m1 0h2m1 0h1m3 0h1m4 0h1m1 0h1m3 0h1m2 0h1m5 0h1m-45 1h1m1 0h3m1 0h1m4 0h2m1 0h3m1 0h2m2 0h5m1 0h2m2 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-45 1h1m1 0h3m1 0h1m3 0h1m2 0h5m1 0h2m3 0h1m2 0h3m1 0h3m1 0h2m1 0h1m1 0h3m1 0h1m-45 1h1m1 0h3m1 0h1m3 0h2m1 0h2m1 0h11m1 0h4m1 0h4m1 0h1m1 0h3m1 0h1m-45 1h1m5 0h1m3 0h2m1 0h2m1 0h2m1 0h2m3 0h1m2 0h1m4 0h2m4 0h1m5 0h1m-45 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-36 1h1m2 0h1m1 0h1m5 0h1m3 0h1m1 0h3m2 0h2m1 0h1m1 0h1m-36 1h1m4 0h4m1 0h1m2 0h1m3 0h8m1 0h1m1 0h3m3 0h1m1 0h1m5 0h2m-45 1h2m6 0h1m1 0h2m3 0h1m4 0h1m2 0h8m1 0h7m1 0h1m1 0h1m-43 1h1m1 0h8m2 0h1m5 0h3m2 0h1m1 0h1m1 0h1m5 0h1m1 0h4m4 0h1m-43 1h2m1 0h1m4 0h1m1 0h2m1 0h2m1 0h3m2 0h1m2 0h1m1 0h2m5 0h1m2 0h8m-45 1h2m1 0h1m2 0h3m3 0h3m1 0h1m9 0h1m1 0h1m1 0h1m1 0h4m1 0h6m-43 1h2m3 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m2 0h2m2 0h1m3 0h2m1 0h2m1 0h3m6 0h1m-44 1h1m1 0h1m1 0h2m1 0h1m6 0h1m3 0h2m4 0h3m1 0h1m1 0h1m1 0h2m3 0h2m2 0h2m-43 1h2m1 0h2m1 0h6m3 0h2m1 0h1m2 0h1m1 0h3m3 0h1m4 0h1m1 0h2m2 0h3m-44 1h1m2 0h5m5 0h3m5 0h3m1 0h1m5 0h1m1 0h3m1 0h1m3 0h1m1 0h2m-44 1h2m1 0h1m2 0h1m1 0h1m2 0h4m1 0h1m1 0h1m1 0h2m5 0h4m4 0h2m2 0h3m1 0h1m-45 1h2m1 0h2m1 0h1m5 0h3m1 0h2m3 0h2m1 0h2m3 0h1m3 0h1m3 0h1m1 0h2m1 0h1m1 0h1m-43 1h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m3 0h1m1 0h1m5 0h1m2 0h1m3 0h1m2 0h6m-42 1h6m2 0h1m3 0h4m1 0h6m1 0h1m6 0h1m1 0h6m-40 1h3m3 0h1m1 0h2m4 0h5m3 0h1m1 0h1m1 0h9m3 0h1m2 0h1m-40 1h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h2m1 0h1m3 0h6m1 0h1m1 0h1m1 0h2m-43 1h1m1 0h2m3 0h2m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1m1 0h8m2 0h1m3 0h3m1 0h1m-43 1h1m1 0h5m1 0h1m1 0h2m6 0h5m2 0h2m3 0h3m1 0h5m3 0h1m-44 1h1m1 0h2m4 0h3m2 0h2m3 0h4m2 0h1m1 0h1m1 0h4m2 0h2m4 0h1m-41 1h1m1 0h1m1 0h3m1 0h3m2 0h3m1 0h2m1 0h1m3 0h1m2 0h2m1 0h2m1 0h1m1 0h2m2 0h2m1 0h1m-43 1h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h1m5 0h1m3 0h2m2 0h2m4 0h2m1 0h3m1 0h2m-43 1h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m1 0h2m2 0h2m1 0h1m2 0h1m2 0h3m1 0h1m3 0h1m1 0h2m2 0h1m-43 1h1m1 0h1m1 0h1m3 0h1m4 0h2m3 0h1m1 0h3m1 0h2m2 0h2m1 0h2m1 0h5m1 0h2m-41 1h3m1 0h2m1 0h1m6 0h2m2 0h1m2 0h1m4 0h2m1 0h3m4 0h1m2 0h2m1 0h1m-44 1h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m2 0h8m1 0h3m2 0h2m1 0h2m-42 1h1m2 0h3m2 0h1m3 0h1m1 0h3m2 0h1m3 0h1m1 0h1m2 0h2m2 0h1m1 0h5m2 0h1m-42 1h1m1 0h2m4 0h1m1 0h1m1 0h1m1 0h2m5 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h5m1 0h1m-39 1h1m1 0h2m2 0h3m3 0h6m1 0h3m2 0h2m1 0h1m1 0h2m1 0h2m2 0h3m-42 1h4m2 0h1m1 0h2m1 0h7m1 0h1m1 0h2m3 0h6m2 0h1m1 0h3m1 0h4m-45 1h1m2 0h2m1 0h1m2 0h4m1 0h2m2 0h9m1 0h1m3 0h1m1 0h7m1 0h3m-37 1h3m1 0h1m3 0h1m2 0h2m3 0h2m1 0h1m1 0h2m1 0h2m2 0h1m3 0h3m1 0h1m-45 1h7m1 0h1m3 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m-44 1h1m5 0h1m2 0h1m2 0h3m2 0h1m2 0h1m3 0h1m4 0h1m3 0h1m1 0h2m3 0h4m-44 1h1m1 0h3m1 0h1m2 0h4m3 0h1m1 0h1m1 0h5m1 0h2m2 0h2m2 0h1m1 0h8m-44 1h1m1 0h3m1 0h1m3 0h2m1 0h9m1 0h1m3 0h2m1 0h3m6 0h2m1 0h2m-44 1h1m1 0h3m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m3 0h1m1 0h4m1 0h1m3 0h1m-45 1h1m5 0h1m1 0h1m3 0h1m1 0h5m1 0h3m2 0h2m2 0h2m1 0h6m3 0h2m-43 1h7m3 0h2m5 0h2m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m2 0h5m2 0h1m1 0h1"/></svg></div>
+      <h4>3학년 2반 지도</h4>
+      <p>우리 반 구글 내 지도</p>
+      <a class="btn dark" href="https://www.google.com/maps/d/edit?mid=19UBA_0P2PnvIwDGuvHtRgKiKdprl-2E&amp;usp=sharing" target="_blank" rel="noopener" aria-label="3학년 2반 지도 열기">열기<span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="golink">
+      <p class="golink-tag">발표 준비</p>
+      <div class="access-qr"><svg role="img" aria-label="모둠 발표자료 만들기 QR 코드" viewBox="0 0 61 61" class="segno"><path fill="#fff" d="M0 0h61v61h-61z"/><path class="qrline" stroke="#1d1f23" d="M4 4.5h7m1 0h5m1 0h6m1 0h1m2 0h3m3 0h3m3 0h2m2 0h1m1 0h1m3 0h7m-53 1h1m5 0h1m2 0h1m5 0h5m1 0h3m3 0h1m2 0h1m4 0h2m1 0h2m1 0h3m2 0h1m5 0h1m-53 1h1m1 0h3m1 0h1m2 0h1m1 0h2m2 0h4m5 0h3m3 0h6m3 0h2m2 0h1m2 0h1m1 0h3m1 0h1m-53 1h1m1 0h3m1 0h1m3 0h2m6 0h1m1 0h1m2 0h1m1 0h1m2 0h4m1 0h4m5 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-53 1h1m1 0h3m1 0h1m1 0h2m5 0h2m1 0h1m1 0h1m2 0h6m1 0h2m1 0h1m3 0h1m2 0h3m3 0h1m1 0h3m1 0h1m-53 1h1m5 0h1m1 0h3m1 0h1m1 0h1m5 0h5m3 0h4m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m5 0h1m-53 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-44 1h1m1 0h8m2 0h2m1 0h1m3 0h3m1 0h1m3 0h1m1 0h1m1 0h1m2 0h1m-43 1h7m2 0h3m1 0h1m5 0h2m1 0h6m2 0h1m3 0h2m1 0h1m2 0h1m1 0h2m2 0h2m3 0h1m-53 1h1m2 0h3m2 0h3m2 0h1m1 0h3m3 0h1m1 0h1m5 0h3m5 0h1m2 0h3m4 0h1m3 0h2m-51 1h2m2 0h2m1 0h1m1 0h1m4 0h2m2 0h3m1 0h2m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h2m-52 1h1m1 0h1m6 0h2m4 0h1m1 0h1m1 0h5m1 0h1m1 0h1m4 0h1m1 0h1m3 0h2m5 0h1m1 0h1m1 0h1m2 0h1m-51 1h1m1 0h1m1 0h6m1 0h1m1 0h1m3 0h3m3 0h4m2 0h1m1 0h4m3 0h1m1 0h2m3 0h3m1 0h1m-51 1h5m1 0h2m1 0h1m3 0h3m1 0h4m1 0h1m1 0h1m2 0h5m1 0h4m1 0h4m2 0h1m1 0h1m1 0h1m1 0h2m-52 1h2m1 0h1m1 0h2m1 0h3m5 0h1m3 0h7m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h2m3 0h3m-49 1h1m3 0h1m1 0h1m2 0h2m3 0h1m1 0h1m2 0h1m1 0h1m1 0h3m3 0h1m1 0h3m3 0h5m4 0h1m1 0h1m2 0h1m-52 1h2m1 0h4m1 0h4m1 0h3m4 0h1m1 0h2m5 0h2m3 0h4m2 0h1m2 0h2m1 0h2m1 0h1m-51 1h2m1 0h3m1 0h2m2 0h2m1 0h1m6 0h3m2 0h2m2 0h1m6 0h1m2 0h4m5 0h1m1 0h2m-52 1h1m1 0h2m1 0h3m1 0h3m2 0h1m1 0h1m1 0h1m2 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m-51 1h1m2 0h1m1 0h1m1 0h1m9 0h1m6 0h2m3 0h1m2 0h2m1 0h2m2 0h1m2 0h1m1 0h1m4 0h1m1 0h1m-52 1h3m1 0h1m1 0h1m6 0h6m1 0h1m1 0h2m7 0h1m4 0h2m3 0h4m1 0h4m1 0h1m-52 1h4m1 0h1m4 0h1m2 0h2m2 0h1m1 0h1m1 0h1m1 0h2m4 0h1m2 0h1m2 0h2m2 0h5m7 0h1m-51 1h1m1 0h1m2 0h1m3 0h1m3 0h1m2 0h5m1 0h4m1 0h1m1 0h1m2 0h2m1 0h2m1 0h2m1 0h1m1 0h3m2 0h2m1 0h1m-53 1h1m3 0h1m6 0h4m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m2 0h3m5 0h2m4 0h1m2 0h1m1 0h2m-52 1h2m1 0h7m1 0h1m2 0h1m1 0h1m1 0h4m1 0h7m4 0h4m3 0h7m1 0h1m1 0h1m-49 1h1m3 0h1m1 0h2m1 0h1m6 0h1m1 0h1m1 0h1m3 0h1m6 0h1m1 0h1m3 0h2m1 0h1m3 0h1m3 0h1m-52 1h4m1 0h1m1 0h2m1 0h2m3 0h4m3 0h2m1 0h1m1 0h4m3 0h1m2 0h1m3 0h3m1 0h1m1 0h2m1 0h1m-52 1h2m1 0h2m3 0h1m2 0h1m1 0h4m1 0h3m2 0h2m3 0h3m2 0h6m1 0h2m2 0h1m3 0h1m3 0h1m-52 1h1m1 0h6m1 0h2m3 0h2m1 0h4m2 0h14m5 0h7m-50 1h1m1 0h4m2 0h2m3 0h5m4 0h2m1 0h1m1 0h2m3 0h1m2 0h1m5 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m-53 1h3m3 0h8m4 0h2m1 0h5m1 0h1m2 0h5m1 0h1m1 0h1m3 0h1m4 0h1m-46 1h2m1 0h1m2 0h1m4 0h3m1 0h2m1 0h1m2 0h1m1 0h1m2 0h3m1 0h1m1 0h3m2 0h2m3 0h2m2 0h2m1 0h2m-52 1h2m1 0h1m1 0h1m1 0h1m1 0h2m5 0h4m3 0h1m1 0h6m2 0h3m1 0h1m6 0h2m2 0h3m-51 1h1m1 0h1m3 0h1m1 0h2m1 0h1m1 0h2m4 0h2m2 0h1m1 0h1m1 0h1m2 0h1m5 0h1m4 0h3m2 0h5m-52 1h1m4 0h2m4 0h2m4 0h1m3 0h2m4 0h5m2 0h2m1 0h4m6 0h1m1 0h2m-47 1h2m1 0h1m3 0h5m1 0h1m2 0h1m1 0h2m1 0h1m4 0h1m2 0h9m2 0h1m1 0h2m1 0h1m2 0h1m-52 1h3m1 0h2m1 0h3m2 0h6m2 0h2m1 0h2m3 0h3m3 0h4m5 0h4m2 0h1m1 0h1m-51 1h1m1 0h2m1 0h3m4 0h1m3 0h1m1 0h1m1 0h6m3 0h2m3 0h2m2 0h3m2 0h6m1 0h1m-53 1h5m1 0h2m1 0h3m1 0h2m1 0h1m1 0h2m1 0h2m6 0h3m3 0h2m2 0h1m8 0h4m-49 1h2m2 0h1m2 0h1m4 0h2m1 0h4m2 0h1m2 0h1m2 0h1m2 0h3m2 0h7m2 0h3m-50 1h1m1 0h2m2 0h1m1 0h2m1 0h1m3 0h2m1 0h1m4 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m5 0h1m2 0h5m-53 1h1m4 0h1m2 0h2m4 0h1m2 0h2m1 0h5m1 0h1m3 0h2m3 0h3m2 0h3m1 0h4m4 0h1m-53 1h2m1 0h6m5 0h2m1 0h1m1 0h7m1 0h1m1 0h1m2 0h3m5 0h2m1 0h2m5 0h1m-50 1h2m4 0h1m2 0h3m4 0h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h3m3 0h1m3 0h1m1 0h2m1 0h2m1 0h1m2 0h1m-50 1h1m2 0h1m2 0h1m1 0h3m4 0h1m1 0h2m2 0h7m4 0h2m2 0h1m1 0h2m1 0h6m2 0h1m-45 1h1m4 0h1m2 0h1m1 0h2m2 0h3m3 0h2m3 0h1m1 0h1m1 0h1m3 0h2m1 0h1m3 0h2m1 0h2m-53 1h7m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m2 0h1m3 0h1m2 0h2m1 0h2m1 0h1m1 0h1m1 0h1m-49 1h1m5 0h1m1 0h3m3 0h3m2 0h1m2 0h3m3 0h2m1 0h3m1 0h1m1 0h1m1 0h1m4 0h1m3 0h2m1 0h2m-53 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m3 0h6m1 0h5m1 0h1m2 0h1m1 0h4m2 0h2m1 0h7m1 0h1m-53 1h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h2m1 0h1m4 0h1m1 0h1m2 0h1m4 0h1m1 0h1m2 0h1m2 0h2m2 0h1m-53 1h1m1 0h3m1 0h1m1 0h2m2 0h4m1 0h3m3 0h1m1 0h1m2 0h1m5 0h1m1 0h1m1 0h1m2 0h1m1 0h8m-51 1h1m5 0h1m1 0h1m3 0h1m2 0h3m2 0h1m3 0h4m3 0h3m2 0h3m1 0h2m2 0h1m4 0h1m1 0h1m-52 1h7m3 0h3m7 0h1m1 0h4m1 0h2m2 0h1m2 0h2m2 0h1m2 0h6m1 0h1"/></svg></div>
+      <h4>발표자료 만들기</h4>
+      <p>반·모둠·입장 코드로 들어가 모둠이 함께 채웁니다.</p>
+      <a class="btn dark" href="https://script.google.com/macros/s/AKfycbyrIR8i2RZivHMUpoDRzd3oEdrzWWI5zjNT_yIfRvWGrrqMzHtcZ9WEzw3bCrjlGGkg/exec" target="_blank" rel="noopener" aria-label="발표자료 만들기 열기">열기<span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="golink">
+      <p class="golink-tag">발표 · 확인</p>
+      <div class="access-qr"><svg role="img" aria-label="우리 반 패들렛 QR 코드" viewBox="0 0 45 45" class="segno"><path fill="#fff" d="M0 0h45v45h-45z"/><path class="qrline" stroke="#1d1f23" d="M4 4.5h7m3 0h1m3 0h2m4 0h1m2 0h2m1 0h1m3 0h7m-37 1h1m5 0h1m1 0h2m4 0h3m5 0h1m2 0h2m1 0h1m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m4 0h2m1 0h1m2 0h2m1 0h3m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h2m2 0h1m1 0h1m3 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m7 0h1m2 0h1m8 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m3 0h4m1 0h4m1 0h4m6 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m1 0h1m2 0h4m2 0h1m1 0h2m1 0h2m-28 1h1m1 0h4m1 0h1m1 0h2m2 0h2m1 0h1m1 0h2m1 0h2m1 0h1m2 0h3m1 0h2m1 0h1m-36 1h2m3 0h1m2 0h1m3 0h1m1 0h5m3 0h4m4 0h1m1 0h4m-31 1h2m1 0h1m3 0h1m2 0h3m1 0h3m1 0h1m1 0h1m3 0h2m1 0h2m1 0h2m-28 1h3m1 0h1m5 0h2m5 0h2m1 0h2m2 0h4m-36 1h2m1 0h4m2 0h4m1 0h2m2 0h1m2 0h1m1 0h1m5 0h1m2 0h1m1 0h2m-36 1h1m2 0h2m4 0h5m2 0h7m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m-33 1h5m1 0h1m1 0h2m5 0h1m1 0h2m3 0h2m1 0h3m2 0h5m-37 1h1m1 0h1m4 0h6m1 0h1m1 0h2m3 0h2m4 0h1m1 0h1m2 0h3m-34 1h1m1 0h1m2 0h1m1 0h1m1 0h1m2 0h2m5 0h6m4 0h1m3 0h1m-35 1h1m1 0h1m2 0h1m2 0h2m2 0h2m2 0h1m2 0h1m2 0h2m3 0h1m1 0h1m4 0h2m-36 1h3m2 0h4m1 0h2m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h2m1 0h1m3 0h1m-34 1h2m2 0h1m3 0h1m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m2 0h1m-33 1h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h2m1 0h1m2 0h2m1 0h5m1 0h2m2 0h1m-37 1h3m1 0h1m4 0h5m1 0h1m3 0h1m1 0h1m1 0h1m1 0h4m2 0h2m1 0h1m-34 1h1m2 0h3m1 0h2m2 0h1m3 0h1m1 0h8m1 0h1m4 0h3m1 0h1m-37 1h4m1 0h1m2 0h2m2 0h2m1 0h4m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1m2 0h3m-35 1h3m1 0h2m1 0h1m2 0h3m4 0h1m4 0h2m5 0h2m2 0h1m-36 1h1m1 0h1m5 0h1m2 0h1m1 0h4m1 0h1m2 0h6m3 0h4m1 0h1m-36 1h5m1 0h3m4 0h2m1 0h3m1 0h3m2 0h1m1 0h1m2 0h2m1 0h1m2 0h1m-37 1h1m2 0h2m3 0h1m6 0h2m2 0h1m3 0h2m1 0h1m1 0h2m4 0h2m-36 1h1m1 0h1m1 0h1m1 0h2m1 0h1m4 0h2m1 0h2m1 0h1m1 0h4m1 0h6m1 0h3m-29 1h1m1 0h3m2 0h1m1 0h2m1 0h1m1 0h1m2 0h1m2 0h1m3 0h4m-36 1h7m3 0h3m1 0h1m3 0h1m1 0h4m2 0h1m1 0h1m1 0h1m1 0h5m-37 1h1m5 0h1m1 0h3m1 0h1m1 0h1m1 0h2m4 0h1m1 0h5m3 0h2m2 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m1 0h1m3 0h2m1 0h2m3 0h7m2 0h2m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h4m2 0h1m2 0h1m2 0h2m1 0h2m1 0h1m1 0h1m-36 1h1m1 0h3m1 0h1m2 0h4m1 0h1m3 0h4m1 0h1m1 0h1m2 0h1m2 0h2m1 0h3m-37 1h1m5 0h1m1 0h4m2 0h7m1 0h3m1 0h2m1 0h1m1 0h1m1 0h4m-37 1h7m4 0h6m3 0h1m2 0h2m3 0h2m2 0h2m2 0h1"/></svg></div>
+      <h4>우리 반 패들렛</h4>
+      <p>모둠 발표자료가 반별 칸에 올라옵니다.</p>
+      <a class="btn dark" href="https://padlet.com/jsmajs/3-s025s1mn8wgliq9hhdf8" target="_blank" rel="noopener" aria-label="우리 반 패들렛 열기">열기<span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="golink">
+      <p class="golink-tag">확인</p>
+      <div class="access-qr"><svg role="img" aria-label="우리 모둠 현황 QR 코드" viewBox="0 0 61 61" class="segno"><path fill="#fff" d="M0 0h61v61h-61z"/><path class="qrline" stroke="#1d1f23" d="M4 4.5h7m1 0h5m1 0h3m1 0h1m1 0h1m1 0h6m1 0h2m5 0h2m2 0h1m1 0h1m3 0h7m-53 1h1m5 0h1m3 0h1m2 0h5m3 0h1m2 0h1m2 0h2m3 0h1m1 0h1m3 0h2m1 0h3m2 0h1m5 0h1m-53 1h1m1 0h3m1 0h1m2 0h2m2 0h1m1 0h3m3 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h4m2 0h1m2 0h1m1 0h3m1 0h1m-53 1h1m1 0h3m1 0h1m4 0h2m2 0h5m2 0h1m1 0h2m1 0h5m1 0h1m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-53 1h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h4m1 0h10m1 0h3m3 0h2m2 0h3m3 0h1m1 0h3m1 0h1m-53 1h1m5 0h1m1 0h3m2 0h4m2 0h3m2 0h1m3 0h6m2 0h1m3 0h1m1 0h1m3 0h1m5 0h1m-53 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-44 1h3m1 0h2m2 0h2m1 0h5m3 0h5m3 0h2m2 0h1m2 0h1m-43 1h7m3 0h3m5 0h3m2 0h5m2 0h1m2 0h5m2 0h1m1 0h2m2 0h2m3 0h1m-49 1h1m2 0h4m3 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h5m1 0h2m3 0h3m4 0h2m2 0h2m-53 1h3m3 0h1m3 0h2m2 0h1m2 0h2m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m1 0h2m2 0h2m1 0h1m2 0h4m2 0h1m1 0h1m-51 1h1m5 0h3m6 0h1m2 0h4m2 0h2m1 0h3m3 0h1m2 0h3m1 0h1m4 0h1m2 0h1m2 0h1m-53 1h5m1 0h3m1 0h1m1 0h3m3 0h1m1 0h1m1 0h2m5 0h1m1 0h1m1 0h4m1 0h1m1 0h2m5 0h2m1 0h2m-52 1h1m2 0h3m2 0h1m1 0h4m1 0h3m4 0h1m1 0h2m3 0h2m3 0h4m1 0h4m4 0h1m2 0h3m-52 1h1m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h4m2 0h3m1 0h2m2 0h1m1 0h1m1 0h1m2 0h1m4 0h2m1 0h1m1 0h1m-50 1h1m1 0h1m3 0h4m8 0h2m1 0h1m1 0h1m3 0h3m2 0h2m2 0h1m1 0h1m7 0h1m1 0h1m2 0h1m-52 1h2m3 0h3m3 0h1m2 0h3m3 0h1m1 0h1m1 0h2m2 0h3m3 0h4m3 0h4m1 0h2m1 0h1m-51 1h3m1 0h2m2 0h1m4 0h4m2 0h7m3 0h3m5 0h1m2 0h4m3 0h3m1 0h2m-51 1h2m2 0h2m1 0h1m1 0h4m1 0h2m1 0h1m2 0h1m3 0h3m2 0h2m1 0h1m1 0h2m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-50 1h1m1 0h2m2 0h1m4 0h4m1 0h2m5 0h1m1 0h2m1 0h1m2 0h2m1 0h2m2 0h3m1 0h2m3 0h1m2 0h2m-53 1h1m1 0h3m1 0h1m1 0h1m3 0h2m2 0h1m1 0h1m2 0h3m3 0h1m3 0h1m4 0h2m3 0h2m1 0h1m1 0h5m-50 1h2m1 0h1m3 0h1m4 0h2m3 0h1m1 0h5m3 0h2m2 0h1m2 0h2m2 0h1m1 0h3m3 0h4m1 0h1m-52 1h1m3 0h4m1 0h2m1 0h1m5 0h2m2 0h1m2 0h2m2 0h1m2 0h2m1 0h2m1 0h2m4 0h5m1 0h1m-52 1h1m6 0h1m3 0h4m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m2 0h1m1 0h2m1 0h1m7 0h1m2 0h1m2 0h1m2 0h1m-52 1h10m3 0h3m1 0h3m1 0h1m1 0h5m4 0h6m3 0h7m1 0h2m-52 1h1m2 0h2m3 0h1m1 0h2m3 0h1m4 0h2m1 0h2m3 0h3m4 0h1m1 0h1m1 0h1m1 0h4m3 0h4m-49 1h2m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m3 0h1m3 0h1m1 0h1m1 0h1m1 0h3m-48 1h2m3 0h2m1 0h2m1 0h2m1 0h5m1 0h2m3 0h3m2 0h2m1 0h3m2 0h1m2 0h1m3 0h2m2 0h1m-53 1h3m1 0h6m1 0h1m1 0h1m3 0h1m2 0h2m2 0h9m1 0h4m5 0h8m-48 1h3m2 0h1m2 0h1m2 0h1m2 0h3m2 0h2m1 0h1m1 0h2m3 0h1m3 0h1m2 0h1m1 0h1m4 0h1m1 0h1m1 0h1m-45 1h1m2 0h2m1 0h2m1 0h1m4 0h1m4 0h2m3 0h4m1 0h2m1 0h1m3 0h2m3 0h1m-47 1h1m1 0h3m2 0h2m1 0h1m1 0h2m1 0h1m1 0h2m1 0h1m2 0h2m2 0h1m1 0h3m3 0h1m2 0h2m3 0h2m2 0h2m-48 1h1m2 0h2m1 0h1m1 0h3m4 0h1m3 0h1m2 0h1m1 0h2m1 0h3m3 0h2m1 0h1m5 0h1m4 0h4m-53 1h1m2 0h1m3 0h2m1 0h3m1 0h2m1 0h1m1 0h2m1 0h3m1 0h1m2 0h1m1 0h1m5 0h1m4 0h1m4 0h4m1 0h1m-53 1h2m3 0h2m3 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h8m1 0h1m1 0h1m1 0h6m6 0h1m1 0h2m-50 1h1m2 0h1m3 0h1m3 0h4m1 0h1m5 0h2m1 0h1m2 0h1m2 0h1m1 0h2m3 0h3m2 0h4m1 0h1m2 0h1m-52 1h1m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m2 0h2m1 0h1m1 0h2m1 0h6m1 0h1m2 0h3m5 0h2m1 0h1m2 0h2m-50 1h1m5 0h4m1 0h1m1 0h2m2 0h2m2 0h5m1 0h1m1 0h1m4 0h2m2 0h3m4 0h5m-52 1h3m2 0h2m6 0h2m1 0h1m1 0h2m3 0h4m3 0h1m1 0h2m1 0h5m8 0h3m-51 1h1m1 0h1m4 0h1m1 0h1m4 0h1m1 0h1m1 0h1m2 0h7m2 0h3m1 0h2m1 0h1m1 0h6m1 0h4m2 0h1m-53 1h1m2 0h4m1 0h4m3 0h2m1 0h1m1 0h1m2 0h5m6 0h1m1 0h1m2 0h1m5 0h1m1 0h1m1 0h3m-52 1h1m1 0h2m1 0h1m2 0h1m5 0h1m1 0h4m10 0h1m1 0h1m2 0h3m2 0h3m1 0h1m3 0h3m1 0h1m-53 1h2m1 0h7m3 0h2m1 0h3m1 0h2m3 0h1m1 0h4m1 0h3m2 0h1m2 0h2m1 0h2m4 0h1m-49 1h2m4 0h1m1 0h1m1 0h3m2 0h1m1 0h5m1 0h5m1 0h4m4 0h1m4 0h3m1 0h3m2 0h1m-50 1h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m2 0h7m5 0h2m1 0h2m2 0h1m1 0h6m2 0h1m-45 1h1m4 0h1m4 0h2m3 0h2m3 0h2m1 0h1m1 0h1m1 0h1m5 0h2m1 0h1m3 0h1m2 0h2m-53 1h7m1 0h2m2 0h1m1 0h1m3 0h1m1 0h1m3 0h1m1 0h1m1 0h1m1 0h2m3 0h1m1 0h3m4 0h1m1 0h1m1 0h3m-51 1h1m5 0h1m1 0h4m1 0h1m4 0h3m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m1 0h1m3 0h2m3 0h1m3 0h2m1 0h2m-53 1h1m1 0h3m1 0h1m1 0h4m3 0h1m1 0h2m1 0h10m1 0h1m1 0h1m1 0h4m5 0h6m2 0h1m-53 1h1m1 0h3m1 0h1m1 0h1m2 0h2m3 0h4m2 0h2m1 0h1m2 0h2m1 0h1m3 0h1m1 0h1m4 0h1m2 0h3m4 0h1m-53 1h1m1 0h3m1 0h1m1 0h1m1 0h2m3 0h1m1 0h3m2 0h1m2 0h1m1 0h1m1 0h3m2 0h1m1 0h1m1 0h2m1 0h1m3 0h5m-50 1h1m5 0h1m1 0h2m3 0h2m1 0h4m1 0h2m3 0h1m2 0h1m1 0h3m2 0h3m2 0h1m1 0h2m4 0h1m1 0h1m-52 1h7m3 0h2m1 0h1m2 0h1m1 0h1m1 0h1m3 0h3m1 0h1m2 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h1"/></svg></div>
+      <h4>우리 모둠 현황</h4>
+      <p>반을 고르면 모둠별 참여·성취가 보입니다.</p>
+      <a class="btn dark" href="https://script.google.com/macros/s/AKfycby9BeMCAmUEaOhd_Ct0kE0CzcUqy8Z4W4VHuJ7viV1caDmoXnZ4LLIogWMfyjnxAcGSkw/exec?v=g" target="_blank" rel="noopener" aria-label="우리 모둠 현황 열기">열기<span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <p class="small muted">자세한 방법: <a href="#classmap">Ⅵ 우리 반 지도</a> · <a href="#photo">사진 찍고 지도에 붙이기</a> · <a href="#maker">Ⅸ 모둠 발표자료 만들기</a></p>
+ </div>
+</section>
+
+<section class="slide contents-slide" id="contents" data-sec="top" data-num="3" data-total="35" aria-roledescription="슬라이드" aria-label="3번 슬라이드: 차례">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow">우리 동네 스포츠 배움터 찾기</p><h2 class="slide-title">차례</h2></header>
   <ol class="agenda">
-    <li><a href="#overview"><span class="ag-no">Ⅰ</span><span class="ag-t">한눈에 보기</span><span class="ag-n">3–4</span></a></li>
-    <li><a href="#purpose"><span class="ag-no">Ⅱ</span><span class="ag-t">왜 우리 동네인가</span><span class="ag-n">5–6</span></a></li>
-    <li class="t-ex"><a href="#topic1"><span class="ag-no">Ⅲ</span><span class="ag-t">운동하기 좋은 곳</span><span class="ag-n">7–8</span></a></li>
-    <li class="t-risk"><a href="#topic2"><span class="ag-no">Ⅳ</span><span class="ag-t">위험한 곳</span><span class="ag-n">9–11</span></a></li>
-    <li class="t-aed"><a href="#topic3"><span class="ag-no">Ⅴ</span><span class="ag-t">심장충격기 지도</span><span class="ag-n">12–15</span></a></li>
-    <li><a href="#howto"><span class="ag-no">Ⅵ</span><span class="ag-t">구글 지도로 매핑하기</span><span class="ag-n">16–27</span></a></li>
-    <li><a href="#safety"><span class="ag-no">Ⅶ</span><span class="ag-t">탐사 안전 수칙</span><span class="ag-n">28</span></a></li>
-    <li><a href="#analyze"><span class="ag-no">Ⅷ</span><span class="ag-t">우수사례·개선점</span><span class="ag-n">29–30</span></a></li>
-    <li><a href="#present"><span class="ag-no">Ⅸ</span><span class="ag-t">발표하기</span><span class="ag-n">31–32</span></a></li>
-    <li><a href="#card"><span class="ag-no">Ⅹ</span><span class="ag-t">현장 기록 카드</span><span class="ag-n">33</span></a></li>
-    <li><a href="#refs"><span class="ag-no">Ⅺ</span><span class="ag-t">참고 자료</span><span class="ag-n">34</span></a></li>
+    <li><a href="#overview"><span class="ag-no">Ⅰ</span><span class="ag-t">한눈에 보기</span><span class="ag-n">4–5</span></a></li>
+    <li><a href="#purpose"><span class="ag-no">Ⅱ</span><span class="ag-t">왜 우리 동네인가</span><span class="ag-n">6–7</span></a></li>
+    <li class="t-ex"><a href="#topic1"><span class="ag-no">Ⅲ</span><span class="ag-t">운동하기 좋은 곳</span><span class="ag-n">8–9</span></a></li>
+    <li class="t-risk"><a href="#topic2"><span class="ag-no">Ⅳ</span><span class="ag-t">위험한 곳</span><span class="ag-n">10–12</span></a></li>
+    <li class="t-aed"><a href="#topic3"><span class="ag-no">Ⅴ</span><span class="ag-t">심장충격기 지도</span><span class="ag-n">13–16</span></a></li>
+    <li><a href="#howto"><span class="ag-no">Ⅵ</span><span class="ag-t">구글 지도로 매핑하기</span><span class="ag-n">17–28</span></a></li>
+    <li><a href="#safety"><span class="ag-no">Ⅶ</span><span class="ag-t">탐사 안전 수칙</span><span class="ag-n">29</span></a></li>
+    <li><a href="#analyze"><span class="ag-no">Ⅷ</span><span class="ag-t">우수사례·개선점</span><span class="ag-n">30–31</span></a></li>
+    <li><a href="#present"><span class="ag-no">Ⅸ</span><span class="ag-t">발표하기</span><span class="ag-n">32–33</span></a></li>
+    <li><a href="#card"><span class="ag-no">Ⅹ</span><span class="ag-t">현장 기록 카드</span><span class="ag-n">34</span></a></li>
+    <li><a href="#refs"><span class="ag-no">Ⅺ</span><span class="ag-t">참고 자료</span><span class="ag-n">35</span></a></li>
   </ol>
  </div>
 </section>
 
-<section class="slide chapter-start" id="overview" data-sec="overview" data-num="3" data-total="34" aria-roledescription="슬라이드" aria-label="3번 슬라이드: 세 가지 주제">
+<section class="slide chapter-start" id="overview" data-sec="overview" data-num="4" data-total="35" aria-roledescription="슬라이드" aria-label="4번 슬라이드: 세 가지 주제">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅰ</span>한눈에 보기</p><h2 class="slide-title">세 가지 주제</h2></header>
   <div class="grid3 topic-cards">
@@ -528,7 +584,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s04" data-sec="overview" data-num="4" data-total="34" aria-roledescription="슬라이드" aria-label="4번 슬라이드: 활동 흐름과 결과물">
+<section class="slide" id="s05" data-sec="overview" data-num="5" data-total="35" aria-roledescription="슬라이드" aria-label="5번 슬라이드: 활동 흐름과 결과물">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅰ</span>한눈에 보기</p><h2 class="slide-title">활동 흐름과 결과물</h2></header>
   <h3 class="sub">활동 흐름</h3>
@@ -549,7 +605,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide chapter-start" id="purpose" data-sec="purpose" data-num="5" data-total="34" aria-roledescription="슬라이드" aria-label="5번 슬라이드: 왜 우리 동네인가">
+<section class="slide chapter-start" id="purpose" data-sec="purpose" data-num="6" data-total="35" aria-roledescription="슬라이드" aria-label="6번 슬라이드: 왜 우리 동네인가">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅱ</span>왜 우리 동네인가 — 학습 목적</p><h2 class="slide-title">왜 우리 동네인가</h2></header>
 
@@ -559,7 +615,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s06" data-sec="purpose" data-num="6" data-total="34" aria-roledescription="슬라이드" aria-label="6번 슬라이드: 커뮤니티 매핑과 학습 목표">
+<section class="slide" id="s07" data-sec="purpose" data-num="7" data-total="35" aria-roledescription="슬라이드" aria-label="7번 슬라이드: 커뮤니티 매핑과 학습 목표">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅱ</span>왜 우리 동네인가 — 학습 목적</p><h2 class="slide-title">커뮤니티 매핑과 학습 목표</h2></header>
   <h3 class="sub">커뮤니티 매핑이란?</h3>
@@ -576,7 +632,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-ex chapter-start" id="topic1" data-sec="topic1" data-num="7" data-total="34" aria-roledescription="슬라이드" aria-label="7번 슬라이드: 무엇을 찾을까?">
+<section class="slide t-ex chapter-start" id="topic1" data-sec="topic1" data-num="8" data-total="35" aria-roledescription="슬라이드" aria-label="8번 슬라이드: 무엇을 찾을까?">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅲ</span>주제 1 · 운동하기 좋은 곳</p><h2 class="slide-title">무엇을 찾을까?</h2></header>
   <div class="grid2">
@@ -601,7 +657,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-ex" id="s08" data-sec="topic1" data-num="8" data-total="34" aria-roledescription="슬라이드" aria-label="8번 슬라이드: ‘좋은 곳’을 가르는 여섯 가지 기준">
+<section class="slide t-ex" id="s09" data-sec="topic1" data-num="9" data-total="35" aria-roledescription="슬라이드" aria-label="9번 슬라이드: ‘좋은 곳’을 가르는 여섯 가지 기준">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅲ</span>주제 1 · 운동하기 좋은 곳</p><h2 class="slide-title">‘좋은 곳’을 가르는 여섯 가지 기준</h2></header>
   <p>그냥 “좋다”가 아니라 <b>기준을 들어</b> 말해야 우수사례가 됩니다. 기준마다 ★ 1~3개로 매겨 보세요.</p>
@@ -619,7 +675,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-risk chapter-start" id="topic2" data-sec="topic2" data-num="9" data-total="34" aria-roledescription="슬라이드" aria-label="9번 슬라이드: 세 갈래로 찾는 위험 요소">
+<section class="slide t-risk chapter-start" id="topic2" data-sec="topic2" data-num="10" data-total="35" aria-roledescription="슬라이드" aria-label="10번 슬라이드: 세 갈래로 찾는 위험 요소">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅳ</span>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</p><h2 class="slide-title">세 갈래로 찾는 위험 요소</h2></header>
 
@@ -635,7 +691,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-risk" id="s10" data-sec="topic2" data-num="10" data-total="34" aria-roledescription="슬라이드" aria-label="10번 슬라이드: 위험도 판단과 신고 통로">
+<section class="slide t-risk" id="s11" data-sec="topic2" data-num="11" data-total="35" aria-roledescription="슬라이드" aria-label="11번 슬라이드: 위험도 판단과 신고 통로">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅳ</span>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</p><h2 class="slide-title">위험도 판단과 신고 통로</h2></header>
   <table class="tbl stack">
@@ -655,7 +711,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-risk" id="s11" data-sec="topic2" data-num="11" data-total="34" aria-roledescription="슬라이드" aria-label="11번 슬라이드: 신고 글은 이렇게">
+<section class="slide t-risk" id="s12" data-sec="topic2" data-num="12" data-total="35" aria-roledescription="슬라이드" aria-label="12번 슬라이드: 신고 글은 이렇게">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅳ</span>주제 2 · 위험한 곳 (스포츠 환경 안전 공익신고)</p><h2 class="slide-title">신고 글은 이렇게 <span class="ex-tag">예시 · 가상</span></h2></header>
   <div class="sample">
@@ -666,7 +722,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-aed chapter-start" id="topic3" data-sec="topic3" data-num="12" data-total="34" aria-roledescription="슬라이드" aria-label="12번 슬라이드: 왜 지도로 만들까?">
+<section class="slide t-aed chapter-start" id="topic3" data-sec="topic3" data-num="13" data-total="35" aria-roledescription="슬라이드" aria-label="13번 슬라이드: 왜 지도로 만들까?">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅴ</span>주제 3 · 심장충격기 위치 지도</p><h2 class="slide-title">왜 지도로 만들까?</h2></header>
   <p>심장이 갑자기 멈추는 급성심장정지는 운동 중에도, 누구에게나 일어날 수 있습니다. 심장이 멈춘 뒤 1분 1초가 지날수록 살아날 가능성이 줄어들기 때문에 흔히 <b>‘4분’</b>을 골든타임이라고 부릅니다. 구급차가 오기 전, 곁에 있던 사람이 심폐소생술을 하고 <b>자동심장충격기(AED)</b>를 빨리 가져와 쓰는 것이 생명을 살립니다.</p>
@@ -675,7 +731,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-aed" id="s13" data-sec="topic3" data-num="13" data-total="34" aria-roledescription="슬라이드" aria-label="13번 슬라이드: 자동심장충격기, 이렇게 씁니다">
+<section class="slide t-aed" id="s14" data-sec="topic3" data-num="14" data-total="35" aria-roledescription="슬라이드" aria-label="14번 슬라이드: 자동심장충격기, 이렇게 씁니다">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅴ</span>주제 3 · 심장충격기 위치 지도</p><h2 class="slide-title">자동심장충격기, 이렇게 씁니다</h2></header>
   <p class="small muted">2025 한국 심폐소생술 가이드라인(질병관리청·대한심폐소생협회, 2026.1 발표) 기준. 나이·성별 구분 없이 같은 순서이며, 1세 이상 어린이에게도 씁니다.</p>
@@ -690,7 +746,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-aed" id="s14" data-sec="topic3" data-num="14" data-total="34" aria-roledescription="슬라이드" aria-label="14번 슬라이드: 어디에 있을까?">
+<section class="slide t-aed" id="s15" data-sec="topic3" data-num="15" data-total="35" aria-roledescription="슬라이드" aria-label="15번 슬라이드: 어디에 있을까?">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅴ</span>주제 3 · 심장충격기 위치 지도</p><h2 class="slide-title">어디에 있을까?</h2></header>
   <p>법(「응급의료에 관한 법률」 제47조의2)은 공공보건의료기관, 구급차, 공항·여객 항공기, 철도 객차, 일정 규모 이상의 선박, <b>500세대 이상 공동주택</b>, 일정 규모 이상의 다중이용시설 등에 심장충격기를 갖추도록 정하고 있습니다. 그 밖에 주민센터·체육관·학교·역 등에도 설치된 경우가 많습니다.</p>
@@ -708,7 +764,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide t-aed" id="s15" data-sec="topic3" data-num="15" data-total="34" aria-roledescription="슬라이드" aria-label="15번 슬라이드: 현장에서 확인할 다섯 가지">
+<section class="slide t-aed" id="s16" data-sec="topic3" data-num="16" data-total="35" aria-roledescription="슬라이드" aria-label="16번 슬라이드: 현장에서 확인할 다섯 가지">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅴ</span>주제 3 · 심장충격기 위치 지도</p><h2 class="slide-title">현장에서 확인할 다섯 가지</h2></header>
   <ul class="checks">
@@ -722,7 +778,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide chapter-start" id="howto" data-sec="howto" data-num="16" data-total="34" aria-roledescription="슬라이드" aria-label="16번 슬라이드: 우리 반 지도">
+<section class="slide chapter-start" id="howto" data-sec="howto" data-num="17" data-total="35" aria-roledescription="슬라이드" aria-label="17번 슬라이드: 우리 반 지도">
  <div class="slide-in">
   <header class="slide-head" id="classmap"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">우리 반 지도</h2></header>
   <p>우리 반 QR을 비추거나 단추를 눌러 학급 지도를 엽니다. 휴대전화에서는 보기만 되고, 장소를 넣고 고치는 일은 PC·크롬북에서 <b>학교 구글 계정</b>으로 합니다.</p>
@@ -747,7 +803,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s17" data-sec="howto" data-num="17" data-total="34" aria-roledescription="슬라이드" aria-label="17번 슬라이드: 준비물과 도구">
+<section class="slide" id="s18" data-sec="howto" data-num="18" data-total="35" aria-roledescription="슬라이드" aria-label="18번 슬라이드: 준비물과 도구">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">준비물과 도구</h2></header>
   <table class="tbl stack">
@@ -763,7 +819,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s18" data-sec="howto" data-num="18" data-total="34" aria-roledescription="슬라이드" aria-label="18번 슬라이드: 지도 구조: 지도 1개 = 레이어 3개">
+<section class="slide" id="s19" data-sec="howto" data-num="19" data-total="35" aria-roledescription="슬라이드" aria-label="19번 슬라이드: 지도 구조: 지도 1개 = 레이어 3개">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">지도 구조: 지도 1개 = 레이어 3개</h2></header>
   <p>레이어는 투명한 종이를 겹쳐 놓은 것과 같습니다. 주제마다 레이어를 따로 두면 하나씩 켜고 끄며 비교할 수 있습니다.</p>
@@ -779,7 +835,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s19" data-sec="howto" data-num="19" data-total="34" aria-roledescription="슬라이드" aria-label="19번 슬라이드: 내 지도 화면 익히기">
+<section class="slide" id="s20" data-sec="howto" data-num="20" data-total="35" aria-roledescription="슬라이드" aria-label="20번 슬라이드: 내 지도 화면 익히기">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">내 지도 화면 익히기</h2></header>
   <div class="figrow">
@@ -854,7 +910,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s20" data-sec="howto" data-num="20" data-total="34" aria-roledescription="슬라이드" aria-label="20번 슬라이드: 따라 하기 ① 지도 열기부터 설명 쓰기까지">
+<section class="slide" id="s21" data-sec="howto" data-num="21" data-total="35" aria-roledescription="슬라이드" aria-label="21번 슬라이드: 따라 하기 ① 지도 열기부터 설명 쓰기까지">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">따라 하기 ① 지도 열기부터 설명 쓰기까지</h2></header>
   <ol class="steps">
@@ -872,7 +928,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s21" data-sec="howto" data-num="21" data-total="34" aria-roledescription="슬라이드" aria-label="21번 슬라이드: 따라 하기 ② 사진부터 확인까지">
+<section class="slide" id="s22" data-sec="howto" data-num="22" data-total="35" aria-roledescription="슬라이드" aria-label="22번 슬라이드: 따라 하기 ② 사진부터 확인까지">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">따라 하기 ② 사진부터 확인까지</h2></header>
   <ol class="steps" style="counter-reset:s 4">
@@ -891,7 +947,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="photo" data-sec="howto" data-num="22" data-total="34" aria-roledescription="슬라이드" aria-label="22번 슬라이드: 사진 찍고 지도에 붙이기">
+<section class="slide" id="photo" data-sec="howto" data-num="23" data-total="35" aria-roledescription="슬라이드" aria-label="23번 슬라이드: 사진 찍고 지도에 붙이기">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">사진 찍고 지도에 붙이기</h2></header>
   <p>사진은 설명보다 힘이 센 <b>근거</b>입니다. 장소마다 직접 찍은 사진 1~3장을 지도에 붙이면, 가 보지 않은 친구도 그곳이 어떤지 바로 알 수 있습니다.</p>
@@ -929,7 +985,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s23" data-sec="howto" data-num="23" data-total="34" aria-roledescription="슬라이드" aria-label="23번 슬라이드: 주제별로 꼭 찍을 것">
+<section class="slide" id="s24" data-sec="howto" data-num="24" data-total="35" aria-roledescription="슬라이드" aria-label="24번 슬라이드: 주제별로 꼭 찍을 것">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">주제별로 꼭 찍을 것</h2></header>
   <table class="tbl stack">
@@ -944,7 +1000,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s24" data-sec="howto" data-num="24" data-total="34" aria-roledescription="슬라이드" aria-label="24번 슬라이드: 지도에 사진 붙이는 순서">
+<section class="slide" id="s25" data-sec="howto" data-num="25" data-total="35" aria-roledescription="슬라이드" aria-label="25번 슬라이드: 지도에 사진 붙이는 순서">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">지도에 사진 붙이는 순서</h2></header>
   <ol class="steps">
@@ -958,7 +1014,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s25" data-sec="howto" data-num="25" data-total="34" aria-roledescription="슬라이드" aria-label="25번 슬라이드: 장소 창의 카메라 아이콘">
+<section class="slide" id="s26" data-sec="howto" data-num="26" data-total="35" aria-roledescription="슬라이드" aria-label="26번 슬라이드: 장소 창의 카메라 아이콘">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">장소 창의 카메라 아이콘</h2></header>
   <div class="fig">
@@ -990,7 +1046,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s26" data-sec="howto" data-num="26" data-total="34" aria-roledescription="슬라이드" aria-label="26번 슬라이드: 잘 안 될 때">
+<section class="slide" id="s27" data-sec="howto" data-num="27" data-total="35" aria-roledescription="슬라이드" aria-label="27번 슬라이드: 잘 안 될 때">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">잘 안 될 때</h2></header>
   <table class="tbl stack">
@@ -1006,7 +1062,7 @@ body.deck .deck-label{display:block;position:fixed;z-index:14;left:calc(20px + e
  </div>
 </section>
 
-<section class="slide" id="s27" data-sec="howto" data-num="27" data-total="34" aria-roledescription="슬라이드" aria-label="27번 슬라이드: 설명 틀 — 복사해서 쓰세요">
+<section class="slide" id="s28" data-sec="howto" data-num="28" data-total="35" aria-roledescription="슬라이드" aria-label="28번 슬라이드: 설명 틀 — 복사해서 쓰세요">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅵ</span>구글 지도로 커뮤니티 매핑하기</p><h2 class="slide-title">설명 틀 — 복사해서 쓰세요</h2></header>
   <div class="tpls">
@@ -1046,7 +1102,7 @@ E-Gen 지도에 있나(있음 / 없음):
  </div>
 </section>
 
-<section class="slide chapter-start" id="safety" data-sec="safety" data-num="28" data-total="34" aria-roledescription="슬라이드" aria-label="28번 슬라이드: 탐사할 때와 지도에 올릴 때">
+<section class="slide chapter-start" id="safety" data-sec="safety" data-num="29" data-total="35" aria-roledescription="슬라이드" aria-label="29번 슬라이드: 탐사할 때와 지도에 올릴 때">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅶ</span>현장 탐사 안전·개인정보 수칙</p><h2 class="slide-title">탐사할 때와 지도에 올릴 때</h2></header>
   <div class="grid2">
@@ -1077,7 +1133,7 @@ E-Gen 지도에 있나(있음 / 없음):
  </div>
 </section>
 
-<section class="slide chapter-start" id="analyze" data-sec="analyze" data-num="29" data-total="34" aria-roledescription="슬라이드" aria-label="29번 슬라이드: 세 레이어 겹쳐 보고 질문하기">
+<section class="slide chapter-start" id="analyze" data-sec="analyze" data-num="30" data-total="35" aria-roledescription="슬라이드" aria-label="30번 슬라이드: 세 레이어 겹쳐 보고 질문하기">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅷ</span>지도를 겹쳐 우수사례·개선점 찾기</p><h2 class="slide-title">세 레이어 겹쳐 보고 질문하기</h2></header>
   <p>점 하나하나보다 <b>점과 점 사이의 관계</b>에서 의미가 보입니다. 세 레이어를 모두 켜고 다음 질문으로 지도를 읽어 봅니다.</p>
@@ -1147,7 +1203,7 @@ E-Gen 지도에 있나(있음 / 없음):
  </div>
 </section>
 
-<section class="slide" id="s30" data-sec="analyze" data-num="30" data-total="34" aria-roledescription="슬라이드" aria-label="30번 슬라이드: 우수사례와 개선점 정리표">
+<section class="slide" id="s31" data-sec="analyze" data-num="31" data-total="35" aria-roledescription="슬라이드" aria-label="31번 슬라이드: 우수사례와 개선점 정리표">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅷ</span>지도를 겹쳐 우수사례·개선점 찾기</p><h2 class="slide-title">우수사례와 개선점 정리표</h2></header>
   <table class="tbl stack">
@@ -1162,7 +1218,7 @@ E-Gen 지도에 있나(있음 / 없음):
  </div>
 </section>
 
-<section class="slide chapter-start" id="present" data-sec="present" data-num="31" data-total="34" aria-roledescription="슬라이드" aria-label="31번 슬라이드: 발표 구성 (모둠당 3분 + 질문 1분)">
+<section class="slide chapter-start" id="present" data-sec="present" data-num="32" data-total="35" aria-roledescription="슬라이드" aria-label="32번 슬라이드: 발표 구성 (모둠당 3분 + 질문 1분)">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅸ</span>발표하기</p><h2 class="slide-title">발표 구성 (모둠당 3분 + 질문 1분)</h2></header>
   <table class="tbl stack">
@@ -1183,7 +1239,7 @@ E-Gen 지도에 있나(있음 / 없음):
  </div>
 </section>
 
-<section class="slide" id="maker" data-sec="present" data-num="32" data-total="34" aria-roledescription="슬라이드" aria-label="32번 슬라이드: 모둠 발표자료 만들기">
+<section class="slide" id="maker" data-sec="present" data-num="33" data-total="35" aria-roledescription="슬라이드" aria-label="33번 슬라이드: 모둠 발표자료 만들기">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅸ</span>발표하기</p><h2 class="slide-title">모둠 발표자료 만들기</h2></header>
   <p>모둠이 함께 적은 글과 사진이 앞의 발표 구성 순서대로 <b>발표 슬라이드 7장</b>이 되고, 우리 반 패들렛에 올라갑니다. 발표 날에는 이 슬라이드로 발표합니다.</p>
@@ -1207,7 +1263,7 @@ E-Gen 지도에 있나(있음 / 없음):
  </div>
 </section>
 
-<section class="slide slide-card chapter-start" id="card" data-sec="card" data-num="33" data-total="34" aria-roledescription="슬라이드" aria-label="33번 슬라이드: 한 장소에 카드 한 장">
+<section class="slide slide-card chapter-start" id="card" data-sec="card" data-num="34" data-total="35" aria-roledescription="슬라이드" aria-label="34번 슬라이드: 한 장소에 카드 한 장">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅹ</span>현장 기록 카드</p><h2 class="slide-title">한 장소에 카드 한 장</h2></header>
   <p class="intro">한 장소에 카드 한 장. 아래 단추로 <b>이 카드만 A4에 두 장씩</b> 인쇄할 수 있습니다.</p>
@@ -1238,7 +1294,7 @@ E-Gen 지도에 있나(있음 / 없음):
  </div>
 </section>
 
-<section class="slide slide-refs chapter-start" id="refs" data-sec="refs" data-num="34" data-total="34" aria-roledescription="슬라이드" aria-label="34번 슬라이드: 참고 자료와 제작 정보">
+<section class="slide slide-refs chapter-start" id="refs" data-sec="refs" data-num="35" data-total="35" aria-roledescription="슬라이드" aria-label="35번 슬라이드: 참고 자료와 제작 정보">
  <div class="slide-in">
   <header class="slide-head"><p class="slide-eyebrow"><span class="eb-no">Ⅺ</span>참고 자료</p><h2 class="slide-title">참고 자료와 제작 정보</h2></header>
   <ul class="small">
@@ -1255,7 +1311,7 @@ E-Gen 지도에 있나(있음 / 없음):
   <p class="foot-name"><b>우리 동네 스포츠 배움터 찾기</b> · 2026 화접중학교 3학년 체육 커뮤니티 매핑 학생 안내 자료</p>
   <dl class="foot-meta">
     <div><dt>제작</dt><dd>kimjs99</dd></div>
-    <div><dt>버전</dt><dd class="mono">v2.2.0</dd></div>
+    <div><dt>버전</dt><dd class="mono">v2.3.0</dd></div>
     <div><dt>제작연도</dt><dd class="mono">2026</dd></div>
     <div><dt>최종 수정</dt><dd class="mono">2026-11-26</dd></div>
   </dl>
